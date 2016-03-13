@@ -59,40 +59,41 @@ begin
 		end if;
 	end process;
 	
-	service: process(Start) is
+	reset: process(s_clk, state, Start) is
 	begin
-	if state = n then
-		if rising_edge(Start) then
-			if Reset = 1 then
-				state <= i1;	--reset
-				cnt <= 0;
-			elsif InO = 1 then
-				state <= w1;	--write
-			else
-				state <= r1;	--read
+		if state = n then
+			if rising_edge(Start) then
+				if Reset = 1 then
+					next_state <= i1;	--reset
+					cnt <= 0;
+				elsif InO = 1 then
+					next_state <= w1;	--write
+				else
+					next_state <= r1;	--read
 			end if;
 		end if;
-	end if;
-	end process;
-
-	reset: process(s_clk, state) is
-	begin
-		if state = i1 then
+	
+		elsif state = i1 then
 			Wire <= '0';
-			if cnt = 480 then
-				cnt <= 0;
-				state <= i2;
-			else
-				cnt <= cnt + 1;
+			
+			if rising_edge(s_clk) then
+				if cnt = 480 then
+					cnt <= 0;
+					next_state <= i2;
+				else
+					cnt <= cnt + 1;
+				end if;
 			end if;
 			
 		elsif state = i2 then
 			Wire <= 'H';
-			if cnt = 70 then
-				cnt <= 0;
-				state <= i3;
-			else
-				cnt <= cnt + 1;
+			if rising_edge(s_clk) then
+				if cnt = 70 then
+					cnt <= 0;
+					next_state <= i3;
+				else
+					cnt <= cnt + 1;
+				end if;
 			end if;
 			
 		elsif state = i3 then
@@ -100,15 +101,17 @@ begin
 			state <= i4;
 			
 		elsif state = i4 then
-			if cnt = 410 then
-				cnt <= 0;
-				state <= n;
-			else
-				cnt <= cnt + 1;
+			if rising_edge(s_clk) then
+				if cnt = 410 then
+					cnt <= 0;
+					state <= n;
+				else
+					cnt <= cnt + 1;
+				end if;
 			end if;
 		end if;
 	end process;
-
+	
 	Busy <= '0' when state = n else '1';
 end Behavioral;
 
