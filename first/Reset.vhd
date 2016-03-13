@@ -45,7 +45,7 @@ architecture Behavioral of ServiceModule is
 	signal s_clk : STD_LOGIC := '0';
 	variable cnt : unsigned(7 downto 0) := 0;
 	
-	type state_type is (n,i1,i2,i3,w1,r1);
+	type state_type is (n,i1,i2,i3,w1,w2,w3,r1,r2,r3,r4);
 begin	
 
 	Busy <= busy_flag;
