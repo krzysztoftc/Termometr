@@ -63,8 +63,9 @@ begin
 	service: process(s_clk, state, Start) is
 	begin
 		if state = n then
+		Data <= 'H';	--on init could
+		Wire <= 'H';	--be weak 1
 			if rising_edge(Start) then
-			Data <= 'H';
 				if Reset = '1' then
 					state <= i1;	--reset
 					cnt <= (others => '0');
@@ -189,7 +190,7 @@ begin
 			Wire <= 'H';
 			
 			if rising_edge(s_clk) then
-				if cnt = 60 then
+				if cnt = 55 then
 					cnt <= (others => '0');
 					state <= n;
 				else

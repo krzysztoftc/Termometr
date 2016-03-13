@@ -100,17 +100,19 @@ BEGIN
       wait for CLK_period*10;
 
       -- insert stimulus here 
-		Wire <= 'H';
-		Data <= '0';
+		
+		Wire <= 'H';	--init buses
+		Data <= 'H';
 		
 		
 		Reset <= '1';	--reset
 		Start <= '0';
 		wait for 2 ns;
-		Start <= '1';
+		Start <= '1'; 
+		wait for 2 ns; --tego brakowlo - nie bylo zczytwane 1 tylko 0
 		Reset <= '0';
 		
-		wait for 1000 us;
+		wait for 1000 us;	--init slot
 		
 		--read 0
 		
@@ -122,20 +124,47 @@ BEGIN
 		Start <= '1';
 		
 		
-		wait for 7 us;	--time for slave
+		wait for 10 us;	--time for slave
 		Wire <= '0'; 	-- slave send 0
 		wait for 10 us; -- time before release bus
 		Wire <= 'H';	-- slave release the bus
-		wait for 60 us; --read time slot
+		wait for 80 us; --read time slot
+		wait for 1 us;	--wait for next
+
 		--read 1
-		
-		Ino <= '0';	--read
+		Data <= 'H'; 	--release 		
+		Ino <= '0';		--read
 		
 		-- start bit change
 		Start <='0';
 		wait for 2 ns;		
 		Start <= '1';
 		--for 1 slave release the bus
+		Wire <= 'H';	-- slave release the bus
+		wait for 80 us; --read time slot
+		
+		--write 0
+		Ino <= '1';	--write
+
+		Data <= '0'; --write 0
+	
+		-- start bit change
+		Start <='0';
+		wait for 2 ns;		
+		Start <= '1';
+		wait for 75 us; --write time slot
+		
+				
+		--write 1
+		Ino <= '1';	--write
+
+		Data <= '1'; --write 1
+	
+		-- start bit change
+		Start <='0';
+		wait for 2 ns;		
+		Start <= '1';
+		wait for 80 us; --write time slot
 		
 		wait;
 ---------------------------------------------------------------------------------------------------		
