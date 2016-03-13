@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   17:52:12 03/12/2016
+-- Create Date:   13:47:50 03/13/2016
 -- Design Name:   
 -- Module Name:   F:/SEMESTR_VI/UCISK/VHDL/first/ServiceModule_tb.vhd
 -- Project Name:  first
@@ -43,7 +43,10 @@ ARCHITECTURE behavior OF ServiceModule_tb IS
     PORT(
          Reset : IN  std_logic;
          InO : IN  std_logic;
+         CLK : IN  std_logic;
          Data : INOUT  std_logic;
+         Busy : OUT  std_logic;
+         Start : IN  std_logic;
          Wire : INOUT  std_logic
         );
     END COMPONENT;
@@ -52,14 +55,18 @@ ARCHITECTURE behavior OF ServiceModule_tb IS
    --Inputs
    signal Reset : std_logic := '0';
    signal InO : std_logic := '0';
+   signal CLK : std_logic := '0';
+   signal Start : std_logic := '0';
 
 	--BiDirs
    signal Data : std_logic;
    signal Wire : std_logic;
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
-   constant <clock>_period : time := 10 ns;
+
+ 	--Outputs
+   signal Busy : std_logic;
+
+   -- Clock period definitions
+   constant CLK_period : time := 20 ns;
  
 BEGIN
  
@@ -67,17 +74,20 @@ BEGIN
    uut: ServiceModule PORT MAP (
           Reset => Reset,
           InO => InO,
+          CLK => CLK,
           Data => Data,
+          Busy => Busy,
+          Start => Start,
           Wire => Wire
         );
 
    -- Clock process definitions
-   <clock>_process :process
+   CLK_process :process
    begin
-		<clock> <= '0';
-		wait for <clock>_period/2;
-		<clock> <= '1';
-		wait for <clock>_period/2;
+		CLK <= '0';
+		wait for CLK_period/2;
+		CLK <= '1';
+		wait for CLK_period/2;
    end process;
  
 
@@ -87,11 +97,84 @@ BEGIN
       -- hold reset state for 100 ns.
       wait for 100 ns;	
 
-      wait for <clock>_period*10;
+      wait for CLK_period*10;
 
       -- insert stimulus here 
-			
+		Wire <= 'H';
+		Data <= '0';
 		
+		
+		Reset <= '1';	--reset
+		Start <= '0';
+		wait for 2 ns;
+		Start <= '1';
+		Reset <= '0';
+		
+		wait for 1000 us;
+		
+		--read 0
+		
+		Ino <= '0';	--read
+		
+		-- start bit change
+		Start <='0';
+		wait for 2 ns;		
+		Start <= '1';
+		
+		
+		wait for 7 us;	--time for slave
+		Wire <= '0'; 	-- slave send 0
+		wait for 10 us; -- time before release bus
+		Wire <= 'H';	-- slave release the bus
+		wait for 60 us; --read time slot
+		--read 1
+		
+		Ino <= '0';	--read
+		
+		-- start bit change
+		Start <='0';
+		wait for 2 ns;		
+		Start <= '1';
+		--for 1 slave release the bus
+		
+		wait;
+---------------------------------------------------------------------------------------------------		
+		Reset <= '0';
+		Start <= '0';
+		wait for 2 ns;
+		Start <= '1';
+		InO <= '0';						--read 0
+		Data <= '0';
+		
+		wait for 70 us;
+		
+		Start <= '0';
+		wait for 2 ns;
+		Start <= '1';					--read 1
+		Data <= '1';
+		
+		wait for 70 us;
+		
+		Ino <= '1';
+		Start <= '0';
+		wait for 2 ns;
+		Start <= '1';
+		wait for 8 us;									--write 0 
+		Wire <= '0';
+		wait for 20 us;
+		Wire <= 'H';
+		
+		wait for 70 us;
+		
+		Start <= '0';
+		wait for 2 ns;
+		Start <= '1';
+		wait for 8 us;									--write 1
+		Wire <= '1';
+		wait for 20 us;
+		Wire <= 'H';
+		
+      wait;
    end process;
 
 END;

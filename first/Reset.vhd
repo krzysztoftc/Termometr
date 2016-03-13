@@ -19,6 +19,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -41,32 +42,33 @@ end ServiceModule;
 
 architecture Behavioral of ServiceModule is
 	signal busy_flag : STD_LOGIC := '0'; 
-	variable sclock_cnt : unisgned (5 downto 0) := 0;
+	signal sclock_cnt : unsigned (5 downto 0) := (others => '0');
 	signal s_clk : STD_LOGIC := '0';
-	variable cnt : unsigned(7 downto 0) := 0;
+	signal cnt : unsigned(8 downto 0) := (others => '0');
 	
-	type state_type is (n,i1,i2,i3,w1,w2,w3,r1,r2,r3,r4);
+	type state_type is (n,i1,i2,i3,i4,w1,w2,w3,r1,r2,r3,r4);
+	signal state: state_type;
 begin	
-
-	Busy <= busy_flag;
 	
 	small_clock: process(CLK) is
 	begin
 		if sclock_cnt = 50 then
 			s_clk <= not s_clk;
+			sclock_cnt <= (others => '0');
 		else
-			sclonck_cnt <= sclonck_cnt + 1;
+			sclock_cnt <= sclock_cnt + 1;
 		end if;
 	end process;
 	
-	reset: process(s_clk, state, Start) is
+	service: process(s_clk, state, Start) is
 	begin
 		if state = n then
 			if rising_edge(Start) then
-				if Reset = 1 then
+			Data <= 'H';
+				if Reset = '1' then
 					state <= i1;	--reset
-					cnt <= 0;
-				elsif InO = 1 then
+					cnt <= (others => '0');
+				elsif InO = '1' then
 					state <= w1;	--write
 				else
 					state <= r1;	--read
@@ -78,7 +80,7 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 480 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= i2;
 				else
 					cnt <= cnt + 1;
@@ -89,7 +91,7 @@ begin
 			Wire <= 'H';
 			if rising_edge(s_clk) then
 				if cnt = 70 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= i3;
 				else
 					cnt <= cnt + 1;
@@ -103,7 +105,7 @@ begin
 		elsif state = i4 then
 			if rising_edge(s_clk) then
 				if cnt = 410 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= n;
 				else
 					cnt <= cnt + 1;
@@ -115,7 +117,7 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 6 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= w2;
 				else
 					cnt <= cnt + 1;
@@ -123,11 +125,15 @@ begin
 			end if;
 		
 		elsif state = w2 then
-			Wire <= '0' when Data = 0 else 'H';
+			if Data = '0' then
+				Wire <= '0'; 
+			else 
+				Wire <= 'H';
+			end if;
 		
 			if rising_edge(s_clk) then
 				if cnt = 54 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= w3;
 				else
 					cnt <= cnt + 1;
@@ -140,7 +146,7 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 10 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= n;
 				else
 					cnt <= cnt + 1;
@@ -152,7 +158,7 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 6 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= r2;
 				else
 					cnt <= cnt + 1;
@@ -164,7 +170,7 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 9 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= r3;
 				else
 					cnt <= cnt + 1;
@@ -172,7 +178,11 @@ begin
 			end if;
 		
 		elsif state = r3 then
-			Data <= Wire;
+			if Wire = 'H' then 
+				Data <= '1';
+			else 
+				Data <= '0';
+			end if;
 			state <= r4;
 		
 		elsif state = r4 then
@@ -180,7 +190,7 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 60 then
-					cnt <= 0;
+					cnt <= (others => '0');
 					state <= n;
 				else
 					cnt <= cnt + 1;
