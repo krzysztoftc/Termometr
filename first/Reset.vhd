@@ -123,7 +123,7 @@ begin
 			end if;
 		
 		elsif state = w2 then
-		Wire <= '0' when Data = 0 else 'H';
+			Wire <= '0' when Data = 0 else 'H';
 		
 			if rising_edge(s_clk) then
 				if cnt = 54 then
@@ -140,6 +140,46 @@ begin
 			
 			if rising_edge(s_clk) then
 				if cnt = 10 then
+					cnt <= 0;
+					state <= n;
+				else
+					cnt <= cnt + 1;
+				end if;
+			end if;
+			
+		elsif state = r1 then
+			Wire <= '0';
+			
+			if rising_edge(s_clk) then
+				if cnt = 6 then
+					cnt <= 0;
+					state <= r2;
+				else
+					cnt <= cnt + 1;
+				end if;
+			end if;
+			
+		elsif state = r2 then
+			Wire <= 'H';
+			
+			if rising_edge(s_clk) then
+				if cnt = 9 then
+					cnt <= 0;
+					state <= r3;
+				else
+					cnt <= cnt + 1;
+				end if;
+			end if;
+		
+		elsif state = r3 then
+			Data <= Wire;
+			state <= r4;
+		
+		elsif state = r4 then
+			Wire <= 'H';
+			
+			if rising_edge(s_clk) then
+				if cnt = 60 then
 					cnt <= 0;
 					state <= n;
 				else
