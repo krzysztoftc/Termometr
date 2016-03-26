@@ -68,7 +68,7 @@ begin
 			if rising_edge(Start) then
 				if Reset = '1' then
 					state <= i1;	--reset
-					cnt <= (others => '0');
+					--cnt <= (others => '0');
 				elsif InO = '1' then
 					state <= w1;	--write
 				else
