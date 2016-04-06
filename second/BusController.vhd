@@ -67,7 +67,7 @@ begin
 	end if;
 end process;
 
-service: process (CLK, Start, state, RnW) is
+service: process (CLK, Start, state, RnW, reset, cnt) is
 begin
 	next_state <= state;
 	
