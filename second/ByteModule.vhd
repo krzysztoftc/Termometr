@@ -67,6 +67,7 @@ begin
 	case state is
 	when n =>
 		if Start = '1' then
+			byte_cnt <= (others => '0');
 			if RnW = '1' then
 				next_state <= r;
 			else
@@ -77,20 +78,19 @@ begin
 		end if;
 		
 	when w =>
-		Start_bit <= '0';
 		if (Busy_bit = '0') then
-			if byte_cnt = 8 then
+			if (byte_cnt = 8) then
 				next_state <= n;
-				byte_cnt <= (others => '0');
 			else
 				byte_writing <= '0' & byte_writing(7 downto 1);
 				byte_cnt <= byte_cnt + 1;
 				Start_bit <= '1';
 			end if;
+		else
+			Start_bit <= '0';
 		end if;
 		
 	when r =>
-		Start_bit <= '0';
 		if Busy_bit = '0' then
 			if byte_cnt = 8 then
 				next_state <= n;
@@ -99,18 +99,24 @@ begin
 			else
 				byte_reading <= byte_reading(6 downto 0) & Bit_in;
 				byte_cnt <= byte_cnt + 1;
-				Start_bit <= '1';
+				if byte_cnt < 8 then
+					Start_bit <= '1';
+				else 
+					Start_bit <= '0';
+				end if;
 			end if;
+		else
+			Start_bit <= '0';
 		end if;
 	
 	when others =>
 		next_state <= n;
-		
+		Start_bit <= '0';
 	end case;
 
 end process;
 	
-Busy <= '1' when state = n else '0';
+Busy <= '0' when state = n else '1';
 
 Bit_out <= byte_writing(0);
 
