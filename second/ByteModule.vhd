@@ -45,12 +45,10 @@ entity ByteModule is
 end ByteModule;
 
 architecture Behavioral of ByteModule is
-	type state_type is (n,w,r);
+	type state_type is (n,ws,wb,wc,we,rs,rb,rc,re);
 	signal state: state_type := n;
 	signal next_state: state_type := n;
-	signal byte_cnt : unsigned(4 downto 0) := (others => '0');
-	signal byte_writing : std_logic_vector(7 downto 0) := (others => '0');
-	signal byte_reading : std_logic_vector(7 downto 0) := (others => '0');
+	signal byte_cnt : unsigned(2 downto 0) := (others => '0');
 begin
 	
 service_state: process (CLK, next_state) is
@@ -60,67 +58,77 @@ begin
 	end if;
 end process;
 
-service: process (Start, RnW, Busy_bit, state, Byte_in, Bit_In, byte_cnt, byte_reading) is
+service: process (Start, RnW, Busy_bit, state, Byte_in, Bit_In, byte_cnt) is
 begin
 	next_state <= state; --by default
 	
 	case state is
 	when n =>
 		if Start = '1' then
-			byte_cnt <= (others => '0');
 			if RnW = '1' then
-				next_state <= r;
+				next_state <= rs;
 			else
-				next_state <= w;
-				byte_writing <= Byte_in;
+				next_state <= ws;
 			end if;
-			Start_bit <= '1';
 		end if;
 		
-	when w =>
+	when ws =>
+		next_state <= wb;
+	
+	when wb =>
 		if (Busy_bit = '0') then
-			if (byte_cnt = 8) then
-				next_state <= n;
-			else
-				byte_writing <= '0' & byte_writing(7 downto 1);
-				byte_cnt <= byte_cnt + 1;
-				Start_bit <= '1';
-			end if;
-		else
-			Start_bit <= '0';
+			next_state <= we;
 		end if;
-		
-	when r =>
-		if Busy_bit = '0' then
-			if byte_cnt = 8 then
-				next_state <= n;
-				Byte_out <= byte_reading;
-				byte_cnt <= (others => '0');
-			else
-				byte_reading <= byte_reading(6 downto 0) & Bit_in;
-				byte_cnt <= byte_cnt + 1;
-				if byte_cnt < 8 then
-					Start_bit <= '1';
-				else 
-					Start_bit <= '0';
-				end if;
-			end if;
+
+	when we =>
+		if(byte_cnt = 7) then
+			next_state <= n;
 		else
-			Start_bit <= '0';
+			next_state <= wc;
 		end if;
+	
+	when wc => 
+		next_state <= ws;
+
+	when rs =>
+		next_state <= rb;
+	
+	when rb =>
+		if (Busy_bit = '0') then
+			next_state <= re;
+		end if;
+
+	when re =>
+		if(byte_cnt = 7) then
+			next_state <= n;
+		else
+			next_state <= rc;
+		end if;
+	
+	when rc => 
+		next_state <= rs;
 	
 	when others =>
 		next_state <= n;
-		Start_bit <= '0';
 	end case;
 
 end process;
 	
 Busy <= '0' when state = n else '1';
 
-Bit_out <= byte_writing(0);
+Bit_out <= byte_in(to_integer(byte_cnt));
 
 RnW_bit <= RnW;
+
+Start_bit <= '1' when (state = rs) or (state = ws) else '0';
+
+Byte_out(to_integer(byte_cnt)) <= Bit_in when state = re and rising_edge(CLK);
+
+byte_cnt <= 
+	to_unsigned(0,3) when state = n else
+	byte_cnt + 1 when (state = wc or state = rc) and rising_edge(clk) 
+	else byte_cnt;
+
 
 end Behavioral;
 
