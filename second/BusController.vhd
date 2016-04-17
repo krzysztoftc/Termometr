@@ -49,7 +49,7 @@ architecture Behavioral of BusController is
 	signal next_state: state_type := n;
 begin
 
-clock: process (CLK) is	
+clock: process (CLK, state) is	
 begin
 	if state = n then
 		cnt <= (others => '0');
@@ -67,7 +67,7 @@ begin
 	end if;
 end process;
 
-service: process (CLK, Start, state, RnW, reset, cnt) is
+service: process (CLK, Start, state, RnW, cnt, Reset) is
 begin
 	next_state <= state;
 	

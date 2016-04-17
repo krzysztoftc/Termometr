@@ -2,4 +2,6 @@
 /first/
 
 !/second/*.vhd
+!/second/*.sch
+
 /second/
