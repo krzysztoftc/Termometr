@@ -1,0 +1,4 @@
+vhdl work "Controller.vhd"
+vhdl work "ByteModule.vhd"
+vhdl work "BusController.vhd"
+vhdl work "Init_Test.vhf"

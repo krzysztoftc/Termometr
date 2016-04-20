@@ -1,0 +1,14 @@
+[Inputs]
+CLK
+Busy_in
+c_Busy_in_bit
+Bit_in
+=Byte_in[7:0]=
+[Outputs]
+Start
+RnW
+Reset
+Reset_start
+=Data_out[15:0]=
+=Byte_out[7:0]=
+[BiDir]

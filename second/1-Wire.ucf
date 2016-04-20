@@ -1,0 +1,4 @@
+#
+# 1-Wire device on J4 (Vcc - GND - E8)
+#
+NET "DS18S20" LOC = "E8"  | IOSTANDARD = LVTTL | PULLUP;

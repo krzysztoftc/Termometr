@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="bus_byte_test_bus_byte_test_sch_tb" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/onewire" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">onewire</obj_property>
+      <obj_property name="ObjectShortName">onewire</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/start" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/rnw" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rnw</obj_property>
+      <obj_property name="ObjectShortName">rnw</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/byte_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">byte_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_in[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/byte_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">byte_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_out[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/busy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">busy</obj_property>
+      <obj_property name="ObjectShortName">busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_1/byte_cnt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">byte_cnt[4:0]</obj_property>
+      <obj_property name="ObjectShortName">byte_cnt[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_1/state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_1/next_state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">next_state</obj_property>
+      <obj_property name="ObjectShortName">next_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_1/start_bit" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">start_bit</obj_property>
+      <obj_property name="ObjectShortName">start_bit</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_1/busy_bit" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">busy_bit</obj_property>
+      <obj_property name="ObjectShortName">busy_bit</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_2/bus_out" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">bus_out</obj_property>
+      <obj_property name="ObjectShortName">bus_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_2/state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_2/cnt" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cnt[15:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/bus_byte_test_bus_byte_test_sch_tb/UUT/XLXI_2/next_state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">next_state</obj_property>
+      <obj_property name="ObjectShortName">next_state</obj_property>
+   </wvobject>
+</wave_config>

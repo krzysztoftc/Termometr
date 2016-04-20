@@ -1,0 +1,5 @@
+MODULE Bus_byte_test
+	SUBMODULE ByteModule
+		INSTANCE XLXI_1
+	SUBMODULE BusController
+		INSTANCE XLXI_2
