@@ -25,7 +25,9 @@
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="BusController.sym" xil_pn:origination="imported"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="BusController_tb_isim_beh.exe"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="Bus_byte_test.vhf"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="ByteModule.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SPL" xil_pn:name="Controller.spl"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="Controller.sym" xil_pn:origination="imported"/>
@@ -118,11 +120,11 @@
       <outfile xil_pn:name="double_dabble_tb2.vhd"/>
       <outfile xil_pn:name="init_tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1461174685" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="8422268496648817002" xil_pn:start_ts="1461174685">
+    <transform xil_pn:end_ts="1461176940" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-4346524002632013531" xil_pn:start_ts="1461176940">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1461174687" xil_pn:in_ck="-7531762311695071417" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="9170446936954098476" xil_pn:start_ts="1461174685">
+    <transform xil_pn:end_ts="1461176945" xil_pn:in_ck="-7531762311695071417" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-4464010923460009049" xil_pn:start_ts="1461176940">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="Bus_byte_test.vhf"/>
@@ -132,7 +134,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1461174804" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1461174804">
+    <transform xil_pn:end_ts="1461176945" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1461176945">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="BusController.vhd"/>
@@ -147,25 +149,21 @@
       <outfile xil_pn:name="double_dabble_tb2.vhd"/>
       <outfile xil_pn:name="init_tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1461174806" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-3906904457780719267" xil_pn:start_ts="1461174804">
+    <transform xil_pn:end_ts="1461176954" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-8009576052120381786" xil_pn:start_ts="1461176945">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="double_dabble_tb2_beh.prj"/>
-      <outfile xil_pn:name="double_dabble_tb2_isim_beh.exe"/>
+      <outfile xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_beh.prj"/>
+      <outfile xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.exe"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1461174891" xil_pn:in_ck="-1337916521708325751" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5236386571676755417" xil_pn:start_ts="1461174891">
+    <transform xil_pn:end_ts="1461177015" xil_pn:in_ck="-8712025565890721736" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-4536809045724485657" xil_pn:start_ts="1461177015">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="double_dabble_tb2_isim_beh.wdb"/>
+      <outfile xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
     </transform>
@@ -225,7 +223,7 @@
     <transform xil_pn:end_ts="1460450996" xil_pn:in_ck="-466041643214665289" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="1718683616677108566" xil_pn:start_ts="1460450989">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -236,7 +234,7 @@
     <transform xil_pn:end_ts="1460451002" xil_pn:in_ck="-466041600596222312" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="-1309755933173654900" xil_pn:start_ts="1460450996">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -265,7 +263,7 @@
     </transform>
     <transform xil_pn:end_ts="1460451028" xil_pn:in_ck="-3613071737242468160" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="2182533642587968765" xil_pn:start_ts="1460451026">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputRemoved"/>
