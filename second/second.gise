@@ -83,9 +83,9 @@
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
     <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="double_dabble_tb2_beh.prj"/>
+    <file xil_pn:fileType="FILE_SPL" xil_pn:name="double_dabble.spl"/>
+    <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="double_dabble.sym" xil_pn:origination="imported"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="double_dabble_tb2_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="double_dabble_tb2_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="init_test.bgn" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BIT" xil_pn:name="init_test.bit" xil_pn:subbranch="FPGAConfiguration"/>
@@ -118,13 +118,16 @@
       <outfile xil_pn:name="double_dabble_tb2.vhd"/>
       <outfile xil_pn:name="init_tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1461174685" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="8422268496648817002" xil_pn:start_ts="1461174685">
+    <transform xil_pn:end_ts="1461177051" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-3975635368172358765" xil_pn:start_ts="1461177051">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1461174687" xil_pn:in_ck="-7531762311695071417" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="9170446936954098476" xil_pn:start_ts="1461174685">
+    <transform xil_pn:end_ts="1461177053" xil_pn:in_ck="-7531762311695071417" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="3240289902358486421" xil_pn:start_ts="1461177051">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="Bus_byte_test.vhf"/>
       <outfile xil_pn:name="Init_Test.vhf"/>
     </transform>
@@ -135,6 +138,7 @@
     <transform xil_pn:end_ts="1461174804" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1461174804">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="BusController.vhd"/>
       <outfile xil_pn:name="BusController_tb.vhd"/>
       <outfile xil_pn:name="Bus_byte_test.vhf"/>
@@ -147,25 +151,26 @@
       <outfile xil_pn:name="double_dabble_tb2.vhd"/>
       <outfile xil_pn:name="init_tb.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1461174806" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-3906904457780719267" xil_pn:start_ts="1461174804">
+    <transform xil_pn:end_ts="1461177054" xil_pn:in_ck="-9140769396446381126" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="7536816936653210434" xil_pn:start_ts="1461177053">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="double_dabble_tb2_beh.prj"/>
-      <outfile xil_pn:name="double_dabble_tb2_isim_beh.exe"/>
+      <outfile xil_pn:name="Init_Test_Init_Test_sch_tb_beh.prj"/>
+      <outfile xil_pn:name="Init_Test_Init_Test_sch_tb_isim_beh.exe"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1461174891" xil_pn:in_ck="-1337916521708325751" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5236386571676755417" xil_pn:start_ts="1461174891">
+    <transform xil_pn:end_ts="1461177055" xil_pn:in_ck="-871780778639492145" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="6918096151560635766" xil_pn:start_ts="1461177054">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="double_dabble_tb2_isim_beh.wdb"/>
+      <outfile xil_pn:name="Init_Test_Init_Test_sch_tb_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
     </transform>
@@ -178,6 +183,7 @@
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Init_Test.vhf"/>
@@ -225,7 +231,7 @@
     <transform xil_pn:end_ts="1460450996" xil_pn:in_ck="-466041643214665289" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="1718683616677108566" xil_pn:start_ts="1460450989">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -236,7 +242,7 @@
     <transform xil_pn:end_ts="1460451002" xil_pn:in_ck="-466041600596222312" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="-1309755933173654900" xil_pn:start_ts="1460450996">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -246,7 +252,7 @@
     </transform>
     <transform xil_pn:end_ts="1460451020" xil_pn:in_ck="-1607691843110650863" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="-3872219738485705569" xil_pn:start_ts="1460451002">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -256,7 +262,7 @@
     <transform xil_pn:end_ts="1460451026" xil_pn:in_ck="-1645305358399494474" xil_pn:name="TRANEXT_bitFile_spartan3e" xil_pn:prop_ck="-7817169320884990698" xil_pn:start_ts="1460451020">
       <status xil_pn:value="AbortedRun"/>
       <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -265,14 +271,14 @@
     </transform>
     <transform xil_pn:end_ts="1460451028" xil_pn:in_ck="-3613071737242468160" xil_pn:name="TRAN_configureTargetDevice" xil_pn:prop_ck="2182533642587968765" xil_pn:start_ts="1460451026">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1460451020" xil_pn:in_ck="-466047226230695276" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416187" xil_pn:start_ts="1460451016">
       <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
