@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Bus_byte_test.vhf
--- /___/   /\     Timestamp : 04/17/2016 10:02:33
+-- /___/   /\     Timestamp : 04/20/2016 20:29:04
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Bus_byte_test.vhf -w /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Bus_byte_test.sch
+--Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl C:/Users/user/Desktop/Termometr/second/Bus_byte_test.vhf -w C:/Users/user/Desktop/Termometr/second/Bus_byte_test.sch
 --Design Name: Bus_byte_test
 --Device: spartan3e
 --Purpose:

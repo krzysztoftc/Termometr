@@ -25,7 +25,9 @@
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="BusController.sym" xil_pn:origination="imported"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="BusController_tb_isim_beh.exe"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_VHDL" xil_pn:name="Bus_byte_test.vhf"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="Bus_byte_test_Bus_byte_test_sch_tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="ByteModule.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_SPL" xil_pn:name="Controller.spl"/>
     <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="Controller.sym" xil_pn:origination="imported"/>
