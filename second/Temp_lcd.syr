@@ -1,0 +1,733 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.07 secs
+ 
+--> 
+Reading design: Temp_lcd.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Temp_lcd.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Temp_lcd"
+Output Format                      : NGC
+Target Device                      : xc3s500e-5-fg320
+
+---- Source Options
+Top Module Name                    : Temp_lcd
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/ByteModule.vhd" in Library work.
+Architecture behavioral of Entity bytemodule is up to date.
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/BusController.vhd" in Library work.
+Architecture behavioral of Entity buscontroller is up to date.
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd" in Library work.
+Entity <controller> compiled.
+Entity <controller> (Architecture <behavioral>) compiled.
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/doble_dabble_module.vhd" in Library work.
+Entity <double_dabble> compiled.
+Entity <double_dabble> (Architecture <Behavioral>) compiled.
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Interpreter.vhd" in Library work.
+Entity <Interpreter> compiled.
+Entity <Interpreter> (Architecture <Combinational>) compiled.
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd" in Library work.
+Entity <LCD> compiled.
+Entity <LCD> (Architecture <Behavioral>) compiled.
+Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Temp_lcd.vhf" in Library work.
+Entity <Temp_lcd> compiled.
+Entity <Temp_lcd> (Architecture <BEHAVIORAL>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <Temp_lcd> in library <work> (architecture <BEHAVIORAL>).
+
+Analyzing hierarchy for entity <ByteModule> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <BusController> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <Controller> in library <work> (architecture <behavioral>).
+
+Analyzing hierarchy for entity <double_dabble> in library <work> (architecture <Behavioral>).
+
+Analyzing hierarchy for entity <Interpreter> in library <work> (architecture <Combinational>).
+
+Analyzing hierarchy for entity <LCD> in library <work> (architecture <Behavioral>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <Temp_lcd> in library <work> (Architecture <BEHAVIORAL>).
+    Set user-defined property "DRIVE =  12" for instance <XLXI_4> in unit <Temp_lcd>.
+    Set user-defined property "IBUF_DELAY_VALUE =  0" for instance <XLXI_4> in unit <Temp_lcd>.
+    Set user-defined property "IFD_DELAY_VALUE =  AUTO" for instance <XLXI_4> in unit <Temp_lcd>.
+    Set user-defined property "IOSTANDARD =  DEFAULT" for instance <XLXI_4> in unit <Temp_lcd>.
+    Set user-defined property "SLEW =  SLOW" for instance <XLXI_4> in unit <Temp_lcd>.
+WARNING:Xst:2211 - "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Temp_lcd.vhf" line 242: Instantiating black box module <LCDWrite>.
+Entity <Temp_lcd> analyzed. Unit <Temp_lcd> generated.
+
+Analyzing Entity <ByteModule> in library <work> (Architecture <behavioral>).
+Entity <ByteModule> analyzed. Unit <ByteModule> generated.
+
+Analyzing Entity <BusController> in library <work> (Architecture <behavioral>).
+Entity <BusController> analyzed. Unit <BusController> generated.
+
+Analyzing Entity <Controller> in library <work> (Architecture <behavioral>).
+WARNING:Xst:819 - "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd" line 63: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <c_Busy_in_bit>, <Byte_in>
+Entity <Controller> analyzed. Unit <Controller> generated.
+
+Analyzing Entity <double_dabble> in library <work> (Architecture <Behavioral>).
+Entity <double_dabble> analyzed. Unit <double_dabble> generated.
+
+Analyzing Entity <Interpreter> in library <work> (Architecture <Combinational>).
+Entity <Interpreter> analyzed. Unit <Interpreter> generated.
+
+Analyzing Entity <LCD> in library <work> (Architecture <Behavioral>).
+WARNING:Xst:819 - "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd" line 60: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <state>, <BUSY_LCD>, <SIGN>, <S>, <D>, <J>, <HALF>
+Entity <LCD> analyzed. Unit <LCD> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <ByteModule>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/ByteModule.vhd".
+    Found finite state machine <FSM_0> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 9                                              |
+    | Transitions        | 15                                             |
+    | Inputs             | 4                                              |
+    | Outputs            | 6                                              |
+    | Clock              | CLK                       (rising_edge)        |
+    | Power Up State     | n                                              |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit 8-to-1 multiplexer for signal <Bit_out>.
+    Found 3-bit up counter for signal <byte_cnt>.
+    Found 8-bit register for signal <tmp_byte>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
+	inferred   8 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+Unit <ByteModule> synthesized.
+
+
+Synthesizing Unit <BusController>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/BusController.vhd".
+    Found finite state machine <FSM_1> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 12                                             |
+    | Transitions        | 24                                             |
+    | Inputs             | 10                                             |
+    | Outputs            | 8                                              |
+    | Clock              | CLK                       (rising_edge)        |
+    | Power Up State     | n                                              |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 1-bit register for signal <Read_out>.
+    Found 16-bit up counter for signal <cnt>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+Unit <BusController> synthesized.
+
+
+Synthesizing Unit <Controller>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd".
+INFO:Xst:1799 - State convert_b is never reached in FSM <state>.
+INFO:Xst:1799 - State convert is never reached in FSM <state>.
+INFO:Xst:1799 - State convert_wait is never reached in FSM <state>.
+INFO:Xst:1799 - State convert_wait_b is never reached in FSM <state>.
+INFO:Xst:1799 - State convert_check is never reached in FSM <state>.
+INFO:Xst:1799 - State reset2 is never reached in FSM <state>.
+INFO:Xst:1799 - State reset2_b is never reached in FSM <state>.
+INFO:Xst:1799 - State presence2 is never reached in FSM <state>.
+INFO:Xst:1799 - State skip2 is never reached in FSM <state>.
+INFO:Xst:1799 - State skip2_b is never reached in FSM <state>.
+    Found finite state machine <FSM_2> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 13                                             |
+    | Transitions        | 19                                             |
+    | Inputs             | 4                                              |
+    | Outputs            | 8                                              |
+    | Clock              | CLK                       (rising_edge)        |
+    | Power Up State     | reset_slave                                    |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+WARNING:Xst:737 - Found 1-bit latch for signal <RnW>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 16-bit register for signal <Data_out>.
+    Found 8-bit register for signal <first_byte>.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred  24 D-type flip-flop(s).
+Unit <Controller> synthesized.
+
+
+Synthesizing Unit <double_dabble>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/doble_dabble_module.vhd".
+    Found 5-bit comparator greater for signal <jds_3$cmp_gt0000> created at line 54.
+    Found 5-bit comparator greater for signal <jds_3$cmp_gt0001> created at line 54.
+    Found 5-bit comparator greater for signal <jds_3$cmp_gt0002> created at line 54.
+    Found 5-bit comparator greater for signal <jds_3$cmp_gt0003> created at line 54.
+    Found 4-bit adder for signal <jds_3_0$add0000> created at line 55.
+    Found 4-bit adder for signal <jds_3_0$add0001> created at line 55.
+    Found 4-bit adder for signal <jds_3_0$add0002> created at line 55.
+    Found 4-bit adder for signal <jds_3_0$add0003> created at line 55.
+    Found 5-bit comparator greater for signal <jds_7$cmp_gt0000> created at line 58.
+    Found 4-bit adder for signal <jds_7_4$add0000> created at line 59.
+    Summary:
+	inferred   5 Adder/Subtractor(s).
+	inferred   5 Comparator(s).
+Unit <double_dabble> synthesized.
+
+
+Synthesizing Unit <Interpreter>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Interpreter.vhd".
+WARNING:Xst:647 - Input <DATA<14:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 7-bit adder for signal <VALUE$addsub0000>.
+    Found 7-bit addsub for signal <VALUE$share0000>.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+Unit <Interpreter> synthesized.
+
+
+Synthesizing Unit <LCD>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd".
+INFO:Xst:1799 - State deg_b is never reached in FSM <state>.
+INFO:Xst:1799 - State deg is never reached in FSM <state>.
+INFO:Xst:1799 - State c_b is never reached in FSM <state>.
+INFO:Xst:1799 - State c is never reached in FSM <state>.
+INFO:Xst:1799 - State home is never reached in FSM <state>.
+INFO:Xst:1799 - State home_b is never reached in FSM <state>.
+    Found finite state machine <FSM_3> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 15                                             |
+    | Transitions        | 23                                             |
+    | Inputs             | 1                                              |
+    | Outputs            | 7                                              |
+    | Clock              | CLK                       (rising_edge)        |
+    | Power Up State     | busy                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+WARNING:Xst:737 - Found 8-bit latch for signal <Byte>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Summary:
+	inferred   1 Finite State Machine(s).
+Unit <LCD> synthesized.
+
+
+Synthesizing Unit <Temp_lcd>.
+    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Temp_lcd.vhf".
+WARNING:Xst:653 - Signal <XLXI_22_Reset_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <XLXI_22_Cursor_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <XLXI_22_Blink_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+Unit <Temp_lcd> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 7
+ 4-bit adder                                           : 5
+ 7-bit adder                                           : 1
+ 7-bit addsub                                          : 1
+# Counters                                             : 2
+ 16-bit up counter                                     : 1
+ 3-bit up counter                                      : 1
+# Registers                                            : 4
+ 1-bit register                                        : 1
+ 16-bit register                                       : 1
+ 8-bit register                                        : 2
+# Latches                                              : 2
+ 1-bit latch                                           : 1
+ 8-bit latch                                           : 1
+# Comparators                                          : 5
+ 5-bit comparator greater                              : 5
+# Multiplexers                                         : 1
+ 1-bit 8-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_3> for best encoding.
+Optimizing FSM <XLXI_24/state/FSM> on signal <state[1:4]> with sequential encoding.
+------------------------
+ State      | Encoding
+------------------------
+ busy       | 0000
+ clear      | 0001
+ clear_b    | 0010
+ sign_state | 0011
+ sign_b     | 0100
+ s_state    | 0101
+ s_b        | 0110
+ d_state    | 0111
+ d_b        | 1000
+ j_state    | 1001
+ j_b        | 1010
+ dot        | 1011
+ dot_b      | 1100
+ half_state | 1101
+ half_b     | 1110
+ deg        | unreached
+ deg_b      | unreached
+ c          | unreached
+ c_b        | unreached
+ home       | unreached
+ home_b     | unreached
+------------------------
+Analyzing FSM <FSM_2> for best encoding.
+Optimizing FSM <XLXI_5/state/FSM> on signal <state[1:13]> with one-hot encoding.
+---------------------------------
+ State          | Encoding
+---------------------------------
+ reset_slave    | 0000000000001
+ reset_slave_b  | 0000000000010
+ presence       | 0000000000100
+ skip           | 0000000001000
+ skip_b         | 0000000010000
+ convert        | unreached
+ convert_b      | unreached
+ convert_wait   | unreached
+ convert_wait_b | unreached
+ convert_check  | unreached
+ reset2         | unreached
+ reset2_b       | unreached
+ presence2      | unreached
+ skip2          | unreached
+ skip2_b        | unreached
+ read_cmd       | 0000000100000
+ read_cmd_b     | 0000001000000
+ scr1           | 0000010000000
+ scr1_b         | 0000100000000
+ scr1_save      | 0001000000000
+ scr2           | 0010000000000
+ scr2_b         | 0100000000000
+ finish         | 1000000000000
+---------------------------------
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <XLXI_3/state/FSM> on signal <state[1:12]> with one-hot encoding.
+-----------------------
+ State | Encoding
+-----------------------
+ n     | 000000000001
+ i1    | 000000000010
+ i2    | 000000010000
+ i3    | 000000100000
+ i4    | 000001000000
+ w1    | 000000001000
+ w2    | 000010000000
+ w3    | 000100000000
+ r1    | 000000000100
+ r2    | 001000000000
+ r3    | 010000000000
+ r4    | 100000000000
+-----------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <XLXI_1/state/FSM> on signal <state[1:9]> with one-hot encoding.
+--------------------
+ State | Encoding
+--------------------
+ n     | 000000001
+ ws    | 000000100
+ wb    | 000001000
+ wc    | 000100000
+ we    | 000010000
+ rs    | 000000010
+ rb    | 001000000
+ rc    | 100000000
+ re    | 010000000
+--------------------
+Reading core <LCDWrite.ngc>.
+Loading core <LCDWrite> for timing and area information for instance <XLXI_22>.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <Data_out_9> of sequential type is unconnected in block <XLXI_5>.
+WARNING:Xst:2677 - Node <Data_out_10> of sequential type is unconnected in block <XLXI_5>.
+WARNING:Xst:2677 - Node <Data_out_11> of sequential type is unconnected in block <XLXI_5>.
+WARNING:Xst:2677 - Node <Data_out_12> of sequential type is unconnected in block <XLXI_5>.
+WARNING:Xst:2677 - Node <Data_out_13> of sequential type is unconnected in block <XLXI_5>.
+WARNING:Xst:2677 - Node <Data_out_14> of sequential type is unconnected in block <XLXI_5>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 4
+# Adders/Subtractors                                   : 7
+ 4-bit adder                                           : 5
+ 7-bit adder                                           : 1
+ 7-bit addsub                                          : 1
+# Counters                                             : 2
+ 16-bit up counter                                     : 1
+ 3-bit up counter                                      : 1
+# Registers                                            : 33
+ Flip-Flops                                            : 33
+# Latches                                              : 2
+ 1-bit latch                                           : 1
+ 8-bit latch                                           : 1
+# Comparators                                          : 5
+ 5-bit comparator greater                              : 5
+# Multiplexers                                         : 1
+ 1-bit 8-to-1 multiplexer                              : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+INFO:Xst:2261 - The FF/Latch <7> in Unit <LPM_LATCH_2> is equivalent to the following FF/Latch, which will be removed : <6> 
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <LPM_LATCH_2>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <Temp_lcd> ...
+
+Optimizing unit <ByteModule> ...
+
+Optimizing unit <BusController> ...
+
+Optimizing unit <Controller> ...
+
+Optimizing unit <double_dabble> ...
+
+Optimizing unit <Interpreter> ...
+
+Optimizing unit <LCD> ...
+WARNING:Xst:2677 - Node <XLXI_5/Data_out_14> of sequential type is unconnected in block <Temp_lcd>.
+WARNING:Xst:2677 - Node <XLXI_5/Data_out_13> of sequential type is unconnected in block <Temp_lcd>.
+WARNING:Xst:2677 - Node <XLXI_5/Data_out_12> of sequential type is unconnected in block <Temp_lcd>.
+WARNING:Xst:2677 - Node <XLXI_5/Data_out_11> of sequential type is unconnected in block <Temp_lcd>.
+WARNING:Xst:2677 - Node <XLXI_5/Data_out_10> of sequential type is unconnected in block <Temp_lcd>.
+WARNING:Xst:2677 - Node <XLXI_5/Data_out_9> of sequential type is unconnected in block <Temp_lcd>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Temp_lcd, actual ratio is 3.
+INFO:Xst:2260 - The FF/Latch <Res_Rst/prevDIn> in Unit <XLXI_22> is equivalent to the following FF/Latch : <Res_Rst/prevDIn_1> 
+INFO:Xst:2260 - The FF/Latch <Res_Rst/prevDIn> in Unit <XLXI_22> is equivalent to the following FF/Latch : <Res_Rst/prevDIn_1> 
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 84
+ Flip-Flops                                            : 84
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Temp_lcd.ngr
+Top Level Output File Name         : Temp_lcd
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 10
+
+Cell Usage :
+# BELS                             : 425
+#      GND                         : 2
+#      INV                         : 8
+#      LUT1                        : 41
+#      LUT2                        : 40
+#      LUT2_D                      : 2
+#      LUT2_L                      : 1
+#      LUT3                        : 48
+#      LUT3_D                      : 3
+#      LUT3_L                      : 1
+#      LUT4                        : 146
+#      LUT4_D                      : 11
+#      LUT4_L                      : 9
+#      MUXCY                       : 41
+#      MUXF5                       : 25
+#      MUXF6                       : 1
+#      OR2                         : 1
+#      VCC                         : 2
+#      XORCY                       : 43
+# FlipFlops/Latches                : 188
+#      FD                          : 44
+#      FDC                         : 16
+#      FDE                         : 39
+#      FDR                         : 41
+#      FDRE                        : 8
+#      FDRS                        : 2
+#      FDRSE                       : 3
+#      FDS                         : 18
+#      FDSE                        : 10
+#      LD                          : 7
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 9
+#      IOBUF                       : 5
+#      OBUF                        : 4
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500efg320-5 
+
+ Number of Slices:                      165  out of   4656     3%  
+ Number of Slice Flip Flops:            188  out of   9312     2%  
+ Number of 4 input LUTs:                310  out of   9312     3%  
+ Number of IOs:                          10
+ Number of bonded IOBs:                  10  out of    232     4%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+---------------------------------------+------------------------+-------+
+Clock Signal                           | Clock buffer(FF name)  | Load  |
+---------------------------------------+------------------------+-------+
+CLK                                    | BUFGP                  | 181   |
+XLXI_5/RnW_or0000(XLXI_5/RnW_or00001:O)| NONE(*)(XLXI_5/RnW)    | 1     |
+XLXI_24/state_FSM_FFd4                 | NONE(XLXI_24/Byte_5)   | 6     |
+---------------------------------------+------------------------+-------+
+(*) This 1 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+------------------------------------------------+------------------------+-------+
+Control Signal                                  | Buffer(FF name)        | Load  |
+------------------------------------------------+------------------------+-------+
+XLXI_3/state_FSM_FFd12(XLXI_3/state_FSM_FFd12:Q)| NONE(XLXI_3/cnt_0)     | 16    |
+------------------------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 5.402ns (Maximum Frequency: 185.105MHz)
+   Minimum input arrival time before clock: 1.731ns
+   Maximum output required time after clock: 7.174ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK'
+  Clock period: 5.402ns (frequency: 185.105MHz)
+  Total number of paths / destination ports: 1930 / 303
+-------------------------------------------------------------------------
+Delay:               5.402ns (Levels of Logic = 4)
+  Source:            XLXI_22/State_20 (FF)
+  Destination:       XLXI_22/RET_13 (FF)
+  Source Clock:      CLK rising
+  Destination Clock: CLK rising
+
+  Data Path: XLXI_22/State_20 to XLXI_22/RET_13
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              3   0.514   0.603  State_20 (State<20>)
+     LUT3:I0->O            1   0.612   0.509  RET_mux0001<13>1112 (RET_mux0001<13>1112)
+     LUT4:I0->O            9   0.612   0.700  RET_mux0001<13>11133 (N4)
+     LUT4_D:I3->O          1   0.612   0.360  RET_mux0001<13>12 (N7)
+     LUT4:I3->O            1   0.612   0.000  RET_mux0001<13>128 (RET_mux0001<13>1)
+     FD:D                      0.268          RET_13
+    ----------------------------------------
+    Total                      5.402ns (3.230ns logic, 2.172ns route)
+                                       (59.8% logic, 40.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.731ns (Levels of Logic = 1)
+  Source:            DS18S20 (PAD)
+  Destination:       XLXI_3/Read_out (FF)
+  Destination Clock: CLK rising
+
+  Data Path: DS18S20 to XLXI_3/Read_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O           1   1.106   0.357  XLXI_4 (XLXN_5)
+     FDE:D                     0.268          XLXI_3/Read_out
+    ----------------------------------------
+    Total                      1.731ns (1.374ns logic, 0.357ns route)
+                                       (79.4% logic, 20.6% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
+  Total number of paths / destination ports: 41 / 8
+-------------------------------------------------------------------------
+Offset:              7.174ns (Levels of Logic = 5)
+  Source:            XLXI_1/byte_cnt_0 (FF)
+  Destination:       DS18S20 (PAD)
+  Source Clock:      CLK rising
+
+  Data Path: XLXI_1/byte_cnt_0 to DS18S20
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             8   0.514   0.795  XLXI_1/byte_cnt_0 (XLXI_1/byte_cnt_0)
+     LUT3:I0->O            1   0.612   0.000  XLXI_1/Mmux_Bit_out_4 (XLXI_1/Mmux_Bit_out_4)
+     MUXF5:I1->O           1   0.278   0.000  XLXI_1/Mmux_Bit_out_3_f5 (XLXI_1/Mmux_Bit_out_3_f5)
+     MUXF6:I1->O           1   0.451   0.357  XLXI_1/Mmux_Bit_out_2_f6 (XLXN_1)
+     MUXF5:S->O            1   0.641   0.357  XLXI_3/Bus_out_f5 (XLXN_142)
+     IOBUF:T->IO               3.169          XLXI_4 (DS18S20)
+    ----------------------------------------
+    Total                      7.174ns (5.665ns logic, 1.509ns route)
+                                       (79.0% logic, 21.0% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 7.58 secs
+ 
+--> 
+
+
+Total memory usage is 544624 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   24 (   0 filtered)
+Number of infos    :   23 (   0 filtered)
+

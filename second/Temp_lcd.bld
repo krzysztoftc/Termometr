@@ -1,0 +1,41 @@
+Release 14.7 ngdbuild P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line:
+/windows/APLIKACJE/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild -intstyle
+ise -dd _ngo -nt timestamp -i -p xc3s500e-fg320-5 Temp_lcd.ngc Temp_lcd.ngd
+
+Reading NGO file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Temp_lcd.ngc" ...
+Loading design module
+"/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCDWrite.ngc"...
+Gathering constraint information from source properties...
+Done.
+
+Resolving constraint associations...
+Checking Constraint Associations...
+Done...
+
+Checking expanded design ...
+WARNING:NgdBuild:452 - logical net 'N109' has no driver
+WARNING:NgdBuild:452 - logical net 'N110' has no driver
+WARNING:NgdBuild:452 - logical net 'N111' has no driver
+WARNING:NgdBuild:452 - logical net 'N112' has no driver
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   4
+
+Total memory usage is 392996 kilobytes
+
+Writing NGD file "Temp_lcd.ngd" ...
+Total REAL time to NGDBUILD completion:  3 sec
+Total CPU time to NGDBUILD completion:   3 sec
+
+Writing NGDBUILD log file "Temp_lcd.bld"...

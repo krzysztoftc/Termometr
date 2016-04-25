@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Init_Test.vhf
--- /___/   /\     Timestamp : 04/17/2016 10:46:08
+-- /___/   /\     Timestamp : 04/24/2016 23:27:04
 -- \   \  /  \ 
 --  \___\/\___\ 
 --

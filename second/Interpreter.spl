@@ -1,0 +1,7 @@
+[Inputs]
+=DATA[15:0]=
+[Outputs]
+HALF
+SIGN
+=VALUE[6:0]=
+[BiDir]

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="BusController">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2016-4-11T18:40:45</timestamp>
+    <timestamp>2016-4-25T16:42:29</timestamp>
     <pin polarity="Input" x="0" y="-352" name="Bus_in" />
     <pin polarity="Input" x="0" y="-288" name="CLK" />
     <pin polarity="Input" x="0" y="-224" name="Data_in" />

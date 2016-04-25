@@ -1,0 +1,13 @@
+[Inputs]
+CLK
+SIGN
+HALF
+BUSY_LCD
+=S[3:0]=
+=D[3:0]=
+=J[3:0]=
+[Outputs]
+WE
+DnI
+=Byte[7:0]=
+[BiDir]

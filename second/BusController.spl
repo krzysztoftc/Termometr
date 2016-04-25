@@ -1,0 +1,12 @@
+[Inputs]
+Bus_in
+CLK
+Data_in
+Reset
+RnW
+Start
+[Outputs]
+Bus_out
+Busy
+Read_out
+[BiDir]
