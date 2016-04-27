@@ -60,7 +60,7 @@ begin
 	end if;
 end process;
 
-service: process (CLK, state, busy_in, bit_in)
+service: process (CLK, state, busy_in, bit_in, c_busy_in_bit, byte_in)
 begin
 	
 	next_state <= state; -- by default
@@ -83,7 +83,7 @@ begin
 		end if;
 		
 	when skip => --skip match rom 
-		RnW <= '0';
+		--RnW <= '0';
 		next_state <= skip_b;
 	
 	when skip_b =>
@@ -92,7 +92,7 @@ begin
 		end if;
 	
 	when convert =>					--send convert_T command
-		RnW <= '0';
+		--RnW <= '0';
 		next_state <= convert_b;
 		
 	when convert_b =>					--wait until busy
@@ -101,7 +101,7 @@ begin
 		end if;
 	
 	when convert_wait =>				--when ds18s20 is convertoing on bus is 0
-		RnW <= '1';						--after finish on bus is 1
+		--RnW <= '1';						--after finish on bus is 1
 		next_state <= convert_wait_b;
 	
 	when convert_wait_b =>
@@ -132,7 +132,7 @@ begin
 		end if;
 		
 	when skip2 => --skip match rom 
-		RnW <= '0';
+		--RnW <= '0';
 		next_state <= skip2_b;
 	
 	when skip2_b =>
@@ -141,7 +141,7 @@ begin
 		end if;
 		
 	when read_cmd =>
-		RnW <= '0';
+		--RnW <= '0';
 		next_state <= read_cmd_b;
 		
 	when read_cmd_b =>
@@ -150,7 +150,7 @@ begin
 		end if;
 		
 	when scr1 =>
-		RnW <= '1';
+		--RnW <= '1';
 		next_state <= scr1_b;
 		
 	when scr1_b =>
@@ -173,7 +173,7 @@ begin
 		--next_state <= reset_slave;
 		
 	when others =>
-		next_state <= reset_slave;
+		--next_state <= reset_slave;
 		
 	end case;
 		
@@ -187,13 +187,49 @@ Reset_start <= '1' when (state = reset_slave or state = reset2) else '0';
 Start <= '1' when (state = skip or state = convert or state = convert_wait or state = skip2 
 						or state = read_cmd or state = scr1 or state = scr2) else '0';
 
---RnW <= '1' when (state = skip or state = convert or state = convert_wait 
---				or state = presence2 or state = scr1 or state = scr2) else '0';
+RnW <= '0' when (state = skip or state = skip_b or state = convert 
+						or state = convert_b or state = skip2 or state = skip2_b 
+						or state = read_cmd or state = read_cmd_b) else '1';
 
 first_byte <= Byte_in when state = scr1_save and rising_edge (clk);
 Data_out <= Byte_in & first_byte when state = finish and rising_edge (clk);
 
-Byte_out <= x"CC" when (state = skip or state = skip2) else x"44" when state = convert else x"BE";-- when state = read_cmd;
+byte_out_service: process (CLK, state)
+begin
+	if (rising_edge (CLK)) then
+		case state is
+			
+		when skip =>
+			Byte_out <= x"CC";
+			
+		when skip_b =>
+			Byte_out <= x"CC";
+			
+		when skip2 =>
+			Byte_out <= x"CC";
+		
+		when skip2_b =>
+			Byte_out <= x"CC";
+
+		when convert =>
+			Byte_out <= x"44";
+			
+		when convert_b =>
+			Byte_out <= x"44";
+			
+		when read_cmd =>
+			Byte_out <= x"BE";
+			
+		when read_cmd_b =>
+			Byte_out <= x"BE";
+			
+		when others =>
+			Byte_out <= x"00";
+		end case;
+	end if;
+end process;
+
+--Byte_out <= x"CC" when (state = skip or state = skip_busy or state = skip2) else x"44" when state = convert else x"BE";-- when state = read_cmd;
 
 end Behavioral;
 

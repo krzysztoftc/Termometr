@@ -139,7 +139,7 @@ byte_reading: process (CLK, state)
 begin
 if rising_edge(CLK) then
 	if state = re then
-		tmp_byte <= tmp_byte(6 downto 0) & Bit_in;
+		tmp_byte <= Bit_in & tmp_byte(7 downto 1);
 	end if;
 end if;
 end process;

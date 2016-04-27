@@ -1,0 +1,4 @@
+vhdl work "C:\Users\lab\Desktop\second\Controller.vhd"
+vhdl work "C:\Users\lab\Desktop\second\ByteModule.vhd"
+vhdl work "C:\Users\lab\Desktop\second\BusController.vhd"
+vhdl work "C:\Users\lab\Desktop\second\Init_Test.vhf"

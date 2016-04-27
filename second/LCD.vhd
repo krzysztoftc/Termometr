@@ -57,7 +57,7 @@ begin
 	end if;
 end process;
 
-state_service: process (CLK, next_state)
+state_service: process (CLK, next_state, state, busy_lcd, sign, s,d, j, half)
 begin
 	next_state <= state; -- by default
 	
@@ -69,7 +69,6 @@ begin
 		end if;
 	
 	when clear =>
-		BYTE <= x"01";
 		next_state <= clear_b;
 		
 	when clear_b =>
@@ -78,11 +77,6 @@ begin
 		end if;
 		
 	when sign_state =>
-		if sign = '0' then
-			BYTE <= x"20";			--space
-		else 
-			BYTE <= x"2B";			-- - sign
-		end if;
 		next_state <= sign_b;
 		
 	when sign_b =>
@@ -91,11 +85,6 @@ begin
 		end if;
 	
 	when s_state =>
-		if s = "0000" then
-			BYTE <= x"20";			--space
-		else 
-			BYTE <= "0001"&S;
-		end if;
 		next_state <= s_b;
 		
 	when s_b =>
@@ -104,11 +93,6 @@ begin
 		end if; 
 		
 	when d_state =>
-		if d = "0000" then
-			BYTE <= x"20";			--space
-		else 
-			BYTE <= "0001"&d;
-		end if;
 		next_state <= d_b;
 		
 	when d_b =>
@@ -117,7 +101,6 @@ begin
 		end if;
 
 	when j_state =>
-		BYTE <= "0001"&J;
 		next_state <= j_b;
 		
 	when j_b =>
@@ -126,7 +109,6 @@ begin
 		end if; 
 		
 	when dot =>
-		BYTE <= x"2E";
 		next_state <= dot_b;
 		
 	when dot_b =>
@@ -135,11 +117,6 @@ begin
 		end if; 
 	
 	when half_state =>
-		if half = '1' then
-			BYTE <= x"25";		-- 5 	
-		else 
-			BYTE <= x"20";		-- 0 
-		end if;
 		next_state <= half_b;
 		
 	when half_b =>
@@ -148,7 +125,6 @@ begin
 		end if;
 	
 	when deg =>
-		BYTE <= x"DF";
 		next_state <= deg_b;
 		
 	when deg_b =>
@@ -157,7 +133,6 @@ begin
 		end if;
 		
 	when c =>
-		BYTE <= x"43"; 		-- C
 		next_state <= c_b;
 		
 	when c_b =>
@@ -166,7 +141,6 @@ begin
 		end if;
 		
 	when home =>
-		BYTE <= x"02";		--goto 00 (home)
 		next_state <= home_b;
 	
 	when home_b =>
@@ -181,9 +155,65 @@ begin
 	
 end process;
 	
-	We <= '1' when (state = clear) else '0';
 	
-	DnI <= '0' when (state = clear or state = home) else '1';
+data_service: process (CLK, state, sign, s,d, j, half)
+begin
+	if rising_edge (clk) then
+	
+		if state =  clear  then
+			BYTE <= x"01";
+		
+		elsif state =  sign_state  then
+			if sign = '0' then
+				BYTE <= x"20";			--space
+			else 
+				BYTE <= x"2B";			-- - sign
+			end if;
+			
+		elsif state =  s_state  then
+			if s = "0000" then
+				BYTE <= x"20";			--space
+			else 
+				BYTE <= "0001"&S;
+			end if;
+			
+		elsif state =  d_state  then
+			if d = "0000" then
+				BYTE <= x"20";			--space
+			else 
+				BYTE <= "0001"&d;
+			end if;
+
+		elsif state =  j_state  then
+			BYTE <= "0001"&J;
+			
+		elsif state =  dot  then
+			BYTE <= x"2E";
+		
+		elsif state =  half_state  then
+			if half = '1' then
+				BYTE <= x"25";		-- 5 	
+			else 
+				BYTE <= x"20";		-- 0 
+			end if;
+		
+		elsif state =  deg  then
+			BYTE <= x"DF";
+			
+		elsif state =  c  then
+			BYTE <= x"43"; 		-- C
+			
+		elsif state =  home  then
+			BYTE <= x"02";		--goto 00 (home)	
+	end if;
+end if;	
+end process;
+
+
+	We <= '1' when (state = clear or state = sign_state or state = s_state or state = d_state or state = j_state or state = dot 
+								or state = half_state or state = deg or state = c or state = home) else '0';
+	
+	DnI <= '0' when (state = clear or state = clear_b or state = home or state = home_b) else '1';
 	
 end Behavioral;
 

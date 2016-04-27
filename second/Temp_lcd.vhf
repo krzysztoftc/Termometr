@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Temp_lcd.vhf
--- /___/   /\     Timestamp : 04/25/2016 18:56:23
+-- /___/   /\     Timestamp : 04/26/2016 10:40:19
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Temp_lcd.vhf -w /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Temp_lcd.sch
+--Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl C:/Users/lab/Desktop/second/Temp_lcd.vhf -w C:/Users/lab/Desktop/second/Temp_lcd.sch
 --Design Name: Temp_lcd
 --Device: spartan3e
 --Purpose:
@@ -27,9 +27,11 @@ use UNISIM.Vcomponents.ALL;
 
 entity Temp_lcd is
    port ( CLK     : in    std_logic; 
+          half    : out   std_logic; 
           LCD_E   : out   std_logic; 
           LCD_RS  : out   std_logic; 
           LCD_RW  : out   std_logic; 
+          LED     : out   std_logic_vector (7 downto 1); 
           SF_CE   : out   std_logic; 
           DS18S20 : inout std_logic; 
           LCD_D   : inout std_logic_vector (3 downto 0));
@@ -42,6 +44,7 @@ architecture BEHAVIORAL of Temp_lcd is
    attribute IBUF_DELAY_VALUE : string ;
    attribute IFD_DELAY_VALUE  : string ;
    attribute BOX_TYPE         : string ;
+   signal DATA                      : std_logic_vector (15 downto 0);
    signal XLXN_1                    : std_logic;
    signal XLXN_2                    : std_logic;
    signal XLXN_5                    : std_logic;
@@ -58,17 +61,16 @@ architecture BEHAVIORAL of Temp_lcd is
    signal XLXN_178                  : std_logic;
    signal XLXN_179                  : std_logic;
    signal XLXN_180                  : std_logic;
-   signal XLXN_181                  : std_logic_vector (6 downto 0);
    signal XLXN_183                  : std_logic_vector (3 downto 0);
    signal XLXN_184                  : std_logic_vector (3 downto 0);
    signal XLXN_185                  : std_logic_vector (3 downto 0);
    signal XLXN_186                  : std_logic;
-   signal XLXN_187                  : std_logic;
    signal XLXN_188                  : std_logic;
    signal XLXN_189                  : std_logic_vector (7 downto 0);
    signal XLXN_190                  : std_logic;
    signal XLXN_191                  : std_logic;
-   signal XLXN_193                  : std_logic_vector (15 downto 0);
+   signal LED_DUMMY                 : std_logic_vector (7 downto 1);
+   signal half_DUMMY                : std_logic;
    signal XLXI_22_Blink_openSignal  : std_logic;
    signal XLXI_22_Cursor_openSignal : std_logic;
    signal XLXI_22_Reset_openSignal  : std_logic;
@@ -182,6 +184,8 @@ architecture BEHAVIORAL of Temp_lcd is
    end component;
    
 begin
+   half <= half_DUMMY;
+   LED(7 downto 1) <= LED_DUMMY(7 downto 1);
    XLXI_1 : ByteModule
       port map (Bit_in=>XLXN_145,
                 Busy_bit=>XLXN_167,
@@ -219,7 +223,7 @@ begin
                 CLK=>CLK,
                 c_Busy_in_bit=>XLXN_167,
                 Byte_out(7 downto 0)=>XLXN_19(7 downto 0),
-                Data_out(15 downto 0)=>XLXN_193(15 downto 0),
+                Data_out(15 downto 0)=>DATA(15 downto 0),
                 Reset=>XLXN_24,
                 Reset_start=>XLXN_178,
                 RnW=>XLXN_10,
@@ -234,7 +238,7 @@ begin
                 O=>XLXN_180);
    
    XLXI_21 : double_dabble
-      port map (BYTE_IN(6 downto 0)=>XLXN_181(6 downto 0),
+      port map (BYTE_IN(6 downto 0)=>LED_DUMMY(7 downto 1),
                 D(3 downto 0)=>XLXN_184(3 downto 0),
                 J(3 downto 0)=>XLXN_183(3 downto 0),
                 S(3 downto 0)=>XLXN_185(3 downto 0));
@@ -256,16 +260,16 @@ begin
                 LCD_D(3 downto 0)=>LCD_D(3 downto 0));
    
    XLXI_23 : Interpreter
-      port map (DATA(15 downto 0)=>XLXN_193(15 downto 0),
-                HALF=>XLXN_187,
+      port map (DATA(15 downto 0)=>DATA(15 downto 0),
+                HALF=>half_DUMMY,
                 SIGN=>XLXN_186,
-                VALUE(6 downto 0)=>XLXN_181(6 downto 0));
+                VALUE(6 downto 0)=>LED_DUMMY(7 downto 1));
    
    XLXI_24 : LCD
       port map (BUSY_LCD=>XLXN_188,
                 CLK=>CLK,
                 D(3 downto 0)=>XLXN_184(3 downto 0),
-                HALF=>XLXN_187,
+                HALF=>half_DUMMY,
                 J(3 downto 0)=>XLXN_183(3 downto 0),
                 S(3 downto 0)=>XLXN_185(3 downto 0),
                 SIGN=>XLXN_186,

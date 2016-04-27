@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=F:\second\Init_Test.ncd
-OUTFILE=F:\second\Init_Test.bit
+INFILE=C:\Users\lab\Desktop\second\Init_Test.ncd
+OUTFILE=C:\Users\lab\Desktop\second\Init_Test.bit
 FAMILY=Spartan3E
 PART=xc3s500e-5fg320
-WORKINGDIR=F:\second
+WORKINGDIR=C:\Users\lab\Desktop\second
 LICENSE=ISE
 USER_INFO=174693031_177724690_210552578_727

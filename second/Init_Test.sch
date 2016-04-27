@@ -26,13 +26,13 @@
         <signal name="LCD_D(3:0)" />
         <signal name="SF_CE" />
         <signal name="Line(63:0)" />
-        <signal name="Line(15:0)" />
         <signal name="Line(63:16)" />
         <signal name="XLXN_167" />
         <signal name="XLXN_145" />
         <signal name="XLXN_178" />
         <signal name="XLXN_179" />
         <signal name="XLXN_180" />
+        <signal name="Line(15:0)" />
         <port polarity="Input" name="CLK" />
         <port polarity="BiDirectional" name="DS18S20" />
         <port polarity="Output" name="LCD_E" />
@@ -41,7 +41,7 @@
         <port polarity="BiDirectional" name="LCD_D(3:0)" />
         <port polarity="Output" name="SF_CE" />
         <blockdef name="BusController">
-            <timestamp>2016-4-11T18:40:45</timestamp>
+            <timestamp>2016-4-26T6:16:16</timestamp>
             <rect width="256" x="64" y="-384" height="384" />
             <line x2="0" y1="-352" y2="-352" x1="64" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
@@ -310,11 +310,6 @@
         <branch name="Line(63:16)">
             <wire x2="1552" y1="1920" y2="1920" x1="1456" />
         </branch>
-        <branch name="Line(15:0)">
-            <wire x2="1232" y1="1360" y2="1360" x1="1136" />
-            <wire x2="1232" y1="1360" y2="2000" x1="1232" />
-            <wire x2="1552" y1="2000" y2="2000" x1="1232" />
-        </branch>
         <branch name="XLXN_24">
             <wire x2="1152" y1="1264" y2="1264" x1="1136" />
             <wire x2="2224" y1="960" y2="960" x1="1152" />
@@ -391,6 +386,11 @@
         </branch>
         <branch name="XLXN_180">
             <wire x2="2400" y1="1504" y2="1504" x1="2352" />
+        </branch>
+        <branch name="Line(15:0)">
+            <wire x2="1232" y1="1360" y2="1360" x1="1136" />
+            <wire x2="1232" y1="1360" y2="2000" x1="1232" />
+            <wire x2="1552" y1="2000" y2="2000" x1="1232" />
         </branch>
     </sheet>
 </drawing>

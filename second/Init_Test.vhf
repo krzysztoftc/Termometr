@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Init_Test.vhf
--- /___/   /\     Timestamp : 04/24/2016 23:27:04
+-- /___/   /\     Timestamp : 04/26/2016 08:23:00
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Init_Test.vhf -w /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Init_Test.sch
+--Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl C:/Users/lab/Desktop/second/Init_Test.vhf -w C:/Users/lab/Desktop/second/Init_Test.sch
 --Design Name: Init_Test
 --Device: spartan3e
 --Purpose:

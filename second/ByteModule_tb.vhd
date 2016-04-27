@@ -111,46 +111,24 @@ BEGIN
 
       -- insert stimulus here 
 
-		Byte_in <= "10011101";
+--		Byte_in <= "10011101";
 		Rnw <= '1';
-		Start <= '1';
-		
-		
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-		busy_bit <= '1';
-		wait for 70 us;
-		busy_bit <= '0';
-
-
+		Start <= '1', '0' after CLK_period;
 		
       wait;
+
    end process;
+	
+	Bit_in <= '1' after 283 us;
+	
+	process
+	begin
+		loop
+			wait until rising_edge( Clk ) and Start_bit = '1';
+			Busy_bit <= '1';
+			wait for 70 us;
+			Busy_bit <= '0';
+		end loop;
+	end process;
 
 END;
