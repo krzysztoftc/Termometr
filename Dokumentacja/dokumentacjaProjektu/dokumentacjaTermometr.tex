@@ -64,11 +64,45 @@ Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpocz
 \includegraphics[scale=0.5]{graphics/slots.png}
 \end{center}
 \label{slotsitming}
-\caption{Diagramy czasowy dla procedury zapisu i odczytu}
+\caption{Diagramy czasowe dla procedury zapisu i odczytu}
 \end{figure}
 
 \section{Implementacja podstawowych operacji}
+
+Za realizację podstawowych operacji odpowiada moduł BusController. 
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[scale=1.4]{graphics/bus_controller_sym.png}
+\end{center}
+\label{bus_controller_sym}
+\caption{Moduł obsługi podstawowych operacji bitowych}
+\end{figure}
+
+Poniżej przedstawiono schemat blokowy tego automatu.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{graphics/bus_controller_fsm.png}
+\end{center}
+\label{bus_controller_fsm}
+\caption{Maszyna stanów BusController}
+\end{figure}
+
+Poprawna obsługa magistrali wymaga jej zwalniania poprzez ustawienie w stan wysokiej impedancji (podciągnięcie do Vcc przez rezystor pull-up). Służy do tego element IOBuf. Podanie logicznego zera na wejście T otwiera bufor wyjściowy i przekazuje sygnał podawany na pin I (GND - Logiczne 0). Logiczne 1 na wejściu T ustawia linie w stanie wysokiej impednacji (zwalnia magistralę). Pin O służy do odczytu stanu magistrali.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[scale=1.4]{graphics/io_buf_sym.png}
+\end{center}
+\label{bus_controller_sym}
+\caption{Symbol IOBuf}
+\end{figure}
+
 \section{Transmisja bajtu}
+
+
+
 \section{Implementacja transmisji bajtu}
 \section{Sekwencja konwersji i odczytu temperatury}
 \section{Implementacja konwersji i odczytu temperatury}
