@@ -33,7 +33,8 @@ Przykładowe połacznie przedstawia schemat:
 
 Wyróżnia się urządzania typu Master (najczęsciej mikrokontroler) oraz Slave (peryferia).
 
-\section{Komunikacja}
+\section{Założenia projektowe}
+\section{Podstawowe operacje}
 
 
 
@@ -49,6 +50,7 @@ Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwen
 \caption{Diagram czasu dla procedury inicjalizacji}
 \end{figure}
 
+\subsection{Zapis i odczyt}
 \subsubsection{Zapis bitu}
 Operacje zapisu bitu realizowane są w ściśle określonych slotach czasowych. Długość jednego slotu wynosić zwykle 60$\mu$s. Próbkowanie dokonywane jest mniej więcej w środku slotu celem uodpornienia na błędy. Pomiędzy kolejnymi operacjami wymagana jest przynajmniej 1$\mu$s odstępu.
 
@@ -65,4 +67,11 @@ Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpocz
 \caption{Diagramy czasow dla procedury zapisu i odczytu}
 \end{figure}
 
+\section{Implementacja podstawowych operacji}
+\section{Transmisja bajtu}
+\section{Implementacja transmisji bajtu}
+\section{Sekwencja konwersji i odczytu temperatury}
+\section{Implementacja konwersji i odczytu temperatury}
+\section{Algorytm double dabble}
+\section{Implementacja double dabble}
 \end{document}
