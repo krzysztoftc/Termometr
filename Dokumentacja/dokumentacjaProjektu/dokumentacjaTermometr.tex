@@ -18,7 +18,10 @@
 \listoffigures
 
 \newpage
-\section{Wstęp}
+
+\section{Założenia projektowe}
+
+\section{Wstęp teoretyczny}
 Interfejs 1wire jest interfejsem opracowanym przez firmę Dallas Semiconductor do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, linii GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania gVcc. 
 W ramach oszczędności przewodów ogranicza się połączenia do dwóch lini, wtedy układ zasilany jest pasożytniczo z lini danych.
 Przykładowe połacznie przedstawia schemat:
@@ -27,16 +30,14 @@ Przykładowe połacznie przedstawia schemat:
 \begin{center}
 \includegraphics[scale=0.3]{graphics/idea.png}
 \end{center}
-\label{schemonewire}
 \caption{Przykładowe połączenie urządzeń}
+\label{schemonewire}
 \end{figure}
 
 Wyróżnia się urządzania typu Master (najczęsciej mikrokontroler) oraz Slave (peryferia).
 
-\section{Założenia projektowe}
+
 \section{Podstawowe operacje}
-
-
 
 \subsection{Inicjalizacja i reset}
 
@@ -46,8 +47,8 @@ Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwen
 \begin{center}
 \includegraphics[scale=0.4]{graphics/init.png}
 \end{center}
-\label{inititming}
 \caption{Diagram czasowy dla procedury inicjalizacji}
+\label{inititming}
 \end{figure}
 
 \subsection{Zapis i odczyt}
@@ -61,10 +62,10 @@ Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpocz
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[scale=0.5]{graphics/slots.png}
+\includegraphics[width=14cm]{graphics/slots.png}
 \end{center}
-\label{slotsitming}
 \caption{Diagramy czasowe dla procedury zapisu i odczytu}
+\label{slotsitming}
 \end{figure}
 
 \section{Implementacja podstawowych operacji}
@@ -73,10 +74,10 @@ Za realizację podstawowych operacji odpowiada moduł BusController.
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[scale=1.4]{graphics/bus_controller_sym.png}
+\includegraphics[height=5cm]{graphics/bus_controller_sym.png}
 \end{center}
-\label{bus_controller_sym}
 \caption{Moduł obsługi podstawowych operacji bitowych}
+\label{bus_controller_sym}
 \end{figure}
 
 Poniżej przedstawiono schemat blokowy tego automatu.
@@ -85,8 +86,8 @@ Poniżej przedstawiono schemat blokowy tego automatu.
 \begin{center}
 \includegraphics[width=15cm]{graphics/bus_controller_fsm.png}
 \end{center}
-\label{bus_controller_fsm}
 \caption{Maszyna stanów BusController}
+\label{bus_controller_fsm}
 \end{figure}
 
 Poprawna obsługa magistrali wymaga jej zwalniania poprzez ustawienie w stan wysokiej impedancji (podciągnięcie do Vcc przez rezystor pull-up). Służy do tego element IOBuf. Podanie logicznego zera na wejście T otwiera bufor wyjściowy i przekazuje sygnał podawany na pin I (GND - Logiczne 0). Logiczne 1 na wejściu T ustawia linie w stanie wysokiej impednacji (zwalnia magistralę). Pin O służy do odczytu stanu magistrali.
@@ -95,16 +96,41 @@ Poprawna obsługa magistrali wymaga jej zwalniania poprzez ustawienie w stan wys
 \begin{center}
 \includegraphics[scale=1.4]{graphics/io_buf_sym.png}
 \end{center}
-\label{bus_controller_sym}
 \caption{Symbol IOBuf}
+\label{iobuf_controller_sym}
 \end{figure}
 
 \section{Transmisja bajtu}
 
-
+Komunikacja master - slave jest dwukierunkowa. Dane przesyłane są w formie bajtów, kolejność bitów określa zasada najpierw najmłodszy. 
 
 \section{Implementacja transmisji bajtu}
+
+Transmisja bajtu realizowana jest poprzez następny moduł - ByteModule. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[height=5cm]{graphics/byte_module_sym.png}
+\end{center}
+\caption{Moduł transmisji bajtu}
+\label{byte_module_sym}
+\end{figure}
+
+Automat zawiera po 4 stany na odczyt i zapis oraz jeden stan oczekiwania na sygnał startu.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{graphics/byte_module_fsm.png}
+\end{center}
+\caption{Maszyna stanów ByteModule}
+\label{bte_module_fsm}
+\end{figure}
+
+
 \section{Sekwencja konwersji i odczytu temperatury}
+
+Aktualna oczyt teperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. Sekwencję polecń wymaganych do konwersji i odczytu 
+
 \section{Implementacja konwersji i odczytu temperatury}
 \section{Algorytm double dabble}
 \section{Implementacja double dabble}
