@@ -121,7 +121,7 @@ begin
 		
 	when half_b =>
 		if BUSY_LCD = '0' then
-			next_state <= j_state;
+			next_state <= deg;
 		end if;
 	
 	when deg =>
@@ -129,7 +129,7 @@ begin
 		
 	when deg_b =>
 		if BUSY_LCD = '0' then
-			next_state <= j_state;
+			next_state <= c;
 		end if;
 		
 	when c =>
@@ -174,18 +174,18 @@ begin
 			if s = "0000" then
 				BYTE <= x"20";			--space
 			else 
-				BYTE <= "0001"&S;
+				BYTE <= "0011"&S;
 			end if;
 			
 		elsif state =  d_state  then
 			if d = "0000" then
 				BYTE <= x"20";			--space
 			else 
-				BYTE <= "0001"&d;
+				BYTE <= "0011"&d;
 			end if;
 
 		elsif state =  j_state  then
-			BYTE <= "0001"&J;
+			BYTE <= "0011"&J;
 			
 		elsif state =  dot  then
 			BYTE <= x"2E";
