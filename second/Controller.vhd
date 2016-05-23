@@ -64,38 +64,11 @@ freq_process: process (CLK, freq_up, freq_down)
 begin
 	if rising_edge(clk) then
 		if freq_up = '1' then
-			case frequence is
-					
-					when "0010" =>
-						frequence <= "0100";
-						
-					when "0100" =>
-						frequence <= "1000";
-						
-					when "1000" =>
-						frequence <= "0001";
-						
-					when others =>
-						frequence <= "0010";
-					
-				end case;
+			frequence <= frequence(2 downto 0) & frequence (3);
 				
 		elsif freq_down = '1' then
-			case frequence is
-					
-					when "0010" =>
-						frequence <= "0001";
-						
-					when "0100" =>
-						frequence <= "0010";
-						
-					when "1000" =>
-						frequence <= "0100";
-						
-					when others =>
-						frequence <= "1000";
-					
-				end case;
+			frequence <= frequence (0) & frequence(3 downto 1);
+
 		end if;
 	end if;
 end process;

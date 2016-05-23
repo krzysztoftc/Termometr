@@ -537,15 +537,15 @@
         </branch>
         <iomarker fontsize="28" x="1360" y="720" name="LED(3:0)" orien="R0" />
         <branch name="rot_a">
-            <wire x2="240" y1="1856" y2="1856" x1="208" />
+            <wire x2="224" y1="1856" y2="1856" x1="192" />
+            <wire x2="240" y1="1856" y2="1856" x1="224" />
         </branch>
         <branch name="rot_b">
-            <wire x2="240" y1="1920" y2="1920" x1="208" />
+            <wire x2="224" y1="1920" y2="1920" x1="192" />
+            <wire x2="240" y1="1920" y2="1920" x1="224" />
         </branch>
         <instance x="240" y="2080" name="XLXI_26" orien="R0">
         </instance>
-        <iomarker fontsize="28" x="208" y="1920" name="rot_b" orien="R180" />
-        <iomarker fontsize="28" x="208" y="1856" name="rot_a" orien="R180" />
         <branch name="XLXN_211">
             <wire x2="736" y1="1280" y2="1280" x1="272" />
             <wire x2="272" y1="1280" y2="1552" x1="272" />
@@ -575,5 +575,7 @@
             <wire x2="736" y1="1536" y2="1536" x1="624" />
             <wire x2="624" y1="1536" y2="1856" x1="624" />
         </branch>
+        <iomarker fontsize="28" x="192" y="1856" name="rot_a" orien="R180" />
+        <iomarker fontsize="28" x="192" y="1920" name="rot_b" orien="R180" />
     </sheet>
 </drawing>

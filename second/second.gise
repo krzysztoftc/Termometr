@@ -141,6 +141,7 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="temp_lcd.bgn" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BIT" xil_pn:name="temp_lcd.bit" xil_pn:subbranch="FPGAConfiguration"/>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_DRC" xil_pn:name="temp_lcd.drc" xil_pn:subbranch="FPGAConfiguration"/>
+    <file xil_pn:fileType="FILE_SYMBOL" xil_pn:name="termometer.sym" xil_pn:origination="imported"/>
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="webtalk.log"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
@@ -182,6 +183,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="Init_Test.vhf"/>
     </transform>
@@ -245,6 +247,9 @@
     <transform xil_pn:end_ts="1462869503" xil_pn:in_ck="4344541499473929499" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="5993021514288917040" xil_pn:start_ts="1462869501">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="InputAdded"/>
+      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="Temp_lcd.vhf"/>
     </transform>
     <transform xil_pn:end_ts="1461660347" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="1410550947927530974" xil_pn:start_ts="1461660347">
@@ -262,16 +267,21 @@
     <transform xil_pn:end_ts="1461660347" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="-3893270297158069842" xil_pn:start_ts="1461660347">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1461660347" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-6254621048471435480" xil_pn:start_ts="1461660347">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1462869514" xil_pn:in_ck="-5364421264847680234" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="-5275493756318162604" xil_pn:start_ts="1462869503">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Temp_lcd.jhd"/>
       <outfile xil_pn:name="Temp_lcd.lso"/>
@@ -290,11 +300,15 @@
     <transform xil_pn:end_ts="1462868992" xil_pn:in_ck="306849537503243838" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="4784892855559889162" xil_pn:start_ts="1462868992">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
     <transform xil_pn:end_ts="1462869519" xil_pn:in_ck="-8425310716308342075" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-1444168966118921621" xil_pn:start_ts="1462869514">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Temp_lcd.bld"/>
       <outfile xil_pn:name="Temp_lcd.ngd"/>
       <outfile xil_pn:name="Temp_lcd_ngdbuild.xrpt"/>
@@ -305,6 +319,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Temp_lcd.pcf"/>
       <outfile xil_pn:name="Temp_lcd_map.map"/>
       <outfile xil_pn:name="Temp_lcd_map.mrp"/>
@@ -318,6 +335,9 @@
     <transform xil_pn:end_ts="1462869541" xil_pn:in_ck="-6779855738380049607" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="-3872219738485705569" xil_pn:start_ts="1462869524">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Temp_lcd.ncd"/>
       <outfile xil_pn:name="Temp_lcd.pad"/>
       <outfile xil_pn:name="Temp_lcd.par"/>
@@ -332,6 +352,9 @@
     <transform xil_pn:end_ts="1462869546" xil_pn:in_ck="7527562569079410113" xil_pn:name="TRANEXT_bitFile_spartan3e" xil_pn:prop_ck="-7817169320884990698" xil_pn:start_ts="1462869541">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Temp_lcd.ut"/>
       <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
       <outfile xil_pn:name="temp_lcd.bgn"/>
@@ -344,11 +367,15 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="InputChanged"/>
     </transform>
     <transform xil_pn:end_ts="1462869541" xil_pn:in_ck="2351244818456870559" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416187" xil_pn:start_ts="1462869538">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="Temp_lcd.twr"/>
       <outfile xil_pn:name="Temp_lcd.twx"/>
       <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
