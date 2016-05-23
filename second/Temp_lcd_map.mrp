@@ -9,35 +9,36 @@ Target Device  : xc3s500e
 Target Package : fg320
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Tue Apr 26 10:57:08 2016
+Mapped Date    : Tue May 10 10:38:40 2016
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    1
 Logic Utilization:
-  Number of Slice Flip Flops:           183 out of   9,312    1%
-  Number of 4 input LUTs:               258 out of   9,312    2%
+  Number of Slice Flip Flops:           259 out of   9,312    2%
+  Number of 4 input LUTs:               359 out of   9,312    3%
 Logic Distribution:
-  Number of occupied Slices:            208 out of   4,656    4%
-    Number of Slices containing only related logic:     208 out of     208 100%
-    Number of Slices containing unrelated logic:          0 out of     208   0%
+  Number of occupied Slices:            282 out of   4,656    6%
+    Number of Slices containing only related logic:     282 out of     282 100%
+    Number of Slices containing unrelated logic:          0 out of     282   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         301 out of   9,312    3%
-    Number used as logic:               258
+  Total Number of 4 input LUTs:         402 out of   9,312    4%
+    Number used as logic:               357
     Number used as a route-thru:         43
+    Number used as Shift registers:       2
 
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
 
-  Number of bonded IOBs:                 18 out of     232    7%
+  Number of bonded IOBs:                 17 out of     232    7%
   Number of BUFGMUXs:                     1 out of      24    4%
 
-Average Fanout of Non-Clock Nets:                3.23
+Average Fanout of Non-Clock Nets:                3.00
 
-Peak Memory Usage:  213 MB
+Peak Memory Usage:  214 MB
 Total REAL time to MAP completion:  2 secs 
-Total CPU time to MAP completion:   1 secs 
+Total CPU time to MAP completion:   2 secs 
 
 NOTES:
 
@@ -90,12 +91,12 @@ WARNING:Pack:1186 - One or more I/O components have conflicting property values.
 Section 3 - Informational
 -------------------------
 INFO:Security:54 - 'xc3s500e' is a WebPack part.
-INFO:LIT:243 - Logical network N137 has no load.
+INFO:LIT:243 - Logical network N102 has no load.
 INFO:LIT:395 - The above info message is repeated 6 more times for the following
    (max. 5 shown):
-   N138,
-   N139,
-   N140,
+   N103,
+   N104,
+   N105,
    XLXI_22/genIOBUF[0].instIOBUF/O,
    XLXI_22/genIOBUF[1].instIOBUF/O
    To see the details of these info messages, please use the -detail switch.
@@ -108,9 +109,9 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   5 block(s) removed
-  12 block(s) optimized away
-   7 signal(s) removed
+   4 block(s) removed
+  13 block(s) optimized away
+   5 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -125,19 +126,16 @@ To quickly locate the original cause for the removal of a chain of logic, look
 above the place where that logic is listed in the trimming report, then locate
 the lines that are least indented (begin at the leftmost edge).
 
-The signal "XLXI_22/inDI<7>" is sourceless and has been removed.
 The signal "XLXI_22/Res_Rst/DInToggle" is sourceless and has been removed.
  Sourceless block "XLXI_22/Res_Rst/DInToggle_not00011_INV_0" (BUF) removed.
   The signal "XLXI_22/Res_Rst/DInToggle_not0001" is sourceless and has been
 removed.
-The signal "XLXI_22/regDI_or0001" is sourceless and has been removed.
 The signal "XLXI_22/genIOBUF[0].instIOBUF/O" is sourceless and has been removed.
 The signal "XLXI_22/genIOBUF[1].instIOBUF/O" is sourceless and has been removed.
 The signal "XLXI_22/genIOBUF[2].instIOBUF/O" is sourceless and has been removed.
 Unused block "XLXI_22/genIOBUF[0].instIOBUF/IBUF" (BUF) removed.
 Unused block "XLXI_22/genIOBUF[1].instIOBUF/IBUF" (BUF) removed.
 Unused block "XLXI_22/genIOBUF[2].instIOBUF/IBUF" (BUF) removed.
-Unused block "XLXI_22/regDI_or00011" (ROM) removed.
 
 Optimized Block(s):
 TYPE 		BLOCK
@@ -154,12 +152,8 @@ FD 		XLXI_22/Res_Rst/qDIn
    optimized to 0
 GND 		XLXI_22/XST_GND
 VCC 		XLXI_22/XST_VCC
-FDE 		XLXI_22/inDI_6
-   optimized to 0
-FDE 		XLXI_22/inDI_7
-   optimized to 0
-FDRE 		XLXI_22/regDI_7
-   optimized to 0
+GND 		XLXI_26/XST_GND
+VCC 		XLXI_26/XST_VCC
 VCC 		XST_VCC
 
 To enable printing of redundant blocks removed and signals merged, set the
@@ -181,15 +175,14 @@ Section 6 - IOB Properties
 | LCD_E                              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
 | LCD_RS                             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
 | LCD_RW                             | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
+| LED<0>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
 | LED<1>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
 | LED<2>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
 | LED<3>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
-| LED<4>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
-| LED<5>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
-| LED<6>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
-| LED<7>                             | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
 | SF_CE                              | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          | 0 / 0    |
-| half                               | IOB              | OUTPUT    | LVTTL                |       | 4        | SLOW |              |          | 0 / 0    |
+| half                               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          | 0 / 0    |
+| rot_a                              | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLUP   | 0 / 0    |
+| rot_b                              | IBUF             | INPUT     | LVTTL                |       |          |      |              | PULLUP   | 0 / 0    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 7 - RPMs

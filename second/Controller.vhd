@@ -19,6 +19,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.numeric_std.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -31,6 +32,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Controller is
     Port ( CLK : in  STD_LOGIC;
+	        Freq_up : in STD_LOGIC;
+			  Freq_down : in STD_LOGIC;
            Start : out  STD_LOGIC;
            Data_out : out  STD_LOGIC_VECTOR (15 downto 0);
 			  Byte_out: out STD_LOGIC_VECTOR (7 downto 0);
@@ -40,6 +43,7 @@ entity Controller is
 			  RnW: out STD_LOGIC;
 			  Bit_in: in STD_LOGIC;
            Reset : out  STD_LOGIC;
+			  Freq_state: out STD_LOGIC_VECTOR(3 downto 0);
 			  Reset_start : out  STD_LOGIC);
 end Controller;
 
@@ -47,11 +51,83 @@ architecture Behavioral of Controller is
 
 	type state_type is (reset_slave, reset_slave_b, presence, skip, skip_b, convert, 
 								convert_b, convert_wait, convert_wait_b, convert_check, reset2, reset2_b, presence2, skip2, skip2_b, read_cmd, read_cmd_b, scr1, 
-								scr1_b, scr1_save, scr2, scr2_b, finish);
+								scr1_b, scr1_save, scr2, scr2_b, delay, finish);
 	signal state: state_type := reset_slave;
 	signal next_state: state_type := reset_slave;
 	signal first_byte: std_logic_vector (7 downto 0);
+	signal frequence: std_logic_vector ( 3 downto 0) := "0001";
+	signal freq_cnt: unsigned (31 downto 0) := (others => '0');
+	signal delay_flag: std_logic := '0';
 begin
+
+freq_process: process (CLK, freq_up, freq_down)
+begin
+	if rising_edge(clk) then
+		if freq_up = '1' then
+			case frequence is
+					
+					when "0010" =>
+						frequence <= "0100";
+						
+					when "0100" =>
+						frequence <= "1000";
+						
+					when "1000" =>
+						frequence <= "0001";
+						
+					when others =>
+						frequence <= "0010";
+					
+				end case;
+				
+		elsif freq_down = '1' then
+			case frequence is
+					
+					when "0010" =>
+						frequence <= "0001";
+						
+					when "0100" =>
+						frequence <= "0010";
+						
+					when "1000" =>
+						frequence <= "0100";
+						
+					when others =>
+						frequence <= "1000";
+					
+				end case;
+		end if;
+	end if;
+end process;
+
+delay_process: process (CLK, freq_cnt, frequence, state)
+begin
+	if (rising_edge (CLK)) then
+		if (state = delay) then
+			if (freq_cnt = 0) then
+				delay_flag <= '0';
+				case frequence is
+					
+					when "0010" =>
+						freq_cnt <= to_unsigned(25000000,32);
+						
+					when "0100" =>
+						freq_cnt <= to_unsigned(75000000,32);
+						
+					when "1000" =>
+						freq_cnt <= to_unsigned(175000000,32);
+						
+					when others =>
+						freq_cnt <= to_unsigned(0,32);
+					
+				end case;
+			else
+				delay_flag <= '1';
+				freq_cnt <= freq_cnt - 1;
+			end if;
+		end if;
+	end if;
+end process;
 
 state_service: process (CLK, next_state)
 begin
@@ -88,7 +164,7 @@ begin
 	
 	when skip_b =>
 		if Busy_in = '0' then
-			next_state <= read_cmd;	--temporary!! should be convert!
+			next_state <= convert;	--temporary!! should be convert!
 		end if;
 	
 	when convert =>					--send convert_T command
@@ -170,10 +246,15 @@ begin
 		end if;
 		
 	when finish =>
-		--next_state <= reset_slave;
+		next_state <= delay;
+		
+	when delay =>
+		if delay_flag = '0' then
+			next_state <= reset_slave;
+		end if;
 		
 	when others =>
-		--next_state <= reset_slave;
+		next_state <= reset_slave;
 		
 	end case;
 		
@@ -230,6 +311,8 @@ begin
 end process;
 
 --Byte_out <= x"CC" when (state = skip or state = skip_busy or state = skip2) else x"44" when state = convert else x"BE";-- when state = read_cmd;
+
+Freq_state <= frequence;
 
 end Behavioral;
 

@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Temp_lcd.vhf
--- /___/   /\     Timestamp : 04/26/2016 10:40:19
+-- /___/   /\     Timestamp : 05/10/2016 10:38:22
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -27,11 +27,13 @@ use UNISIM.Vcomponents.ALL;
 
 entity Temp_lcd is
    port ( CLK     : in    std_logic; 
+          rot_a   : in    std_logic; 
+          rot_b   : in    std_logic; 
           half    : out   std_logic; 
           LCD_E   : out   std_logic; 
           LCD_RS  : out   std_logic; 
           LCD_RW  : out   std_logic; 
-          LED     : out   std_logic_vector (7 downto 1); 
+          LED     : out   std_logic_vector (3 downto 0); 
           SF_CE   : out   std_logic; 
           DS18S20 : inout std_logic; 
           LCD_D   : inout std_logic_vector (3 downto 0));
@@ -56,7 +58,6 @@ architecture BEHAVIORAL of Temp_lcd is
    signal XLXN_132                  : std_logic;
    signal XLXN_140                  : std_logic_vector (7 downto 0);
    signal XLXN_142                  : std_logic;
-   signal XLXN_145                  : std_logic;
    signal XLXN_167                  : std_logic;
    signal XLXN_178                  : std_logic;
    signal XLXN_179                  : std_logic;
@@ -69,7 +70,10 @@ architecture BEHAVIORAL of Temp_lcd is
    signal XLXN_189                  : std_logic_vector (7 downto 0);
    signal XLXN_190                  : std_logic;
    signal XLXN_191                  : std_logic;
-   signal LED_DUMMY                 : std_logic_vector (7 downto 1);
+   signal XLXN_194                  : std_logic_vector (6 downto 0);
+   signal XLXN_211                  : std_logic;
+   signal XLXN_214                  : std_logic;
+   signal XLXN_216                  : std_logic;
    signal half_DUMMY                : std_logic;
    signal XLXI_22_Blink_openSignal  : std_logic;
    signal XLXI_22_Cursor_openSignal : std_logic;
@@ -115,6 +119,8 @@ architecture BEHAVIORAL of Temp_lcd is
    
    component Controller
       port ( CLK           : in    std_logic; 
+             Freq_up       : in    std_logic; 
+             Freq_down     : in    std_logic; 
              Busy_in       : in    std_logic; 
              c_Busy_in_bit : in    std_logic; 
              Bit_in        : in    std_logic; 
@@ -122,9 +128,10 @@ architecture BEHAVIORAL of Temp_lcd is
              Start         : out   std_logic; 
              RnW           : out   std_logic; 
              Reset         : out   std_logic; 
+             Reset_start   : out   std_logic; 
              Data_out      : out   std_logic_vector (15 downto 0); 
              Byte_out      : out   std_logic_vector (7 downto 0); 
-             Reset_start   : out   std_logic);
+             Freq_state    : out   std_logic_vector (3 downto 0));
    end component;
    
    component GND
@@ -183,11 +190,18 @@ architecture BEHAVIORAL of Temp_lcd is
              Byte     : out   std_logic_vector (7 downto 0));
    end component;
    
+   component RotaryEnc
+      port ( ROT_A : in    std_logic; 
+             ROT_B : in    std_logic; 
+             RotL  : out   std_logic; 
+             RotR  : out   std_logic; 
+             Clk   : in    std_logic);
+   end component;
+   
 begin
    half <= half_DUMMY;
-   LED(7 downto 1) <= LED_DUMMY(7 downto 1);
    XLXI_1 : ByteModule
-      port map (Bit_in=>XLXN_145,
+      port map (Bit_in=>XLXN_211,
                 Busy_bit=>XLXN_167,
                 Byte_In(7 downto 0)=>XLXN_19(7 downto 0),
                 CLK=>CLK,
@@ -208,7 +222,7 @@ begin
                 Start=>XLXN_180,
                 Busy=>XLXN_167,
                 Bus_out=>XLXN_142,
-                Read_out=>XLXN_145);
+                Read_out=>XLXN_211);
    
    XLXI_4 : IOBUF
       port map (I=>XLXN_132,
@@ -217,13 +231,16 @@ begin
                 IO=>DS18S20);
    
    XLXI_5 : Controller
-      port map (Bit_in=>XLXN_145,
+      port map (Bit_in=>XLXN_211,
                 Busy_in=>XLXN_13,
                 Byte_in(7 downto 0)=>XLXN_140(7 downto 0),
                 CLK=>CLK,
                 c_Busy_in_bit=>XLXN_167,
+                Freq_down=>XLXN_216,
+                Freq_up=>XLXN_214,
                 Byte_out(7 downto 0)=>XLXN_19(7 downto 0),
                 Data_out(15 downto 0)=>DATA(15 downto 0),
+                Freq_state(3 downto 0)=>LED(3 downto 0),
                 Reset=>XLXN_24,
                 Reset_start=>XLXN_178,
                 RnW=>XLXN_10,
@@ -238,7 +255,7 @@ begin
                 O=>XLXN_180);
    
    XLXI_21 : double_dabble
-      port map (BYTE_IN(6 downto 0)=>LED_DUMMY(7 downto 1),
+      port map (BYTE_IN(6 downto 0)=>XLXN_194(6 downto 0),
                 D(3 downto 0)=>XLXN_184(3 downto 0),
                 J(3 downto 0)=>XLXN_183(3 downto 0),
                 S(3 downto 0)=>XLXN_185(3 downto 0));
@@ -263,7 +280,7 @@ begin
       port map (DATA(15 downto 0)=>DATA(15 downto 0),
                 HALF=>half_DUMMY,
                 SIGN=>XLXN_186,
-                VALUE(6 downto 0)=>LED_DUMMY(7 downto 1));
+                VALUE(6 downto 0)=>XLXN_194(6 downto 0));
    
    XLXI_24 : LCD
       port map (BUSY_LCD=>XLXN_188,
@@ -276,6 +293,13 @@ begin
                 Byte(7 downto 0)=>XLXN_189(7 downto 0),
                 DnI=>XLXN_190,
                 WE=>XLXN_191);
+   
+   XLXI_26 : RotaryEnc
+      port map (Clk=>CLK,
+                ROT_A=>rot_a,
+                ROT_B=>rot_b,
+                RotL=>XLXN_216,
+                RotR=>XLXN_214);
    
 end BEHAVIORAL;
 

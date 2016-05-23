@@ -1,19 +1,17 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Tue Apr 26 10:57:10 2016
+// Written by: Map P.20131013 on Tue May 10 10:38:42 2016
 //! **************************************************************************
 
 SCHEMATIC START;
 COMP "CLK" LOCATE = SITE "C9" LEVEL 1;
-COMP "half" LOCATE = SITE "F12" LEVEL 1;
 COMP "LCD_E" LOCATE = SITE "M18" LEVEL 1;
 COMP "SF_CE" LOCATE = SITE "D16" LEVEL 1;
+COMP "rot_a" LOCATE = SITE "K18" LEVEL 1;
+COMP "rot_b" LOCATE = SITE "G18" LEVEL 1;
+COMP "LED<0>" LOCATE = SITE "F12" LEVEL 1;
 COMP "LED<1>" LOCATE = SITE "E12" LEVEL 1;
 COMP "LED<2>" LOCATE = SITE "E11" LEVEL 1;
 COMP "LED<3>" LOCATE = SITE "F11" LEVEL 1;
-COMP "LED<4>" LOCATE = SITE "C11" LEVEL 1;
-COMP "LED<5>" LOCATE = SITE "D11" LEVEL 1;
-COMP "LED<6>" LOCATE = SITE "E9" LEVEL 1;
-COMP "LED<7>" LOCATE = SITE "F9" LEVEL 1;
 COMP "LCD_RS" LOCATE = SITE "L18" LEVEL 1;
 COMP "LCD_RW" LOCATE = SITE "L17" LEVEL 1;
 COMP "LCD_D<0>" LOCATE = SITE "R15" LEVEL 1;

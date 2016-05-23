@@ -158,7 +158,7 @@ end process;
 	
 data_service: process (CLK, state, sign, s,d, j, half)
 begin
-	if rising_edge (clk) then
+	if falling_edge (clk) then
 	
 		if state =  clear  then
 			BYTE <= x"01";
@@ -192,9 +192,9 @@ begin
 		
 		elsif state =  half_state  then
 			if half = '1' then
-				BYTE <= x"25";		-- 5 	
+				BYTE <= x"35";		-- 5 	
 			else 
-				BYTE <= x"20";		-- 0 
+				BYTE <= x"30";		-- 0 
 			end if;
 		
 		elsif state =  deg  then
