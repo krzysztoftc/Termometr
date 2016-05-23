@@ -21,8 +21,11 @@
 
 \section{Założenia projektowe}
 
+Celem projektu było przygotowanie układu obsługującego sensor Dallas DS18S20 na platformie Xilinx Spartan-3E. W tym celu zaimplementowano obsługę magistrali One wire oraz interpretacje wyniku. Efektem działania układu jest wyświetlona wartość temperatury na wyświetlaczu LCD zgodnym ze standardem HD44780.
+
 \section{Wstęp teoretyczny}
-Interfejs 1wire jest interfejsem opracowanym przez firmę Dallas Semiconductor do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, linii GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania gVcc. 
+\subsection{Interfejs}
+Interfejs 1wire jest interfejsem opracowanym przez firmę Dallas Semiconductor do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, linii GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania Vcc. 
 W ramach oszczędności przewodów ogranicza się połączenia do dwóch lini, wtedy układ zasilany jest pasożytniczo z lini danych.
 Przykładowe połacznie przedstawia schemat:
 
@@ -36,10 +39,9 @@ Przykładowe połacznie przedstawia schemat:
 
 Wyróżnia się urządzania typu Master (najczęsciej mikrokontroler) oraz Slave (peryferia).
 
+\subsection{Komunikacja}
 
-\section{Podstawowe operacje}
-
-\subsection{Inicjalizacja i reset}
+\subsubsection{Inicjalizacja i reset}
 
 Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwencji składającej się z sygnału reset, wysyłanego przez master, po którym następuje sygnał obecności układu slave. Sygnał reset to wymuszony stan 0 trwający przynajmniej 480$\mu$s. Następnie master oczekuje na sygnał obecności innego urządzenia na linii. Następuje wówczas zwolnienie magistrali, co powoduje podciągnięcie jej do stanu wysokiego przez rezystor pull-up. Urządzenie slave wykrywa wówczas narastające zbocze lini i po upływie 15$\mu$s-60$\mu$s sygnalizuje swoją obecność poprzez wymuszenie stanu niskiego na okres 60$\mu$s-240$\mu$s.
 
@@ -51,14 +53,13 @@ Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwen
 \label{inititming}
 \end{figure}
 
-\subsection{Zapis i odczyt}
 \subsubsection{Zapis bitu}
 Operacje zapisu bitu realizowane są w ściśle określonych slotach czasowych. Długość jednego slotu wynosić zwykle 60$\mu$s. Próbkowanie dokonywane jest mniej więcej w środku slotu celem uodpornienia na błędy. Pomiędzy kolejnymi operacjami wymagana jest przynajmniej 1$\mu$s odstępu.
 
 Zapis rozpoczyna się wysterowaniem linii danych przez master na poziom niski. Zapis 0 wymaga utrzymania jej w tym stanie przez cały slot. Zapis 1 jest nieco bardziej skomplikowany. Master musi w czasie nie dłuższym niż 15$\mu$s, ale nie krótszym niż 1$\mu$s zwolnić magistralęm tak aby w momencie próbkowania (po 30$\mu$s od zbocza opadającego) była w stanie wysokim. 
 
 \subsubsection{Odczyt bitu}
-Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpoczyna się wymuszeniem przez master stanu niskiego na linii danych na czas nie krótszy niż 1$\mu$s i zwolnienie jej (powrót do stanu wysokiego). Po tym sygnale sterowanie linią przejmuje urządzenie slave, wysyłające bit 0 lub 1. Slave po wykryciu zbocza opadającego wymusza stan niski (dla 0) lub utrzymuje  wysoki (dla 1) linii danych. Sygnał musi być wtedy spróbkowany przez master. Przed upłynięciem czasu końca slotu maigistrala zostaje zwolniona przez slave, co powoduje jej powrót do stanu wyokiego.
+Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpoczyna się wymuszeniem przez master stanu niskiego na linii danych na czas nie krótszy niż 1$\mu$s i zwolnienie jej (powrót do stanu wysokiego). Po tym sygnale sterowanie linią przejmuje urządzenie slave, wysyłające bit 0 lub 1. Slave po wykryciu zbocza opadającego wymusza stan niski (dla 0) lub utrzymuje  wysoki (dla 1) linii danych. Sygnał musi być wtedy spróbkowany przez master. Przed upłynięciem czasu końca slotu maigistrala zostaje zwolniona przez slave, co powoduje jej powrót do stanu wysokiego.
 
 \begin{figure}[!h]
 \begin{center}
@@ -67,6 +68,56 @@ Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpocz
 \caption{Diagramy czasowe dla procedury zapisu i odczytu}
 \label{slotsitming}
 \end{figure}
+
+\subsection{Konwersja i odczyt temperatury}
+Aktualny odczyt temperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. W celu zmierzenia aktualnej temperatury należy wysłać do termometru komendę konwersji, zresetować układ i odczytać pamięć.
+
+\subsection{Double dabble}
+Double dabble jest powszechnie wykorzystywanym algorytmem do konwersji liczb binarnych na kod BCD (Binary-Coded Decimal - system dziesiętny zakodowany dwójkowo). 
+
+Algorytm polega na wykonaniu n iteracji (w zależności od długości ciągu bitów). Początkowo wynikowy kod BCD jest zainicjalizowany jako ciąg zer podzielonych na grupy po 4 bity. Podczas każdej iteracji wykonywane jest przesunięcie o jeden bit w lewo, a na koniec doklejany jest jeden bit ciągu wejściowego. Jeżeli przed kolejnym przesunięciem wartość w jednej z grup w kodzie BCD jest wyższa niż 4 to następuje dodanie binarnej 3. Po wykonaniu odpowiedniej ilości iteracji algorytm kończy swoje działanie. Ostatecznie wynikowy ciąg jest podzielony po cztery bity, które odpowiadają kolejnym cyfrom wyniku. 
+
+\section{Implementacja}
+
+\subsection{Schemat główny}
+
+Funkcjonalność projektu opiera się na 6 podstawowych modułach widocznych na rysunku \ref{top_level}:
+\begin{itemize}
+\item Termometer - obsługa sensora DS18S20;
+\item RotaryEnc- sterowanie częstotliwością pomiaru;
+\item Interpreter - interpretacja 2 bajtowego wyniku;
+\item double\_dabble - zamiana liczby binarnej bez znaku na kod BCD;
+\item LCD - generowanie zawartości wyświetlacza LCD;
+\item LCDWrite - sterownik wyświetlacza.
+\end{itemize}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics{graphics/top_level.png}
+\end{center}
+\caption{Schemat ogólny projektu}
+\label{top_level}
+\end{figure}
+
+\subsection{Termometer}
+Moduł Termometer jest najbardziej rozbudowanym modułem składającym się z 4 układów (rysunek \ref{termometer}):
+\begin{itemize}
+\item Controller - obsługa sekwencji komunikacji i konwersji temperatury;
+\item ByteModule - obsługa komunikacji na poziomie bajtu (instrukcji);
+\item BusController - obsługa magistrali Onewire;
+\item IOBuf - ustala kierunek komunikacji.
+\end{itemize}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=20cm]{graphics/termometer.png}
+\end{center}
+\caption{Moduł Termometer}
+\label{termometer}
+\end{figure}
+
+\newpage
+========================================================================
 
 \section{Implementacja podstawowych operacji}
 
@@ -126,12 +177,6 @@ Automat zawiera po 4 stany na odczyt i zapis oraz jeden stan oczekiwania na sygn
 \label{bte_module_fsm}
 \end{figure}
 
-
-\section{Sekwencja konwersji i odczytu temperatury}
-
-Aktualna oczyt teperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. Sekwencję polecń wymaganych do konwersji i odczytu 
-
-\section{Implementacja konwersji i odczytu temperatury}
 \section{Algorytm double dabble}
 \section{Implementacja double dabble}
 \end{document}
