@@ -1,1 +1,2 @@
-sch2hdl,-intstyle,ise,-family,spartan3e,-flat,-suppress,-vhdl,C:/Users/lab/Desktop/second/Temp_lcd.vhf,-w,C:/Users/lab/Desktop/second/Temp_lcd.sch
+sch2hdl,-intstyle,ise,-family,spartan3e,-flat,-suppress,-vhdl,/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/termometer.vhf,-w,/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/termometer.sch
+sch2hdl,-intstyle,ise,-family,spartan3e,-flat,-suppress,-vhdl,/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf,-w,/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.sch
