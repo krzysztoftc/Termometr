@@ -4,6 +4,7 @@
 \usepackage{polski}
 \usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{graphicx}
+\usepackage{listings}
 \linespread{1.3}
 
 \title{\vspace{80mm}Implementacja interfejsu 1wire w VHDL przy użyciu Spartan-3E oraz DS18S20}
@@ -70,7 +71,7 @@ Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpocz
 \end{figure}
 
 \subsection{Konwersja i odczyt temperatury}
-Aktualny odczyt temperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. W celu zmierzenia aktualnej temperatury należy wysłać do termometru komendę konwersji, zresetować układ i odczytać pamięć.
+Aktualny odczyt temperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. W celu zmierzenia aktualnej temperatury należy wysłać do termometru komendę konwersji, zresetować układ i odczytać pamięć. W pamięci urządzenia jest 9 bajtów wyniku. Tylko dwa pierwsze są istotne w punktu wyniku. Pierwszy uzyskany bajt określa znak odczytu. Natomiast ostatni bit drugiego bajtu stanowi o wystąpieniu cyfry po przecinku. Pozostałe bity wyniku to wartość odczytanej temperatury.  Wartość ta następnie podlega konwersji na kod BCD za pomocą  algorytmu double dabble.
 
 \subsection{Double dabble}
 Double dabble jest powszechnie wykorzystywanym algorytmem do konwersji liczb binarnych na kod BCD (Binary-Coded Decimal - system dziesiętny zakodowany dwójkowo). 
@@ -114,6 +115,80 @@ Moduł Termometer jest najbardziej rozbudowanym modułem składającym się z 4 
 \end{center}
 \caption{Moduł Termometer}
 \label{termometer}
+\end{figure}
+
+\subsubsection{Controller}
+
+
+Moduł Controller (rysunek \ref{controller_sym}) odpowiada za przeprowadzenie poprawnej sekwencji operacji wymaganych do zmierzenia i odczytu temperatury.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=5cm]{graphics/controller_sym.png}
+\end{center}
+\caption{Moduł Controller}
+\label{controller_sym}
+\end{figure}
+
+Opis wyprowadzeń:
+
+Wejścia
+\begin{itemize}
+\item CLK - Zegar;
+\item Freq\_up - Impuls zwiększenia częstotliwości próbkowania;
+\item Freq\_down - Impul zmniejszenia częstotliwości próbkowania;
+\item Byte\_in - Bajt odebrany przez ByteModule;
+\item Bit\_in - Bit odeberany przez BusController;
+\item Busy\_in - Flaga zajętości ByteModule;
+\item c\_Busy\_in - Flaga zajętości BusController;
+\end{itemize}
+
+Wyjścia:
+\begin{itemize}
+\item Start - Sygnał start dla ByteControllera;
+\item Data\_out - Odebrany ciag reprezentujący temperaturę (2 bajty);
+\item Byte\_out - Dane (kod instrukcji) dla ByteContorllera;
+\item Reser - Sygnał reset;
+\item Freq\_state - Wektor reprezentujący aktualną częstotliwość próbkowania;
+\item Reset\_start - Sygnał start dla BusControllera. 
+\end{itemize}
+
+W celu ogaraniczenia częstotliwości odczytu (co powoduje nadmierne nagrzewanie się czujnika) dodano możliwość sterowania odstępem między pomiarami. Moduł umożliwia odczyt 4, 2, 1 sekundę lub ciągły. Zmiana odbywa się w procesie freq\_process.
+
+\lstset{language=VHDL}
+\begin{lstlisting}[frame=single]
+freq_process: process (CLK, freq_up, freq_down)
+begin
+	if rising_edge(clk) then
+		if freq_up = '1' then
+			frequence <= frequence(2 downto 0) & frequence (3);
+		elsif freq_down = '1' then
+			frequence <= frequence (0) & frequence(3 downto 1);
+
+		end if;
+	end if;
+end process;
+\end{lstlisting}
+
+Moduł jest automatem skończonym (fsm). Zmiana stanów odbywa się w procesie  state\_service.
+
+\lstset{language=VHDL}
+\begin{lstlisting}[frame=single]
+state_service: process (CLK, next_state)
+begin
+	if (rising_edge (CLK)) then
+		state <= next_state;
+	end if;
+end process;
+\end{lstlisting}
+
+Kolejne stany maszyny pokazuje schemat automatu:
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=10cm]{graphics/controller_fsm.png}
+\end{center}
+\caption{Maszyna stanów Controller}
+\label{controller_sym}
 \end{figure}
 
 \newpage

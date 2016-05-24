@@ -1,0 +1,8 @@
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\Controller.vhd"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\ByteModule.vhd"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\BusController.vhd"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\termometer.vhf"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\LCD.vhd"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\Interpreter.vhd"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\doble_dabble_module.vhd"
+vhdl work "C:\Users\lab\Desktop\Termometr-master\second\final.vhf"

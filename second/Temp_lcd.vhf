@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Temp_lcd.vhf
--- /___/   /\     Timestamp : 05/10/2016 10:38:22
+-- /___/   /\     Timestamp : 05/24/2016 08:25:55
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl C:/Users/lab/Desktop/second/Temp_lcd.vhf -w C:/Users/lab/Desktop/second/Temp_lcd.sch
+--Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.vhf -w C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.sch
 --Design Name: Temp_lcd
 --Device: spartan3e
 --Purpose:
@@ -62,10 +62,6 @@ architecture BEHAVIORAL of Temp_lcd is
    signal XLXN_178                  : std_logic;
    signal XLXN_179                  : std_logic;
    signal XLXN_180                  : std_logic;
-   signal XLXN_183                  : std_logic_vector (3 downto 0);
-   signal XLXN_184                  : std_logic_vector (3 downto 0);
-   signal XLXN_185                  : std_logic_vector (3 downto 0);
-   signal XLXN_186                  : std_logic;
    signal XLXN_188                  : std_logic;
    signal XLXN_189                  : std_logic_vector (7 downto 0);
    signal XLXN_190                  : std_logic;
@@ -74,6 +70,10 @@ architecture BEHAVIORAL of Temp_lcd is
    signal XLXN_211                  : std_logic;
    signal XLXN_214                  : std_logic;
    signal XLXN_216                  : std_logic;
+   signal XLXN_217                  : std_logic_vector (3 downto 0);
+   signal XLXN_218                  : std_logic_vector (3 downto 0);
+   signal XLXN_219                  : std_logic_vector (3 downto 0);
+   signal XLXN_224                  : std_logic;
    signal half_DUMMY                : std_logic;
    signal XLXI_22_Blink_openSignal  : std_logic;
    signal XLXI_22_Cursor_openSignal : std_logic;
@@ -148,9 +148,9 @@ architecture BEHAVIORAL of Temp_lcd is
    
    component double_dabble
       port ( BYTE_IN : in    std_logic_vector (6 downto 0); 
-             J       : out   std_logic_vector (3 downto 0); 
              D       : out   std_logic_vector (3 downto 0); 
-             S       : out   std_logic_vector (3 downto 0));
+             S       : out   std_logic_vector (3 downto 0); 
+             J       : out   std_logic_vector (3 downto 0));
    end component;
    
    component LCDWrite
@@ -172,9 +172,9 @@ architecture BEHAVIORAL of Temp_lcd is
    
    component Interpreter
       port ( DATA  : in    std_logic_vector (15 downto 0); 
+             VALUE : out   std_logic_vector (6 downto 0); 
              HALF  : out   std_logic; 
-             SIGN  : out   std_logic; 
-             VALUE : out   std_logic_vector (6 downto 0));
+             SIGN  : out   std_logic);
    end component;
    
    component LCD
@@ -256,9 +256,9 @@ begin
    
    XLXI_21 : double_dabble
       port map (BYTE_IN(6 downto 0)=>XLXN_194(6 downto 0),
-                D(3 downto 0)=>XLXN_184(3 downto 0),
-                J(3 downto 0)=>XLXN_183(3 downto 0),
-                S(3 downto 0)=>XLXN_185(3 downto 0));
+                D(3 downto 0)=>XLXN_218(3 downto 0),
+                J(3 downto 0)=>XLXN_219(3 downto 0),
+                S(3 downto 0)=>XLXN_217(3 downto 0));
    
    XLXI_22 : LCDWrite
       port map (Blink=>XLXI_22_Blink_openSignal,
@@ -278,18 +278,18 @@ begin
    
    XLXI_23 : Interpreter
       port map (DATA(15 downto 0)=>DATA(15 downto 0),
-                HALF=>half_DUMMY,
-                SIGN=>XLXN_186,
+                HALF=>XLXN_224,
+                SIGN=>half_DUMMY,
                 VALUE(6 downto 0)=>XLXN_194(6 downto 0));
    
    XLXI_24 : LCD
       port map (BUSY_LCD=>XLXN_188,
                 CLK=>CLK,
-                D(3 downto 0)=>XLXN_184(3 downto 0),
-                HALF=>half_DUMMY,
-                J(3 downto 0)=>XLXN_183(3 downto 0),
-                S(3 downto 0)=>XLXN_185(3 downto 0),
-                SIGN=>XLXN_186,
+                D(3 downto 0)=>XLXN_218(3 downto 0),
+                HALF=>XLXN_224,
+                J(3 downto 0)=>XLXN_219(3 downto 0),
+                S(3 downto 0)=>XLXN_217(3 downto 0),
+                SIGN=>half_DUMMY,
                 Byte(7 downto 0)=>XLXN_189(7 downto 0),
                 DnI=>XLXN_190,
                 WE=>XLXN_191);

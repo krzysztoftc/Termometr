@@ -1,21 +1,18 @@
-Release 14.7 - xst P.20131013 (lin64)
+Release 14.7 - xst P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
---> 
-Parameter TMPDIR set to xst/projnav.tmp
+--> Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.12 secs
  
---> 
-Parameter xsthdpdir set to xst
+--> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.12 secs
  
---> 
-Reading design: final.prj
+--> Reading design: final.prj
 
 TABLE OF CONTENTS
   1) Synthesis Options Summary
@@ -107,46 +104,30 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-WARNING:HDLParsers:3607 - Unit work/double_dabble is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/doble_dabble_module.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/doble_dabble_module.vhd".
-WARNING:HDLParsers:3607 - Unit work/double_dabble/Behavioral is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/doble_dabble_module.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/doble_dabble_module.vhd".
-WARNING:HDLParsers:3607 - Unit work/Interpreter is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/Interpreter.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Interpreter.vhd".
-WARNING:HDLParsers:3607 - Unit work/Interpreter/Combinational is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/Interpreter.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Interpreter.vhd".
-WARNING:HDLParsers:3607 - Unit work/LCD is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/LCD.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd".
-WARNING:HDLParsers:3607 - Unit work/LCD/Behavioral is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/LCD.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd".
-WARNING:HDLParsers:3607 - Unit work/BusController is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/BusController.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/BusController.vhd".
-WARNING:HDLParsers:3607 - Unit work/BusController/Behavioral is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/BusController.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/BusController.vhd".
-WARNING:HDLParsers:3607 - Unit work/ByteModule is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/ByteModule.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/ByteModule.vhd".
-WARNING:HDLParsers:3607 - Unit work/ByteModule/Behavioral is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/ByteModule.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/ByteModule.vhd".
-WARNING:HDLParsers:3607 - Unit work/Controller is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/Controller.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd".
-WARNING:HDLParsers:3607 - Unit work/Controller/Behavioral is now defined in a different file.  It was defined in "C:/Users/lab/Desktop/second/Controller.vhd", and is now defined in "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd".
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/BusController.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/BusController.vhd" in Library work.
 Architecture behavioral of Entity buscontroller is up to date.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/ByteModule.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/ByteModule.vhd" in Library work.
 Architecture behavioral of Entity bytemodule is up to date.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd" in Library work.
-Entity <controller> compiled.
-Entity <controller> (Architecture <behavioral>) compiled.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Interpreter.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/Controller.vhd" in Library work.
+Architecture behavioral of Entity controller is up to date.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/Interpreter.vhd" in Library work.
 Architecture combinational of Entity interpreter is up to date.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/doble_dabble_module.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/doble_dabble_module.vhd" in Library work.
 Architecture behavioral of Entity double_dabble is up to date.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/LCD.vhd" in Library work.
 Architecture behavioral of Entity lcd is up to date.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf" in Library work.
-Entity <termometer_MUSER_final> compiled.
-Entity <termometer_MUSER_final> (Architecture <BEHAVIORAL>) compiled.
-Entity <final> compiled.
-Entity <final> (Architecture <BEHAVIORAL>) compiled.
-Compiling vhdl file "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/termometer.vhf" in Library work.
-Entity <termometer> compiled.
-Entity <termometer> (Architecture <BEHAVIORAL>) compiled.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/final.vhf" in Library work.
+Architecture behavioral of Entity termometer_muser_final is up to date.
+Architecture behavioral of Entity final is up to date.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/termometer.vhf" in Library work.
+Architecture behavioral of Entity termometer is up to date.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for entity <final> in library <work> (architecture <BEHAVIORAL>).
+Analyzing hierarchy for entity <final> in library <work> (architecture <behavioral>).
 
-Analyzing hierarchy for entity <termometer_MUSER_final> in library <work> (architecture <BEHAVIORAL>).
+Analyzing hierarchy for entity <termometer_MUSER_final> in library <work> (architecture <behavioral>).
 
 Analyzing hierarchy for entity <Interpreter> in library <work> (architecture <combinational>).
 
@@ -164,12 +145,12 @@ Analyzing hierarchy for entity <Controller> in library <work> (architecture <beh
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
-Analyzing Entity <final> in library <work> (Architecture <BEHAVIORAL>).
-WARNING:Xst:2211 - "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf" line 293: Instantiating black box module <RotaryEnc>.
-WARNING:Xst:2211 - "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf" line 324: Instantiating black box module <LCDWrite>.
+Analyzing Entity <final> in library <work> (Architecture <behavioral>).
+WARNING:Xst:2211 - "C:/Users/lab/Desktop/Termometr-master/second/final.vhf" line 293: Instantiating black box module <RotaryEnc>.
+WARNING:Xst:2211 - "C:/Users/lab/Desktop/Termometr-master/second/final.vhf" line 324: Instantiating black box module <LCDWrite>.
 Entity <final> analyzed. Unit <final> generated.
 
-Analyzing Entity <termometer_MUSER_final> in library <work> (Architecture <BEHAVIORAL>).
+Analyzing Entity <termometer_MUSER_final> in library <work> (Architecture <behavioral>).
     Set user-defined property "DRIVE =  12" for instance <XLXI_24> in unit <termometer_MUSER_final>.
     Set user-defined property "IBUF_DELAY_VALUE =  0" for instance <XLXI_24> in unit <termometer_MUSER_final>.
     Set user-defined property "IFD_DELAY_VALUE =  AUTO" for instance <XLXI_24> in unit <termometer_MUSER_final>.
@@ -184,7 +165,7 @@ Analyzing Entity <ByteModule> in library <work> (Architecture <behavioral>).
 Entity <ByteModule> analyzed. Unit <ByteModule> generated.
 
 Analyzing Entity <Controller> in library <work> (Architecture <behavioral>).
-WARNING:Xst:819 - "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd" line 112: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:819 - "C:/Users/lab/Desktop/Termometr-master/second/Controller.vhd" line 112: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <delay_flag>
 Entity <Controller> analyzed. Unit <Controller> generated.
 
@@ -205,7 +186,7 @@ Entity <LCD> analyzed. Unit <LCD> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <Interpreter>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Interpreter.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/Interpreter.vhd".
 WARNING:Xst:647 - Input <DATA<14:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 7-bit adder for signal <VALUE$addsub0000>.
     Found 7-bit addsub for signal <VALUE$share0000>.
@@ -215,7 +196,7 @@ Unit <Interpreter> synthesized.
 
 
 Synthesizing Unit <double_dabble>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/doble_dabble_module.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/doble_dabble_module.vhd".
     Found 5-bit comparator greater for signal <jds_3$cmp_gt0000> created at line 54.
     Found 5-bit comparator greater for signal <jds_3$cmp_gt0001> created at line 54.
     Found 5-bit comparator greater for signal <jds_3$cmp_gt0002> created at line 54.
@@ -233,7 +214,7 @@ Unit <double_dabble> synthesized.
 
 
 Synthesizing Unit <LCD>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/LCD.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/LCD.vhd".
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 21                                             |
@@ -253,7 +234,7 @@ Unit <LCD> synthesized.
 
 
 Synthesizing Unit <BusController>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/BusController.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/BusController.vhd".
     Found finite state machine <FSM_1> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 12                                             |
@@ -275,7 +256,7 @@ Unit <BusController> synthesized.
 
 
 Synthesizing Unit <ByteModule>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/ByteModule.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/ByteModule.vhd".
     Found finite state machine <FSM_2> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 9                                              |
@@ -299,7 +280,7 @@ Unit <ByteModule> synthesized.
 
 
 Synthesizing Unit <Controller>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Controller.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/Controller.vhd".
     Found finite state machine <FSM_3> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 24                                             |
@@ -325,12 +306,12 @@ Unit <Controller> synthesized.
 
 
 Synthesizing Unit <termometer_MUSER_final>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/final.vhf".
 Unit <termometer_MUSER_final> synthesized.
 
 
 Synthesizing Unit <final>.
-    Related source file is "/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/final.vhf".
 WARNING:Xst:653 - Signal <XLXI_10_Reset_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <XLXI_10_Cursor_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <XLXI_10_Blink_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
@@ -738,10 +719,9 @@ Total CPU time to Xst completion: 8.18 secs
  
 --> 
 
-
-Total memory usage is 547492 kilobytes
+Total memory usage is 223192 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   33 (   0 filtered)
+Number of warnings :   21 (   0 filtered)
 Number of infos    :    5 (   0 filtered)
 

@@ -7,11 +7,11 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : final.vhf
--- /___/   /\     Timestamp : 05/23/2016 19:20:52
+-- /___/   /\     Timestamp : 05/24/2016 08:20:42
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
---Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.vhf -w /windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/final.sch
+--Command: sch2hdl -intstyle ise -family spartan3e -flat -suppress -vhdl C:/Users/lab/Desktop/Termometr-master/second/final.vhf -w C:/Users/lab/Desktop/Termometr-master/second/final.sch
 --Design Name: final
 --Device: spartan3e
 --Purpose:

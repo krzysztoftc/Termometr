@@ -3,11 +3,11 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pn" timeStamp="Mon May 23 19:20:53 2016">
+<application name="pn" timeStamp="Tue May 24 08:31:22 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="2CF5228B8E094822998D4C99BD48410F" type="project"/>
-<property name="ProjectIteration" value="34" type="project"/>
-<property name="ProjectFile" value="/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/second.xise" type="project"/>
+<property name="ProjectIteration" value="39" type="project"/>
+<property name="ProjectFile" value="C:/Users/lab/Desktop/Termometr-master/second/second.xise" type="project"/>
 <property name="ProjectCreationTimestamp" value="2016-03-15T09:41:00" type="project"/>
 </section>
 <section name="Project Statistics" visible="true">
@@ -27,12 +27,13 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
 <property name="PROP_intProjectCreationTimestamp" value="2016-03-15T09:41:00" type="design"/>
 <property name="PROP_intWbtProjectID" value="2CF5228B8E094822998D4C99BD48410F" type="design"/>
-<property name="PROP_intWbtProjectIteration" value="34" type="process"/>
+<property name="PROP_intWbtProjectIteration" value="39" type="process"/>
 <property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
 <property name="PROP_intWorkingDirUsed" value="No" type="design"/>
 <property name="PROP_selectedSimRootSourceNode_behav" value="work.Init_Test_Init_Test_sch_tb" type="process"/>
 <property name="PROP_xilxBitgStart_IntDone" value="true" type="process"/>
 <property name="PROP_AutoTop" value="false" type="design"/>
+<property name="PROP_CompxlibEdkSimLib" value="false" type="process"/>
 <property name="PROP_DevFamily" value="Spartan3E" type="design"/>
 <property name="PROP_DevDevice" value="xc3s500e" type="design"/>
 <property name="PROP_DevFamilyPMName" value="spartan3e" type="design"/>

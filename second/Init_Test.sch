@@ -33,6 +33,8 @@
         <signal name="XLXN_179" />
         <signal name="XLXN_180" />
         <signal name="Line(15:0)" />
+        <signal name="Freq_up" />
+        <signal name="Freq_down" />
         <port polarity="Input" name="CLK" />
         <port polarity="BiDirectional" name="DS18S20" />
         <port polarity="Output" name="LCD_E" />
@@ -40,6 +42,8 @@
         <port polarity="Output" name="LCD_RW" />
         <port polarity="BiDirectional" name="LCD_D(3:0)" />
         <port polarity="Output" name="SF_CE" />
+        <port polarity="Input" name="Freq_up" />
+        <port polarity="Input" name="Freq_down" />
         <blockdef name="BusController">
             <timestamp>2016-4-26T6:16:16</timestamp>
             <rect width="256" x="64" y="-384" height="384" />
@@ -87,7 +91,11 @@
             <line x2="0" y1="-96" y2="-96" x1="64" />
         </blockdef>
         <blockdef name="Controller">
-            <timestamp>2016-4-17T8:41:0</timestamp>
+            <timestamp>2016-5-10T8:36:32</timestamp>
+            <line x2="0" y1="128" y2="128" x1="64" />
+            <line x2="0" y1="160" y2="160" x1="64" />
+            <rect width="64" x="368" y="84" height="24" />
+            <line x2="432" y1="96" y2="96" x1="368" />
             <line x2="432" y1="64" y2="64" x1="368" />
             <line x2="0" y1="0" y2="0" x1="64" />
             <line x2="0" y1="-352" y2="-352" x1="64" />
@@ -102,7 +110,7 @@
             <line x2="432" y1="-160" y2="-160" x1="368" />
             <rect width="64" x="368" y="-76" height="24" />
             <line x2="432" y1="-64" y2="-64" x1="368" />
-            <rect width="304" x="64" y="-384" height="480" />
+            <rect width="304" x="64" y="-384" height="576" />
         </blockdef>
         <blockdef name="iobuf">
             <timestamp>2000-1-1T10:10:10</timestamp>
@@ -147,6 +155,8 @@
         </blockdef>
         <block symbolname="Controller" name="XLXI_5">
             <blockpin signalname="CLK" name="CLK" />
+            <blockpin signalname="Freq_up" name="Freq_up" />
+            <blockpin signalname="Freq_down" name="Freq_down" />
             <blockpin signalname="XLXN_13" name="Busy_in" />
             <blockpin signalname="XLXN_167" name="c_Busy_in_bit" />
             <blockpin signalname="XLXN_145" name="Bit_in" />
@@ -154,9 +164,10 @@
             <blockpin signalname="XLXN_12" name="Start" />
             <blockpin signalname="XLXN_10" name="RnW" />
             <blockpin signalname="XLXN_24" name="Reset" />
+            <blockpin signalname="XLXN_178" name="Reset_start" />
             <blockpin signalname="Line(15:0)" name="Data_out(15:0)" />
             <blockpin signalname="XLXN_19(7:0)" name="Byte_out(7:0)" />
-            <blockpin signalname="XLXN_178" name="Reset_start" />
+            <blockpin name="Freq_state(3:0)" />
         </block>
         <block symbolname="ByteModule" name="XLXI_2">
             <blockpin signalname="CLK" name="CLK" />
@@ -322,27 +333,12 @@
             <wire x2="1312" y1="1168" y2="1376" x1="1312" />
             <wire x2="1488" y1="1376" y2="1376" x1="1312" />
         </branch>
-        <branch name="XLXN_167">
-            <wire x2="656" y1="1520" y2="1616" x1="656" />
-            <wire x2="704" y1="1616" y2="1616" x1="656" />
-            <wire x2="704" y1="1616" y2="2256" x1="704" />
-            <wire x2="3120" y1="2256" y2="2256" x1="704" />
-            <wire x2="704" y1="1520" y2="1520" x1="656" />
-            <wire x2="1424" y1="1440" y2="1616" x1="1424" />
-            <wire x2="2944" y1="1616" y2="1616" x1="1424" />
-            <wire x2="1488" y1="1440" y2="1440" x1="1424" />
-            <wire x2="2944" y1="1344" y2="1344" x1="2784" />
-            <wire x2="2944" y1="1344" y2="1488" x1="2944" />
-            <wire x2="2944" y1="1488" y2="1616" x1="2944" />
-            <wire x2="3120" y1="1488" y2="1488" x1="2944" />
-            <wire x2="3120" y1="1488" y2="2256" x1="3120" />
-        </branch>
         <branch name="XLXN_140(7:0)">
-            <wire x2="640" y1="1488" y2="1680" x1="640" />
-            <wire x2="1984" y1="1680" y2="1680" x1="640" />
             <wire x2="704" y1="1488" y2="1488" x1="640" />
+            <wire x2="640" y1="1488" y2="1776" x1="640" />
+            <wire x2="1984" y1="1776" y2="1776" x1="640" />
             <wire x2="1984" y1="1504" y2="1504" x1="1904" />
-            <wire x2="1984" y1="1504" y2="1680" x1="1984" />
+            <wire x2="1984" y1="1504" y2="1776" x1="1984" />
         </branch>
         <branch name="XLXN_13">
             <wire x2="2064" y1="1040" y2="1040" x1="560" />
@@ -361,13 +357,13 @@
         <instance x="704" y="1520" name="XLXI_5" orien="R0">
         </instance>
         <branch name="XLXN_145">
-            <wire x2="704" y1="1424" y2="1424" x1="688" />
-            <wire x2="688" y1="1424" y2="1648" x1="688" />
-            <wire x2="1392" y1="1648" y2="1648" x1="688" />
+            <wire x2="704" y1="1424" y2="1424" x1="672" />
+            <wire x2="672" y1="1424" y2="1808" x1="672" />
+            <wire x2="1392" y1="1808" y2="1808" x1="672" />
             <wire x2="1488" y1="1248" y2="1248" x1="1392" />
             <wire x2="1392" y1="1248" y2="1584" x1="1392" />
             <wire x2="2800" y1="1584" y2="1584" x1="1392" />
-            <wire x2="1392" y1="1584" y2="1648" x1="1392" />
+            <wire x2="1392" y1="1584" y2="1808" x1="1392" />
             <wire x2="2800" y1="1504" y2="1504" x1="2784" />
             <wire x2="2800" y1="1504" y2="1584" x1="2800" />
         </branch>
@@ -392,5 +388,29 @@
             <wire x2="1232" y1="1360" y2="2000" x1="1232" />
             <wire x2="1552" y1="2000" y2="2000" x1="1232" />
         </branch>
+        <branch name="XLXN_167">
+            <wire x2="704" y1="1520" y2="1520" x1="656" />
+            <wire x2="656" y1="1520" y2="2256" x1="656" />
+            <wire x2="3120" y1="2256" y2="2256" x1="656" />
+            <wire x2="1488" y1="1440" y2="1440" x1="1424" />
+            <wire x2="1424" y1="1440" y2="1616" x1="1424" />
+            <wire x2="2944" y1="1616" y2="1616" x1="1424" />
+            <wire x2="2944" y1="1344" y2="1344" x1="2784" />
+            <wire x2="2944" y1="1344" y2="1488" x1="2944" />
+            <wire x2="2944" y1="1488" y2="1616" x1="2944" />
+            <wire x2="3120" y1="1488" y2="1488" x1="2944" />
+            <wire x2="3120" y1="1488" y2="2256" x1="3120" />
+        </branch>
+        <branch name="Freq_up">
+            <wire x2="688" y1="1648" y2="1648" x1="160" />
+            <wire x2="704" y1="1648" y2="1648" x1="688" />
+        </branch>
+        <branch name="Freq_down">
+            <wire x2="688" y1="1696" y2="1696" x1="192" />
+            <wire x2="704" y1="1680" y2="1680" x1="688" />
+            <wire x2="688" y1="1680" y2="1696" x1="688" />
+        </branch>
+        <iomarker fontsize="28" x="160" y="1648" name="Freq_up" orien="R180" />
+        <iomarker fontsize="28" x="192" y="1696" name="Freq_down" orien="R180" />
     </sheet>
 </drawing>

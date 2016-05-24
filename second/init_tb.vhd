@@ -67,7 +67,7 @@ BEGIN
 -- *** Test Bench - User Defined Section ***
    tb : PROCESS
    BEGIN
-	
+		
 	
       WAIT; -- will wait forever
    END PROCESS;

@@ -104,26 +104,26 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "C:/Users/lab/Desktop/second/ByteModule.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/ByteModule.vhd" in Library work.
 Architecture behavioral of Entity bytemodule is up to date.
-Compiling vhdl file "C:/Users/lab/Desktop/second/BusController.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/BusController.vhd" in Library work.
 Architecture behavioral of Entity buscontroller is up to date.
-Compiling vhdl file "C:/Users/lab/Desktop/second/Controller.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/Controller.vhd" in Library work.
 Architecture behavioral of Entity controller is up to date.
-Compiling vhdl file "C:/Users/lab/Desktop/second/doble_dabble_module.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/doble_dabble_module.vhd" in Library work.
 Architecture behavioral of Entity double_dabble is up to date.
-Compiling vhdl file "C:/Users/lab/Desktop/second/Interpreter.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/Interpreter.vhd" in Library work.
 Architecture combinational of Entity interpreter is up to date.
-Compiling vhdl file "C:/Users/lab/Desktop/second/LCD.vhd" in Library work.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/LCD.vhd" in Library work.
 Architecture behavioral of Entity lcd is up to date.
-Compiling vhdl file "C:/Users/lab/Desktop/second/Temp_lcd.vhf" in Library work.
-Entity <temp_lcd> compiled.
-Entity <temp_lcd> (Architecture <behavioral>) compiled.
+Compiling vhdl file "C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.vhf" in Library work.
+Entity <Temp_lcd> compiled.
+Entity <Temp_lcd> (Architecture <BEHAVIORAL>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
 =========================================================================
-Analyzing hierarchy for entity <Temp_lcd> in library <work> (architecture <behavioral>).
+Analyzing hierarchy for entity <Temp_lcd> in library <work> (architecture <BEHAVIORAL>).
 
 Analyzing hierarchy for entity <ByteModule> in library <work> (architecture <behavioral>).
 
@@ -141,14 +141,14 @@ Analyzing hierarchy for entity <LCD> in library <work> (architecture <behavioral
 =========================================================================
 *                            HDL Analysis                               *
 =========================================================================
-Analyzing Entity <Temp_lcd> in library <work> (Architecture <behavioral>).
+Analyzing Entity <Temp_lcd> in library <work> (Architecture <BEHAVIORAL>).
     Set user-defined property "DRIVE =  12" for instance <XLXI_4> in unit <Temp_lcd>.
     Set user-defined property "IBUF_DELAY_VALUE =  0" for instance <XLXI_4> in unit <Temp_lcd>.
     Set user-defined property "IFD_DELAY_VALUE =  AUTO" for instance <XLXI_4> in unit <Temp_lcd>.
     Set user-defined property "IOSTANDARD =  DEFAULT" for instance <XLXI_4> in unit <Temp_lcd>.
     Set user-defined property "SLEW =  SLOW" for instance <XLXI_4> in unit <Temp_lcd>.
-WARNING:Xst:2211 - "C:/Users/lab/Desktop/second/Temp_lcd.vhf" line 263: Instantiating black box module <LCDWrite>.
-WARNING:Xst:2211 - "C:/Users/lab/Desktop/second/Temp_lcd.vhf" line 297: Instantiating black box module <RotaryEnc>.
+WARNING:Xst:2211 - "C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.vhf" line 263: Instantiating black box module <LCDWrite>.
+WARNING:Xst:2211 - "C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.vhf" line 297: Instantiating black box module <RotaryEnc>.
 Entity <Temp_lcd> analyzed. Unit <Temp_lcd> generated.
 
 Analyzing Entity <ByteModule> in library <work> (Architecture <behavioral>).
@@ -158,7 +158,7 @@ Analyzing Entity <BusController> in library <work> (Architecture <behavioral>).
 Entity <BusController> analyzed. Unit <BusController> generated.
 
 Analyzing Entity <Controller> in library <work> (Architecture <behavioral>).
-WARNING:Xst:819 - "C:/Users/lab/Desktop/second/Controller.vhd" line 139: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:819 - "C:/Users/lab/Desktop/Termometr-master/second/Controller.vhd" line 112: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <delay_flag>
 Entity <Controller> analyzed. Unit <Controller> generated.
 
@@ -179,7 +179,7 @@ Entity <LCD> analyzed. Unit <LCD> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <ByteModule>.
-    Related source file is "C:/Users/lab/Desktop/second/ByteModule.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/ByteModule.vhd".
     Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 9                                              |
@@ -203,7 +203,7 @@ Unit <ByteModule> synthesized.
 
 
 Synthesizing Unit <BusController>.
-    Related source file is "C:/Users/lab/Desktop/second/BusController.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/BusController.vhd".
     Found finite state machine <FSM_1> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 12                                             |
@@ -225,7 +225,7 @@ Unit <BusController> synthesized.
 
 
 Synthesizing Unit <Controller>.
-    Related source file is "C:/Users/lab/Desktop/second/Controller.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/Controller.vhd".
     Found finite state machine <FSM_2> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 24                                             |
@@ -237,32 +237,21 @@ Synthesizing Unit <Controller>.
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_3> for signal <frequence>.
-    -----------------------------------------------------------------------
-    | States             | 4                                              |
-    | Transitions        | 8                                              |
-    | Inputs             | 1                                              |
-    | Outputs            | 28                                             |
-    | Clock              | CLK                       (rising_edge)        |
-    | Clock enable       | frequence$not0000         (positive)           |
-    | Power Up State     | 0001                                           |
-    | Encoding           | automatic                                      |
-    | Implementation     | LUT                                            |
-    -----------------------------------------------------------------------
     Found 16-bit register for signal <Data_out>.
     Found 8-bit register for signal <Byte_out>.
     Found 1-bit register for signal <delay_flag>.
     Found 8-bit register for signal <first_byte>.
     Found 32-bit down counter for signal <freq_cnt>.
+    Found 4-bit register for signal <frequence>.
     Summary:
-	inferred   2 Finite State Machine(s).
+	inferred   1 Finite State Machine(s).
 	inferred   1 Counter(s).
-	inferred  33 D-type flip-flop(s).
+	inferred  37 D-type flip-flop(s).
 Unit <Controller> synthesized.
 
 
 Synthesizing Unit <double_dabble>.
-    Related source file is "C:/Users/lab/Desktop/second/doble_dabble_module.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/doble_dabble_module.vhd".
     Found 5-bit comparator greater for signal <jds_3$cmp_gt0000> created at line 54.
     Found 5-bit comparator greater for signal <jds_3$cmp_gt0001> created at line 54.
     Found 5-bit comparator greater for signal <jds_3$cmp_gt0002> created at line 54.
@@ -280,7 +269,7 @@ Unit <double_dabble> synthesized.
 
 
 Synthesizing Unit <Interpreter>.
-    Related source file is "C:/Users/lab/Desktop/second/Interpreter.vhd".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/Interpreter.vhd".
 WARNING:Xst:647 - Input <DATA<14:9>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 7-bit adder for signal <VALUE$addsub0000>.
     Found 7-bit addsub for signal <VALUE$share0000>.
@@ -290,8 +279,8 @@ Unit <Interpreter> synthesized.
 
 
 Synthesizing Unit <LCD>.
-    Related source file is "C:/Users/lab/Desktop/second/LCD.vhd".
-    Found finite state machine <FSM_4> for signal <state>.
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/LCD.vhd".
+    Found finite state machine <FSM_3> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 21                                             |
     | Transitions        | 32                                             |
@@ -310,7 +299,7 @@ Unit <LCD> synthesized.
 
 
 Synthesizing Unit <Temp_lcd>.
-    Related source file is "C:/Users/lab/Desktop/second/Temp_lcd.vhf".
+    Related source file is "C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.vhf".
 WARNING:Xst:653 - Signal <XLXI_22_Reset_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <XLXI_22_Cursor_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:653 - Signal <XLXI_22_Blink_openSignal> is used but never assigned. This sourceless signal will be automatically connected to value 0.
@@ -330,9 +319,10 @@ Macro Statistics
  16-bit up counter                                     : 1
  3-bit up counter                                      : 1
  32-bit down counter                                   : 1
-# Registers                                            : 7
+# Registers                                            : 8
  1-bit register                                        : 2
  16-bit register                                       : 1
+ 4-bit register                                        : 1
  8-bit register                                        : 4
 # Comparators                                          : 5
  5-bit comparator greater                              : 5
@@ -345,7 +335,7 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Analyzing FSM <FSM_4> for best encoding.
+Analyzing FSM <FSM_3> for best encoding.
 Optimizing FSM <XLXI_24/state/FSM> on signal <state[1:21]> with one-hot encoding.
 -------------------------------------
  State      | Encoding
@@ -372,16 +362,6 @@ Optimizing FSM <XLXI_24/state/FSM> on signal <state[1:21]> with one-hot encoding
  home       | 010000000000000000000
  home_b     | 100000000000000000000
 -------------------------------------
-Analyzing FSM <FSM_3> for best encoding.
-Optimizing FSM <XLXI_5/frequence/FSM> on signal <frequence[1:2]> with gray encoding.
--------------------
- State | Encoding
--------------------
- 0001  | 00
- 0100  | 01
- 0010  | 11
- 1000  | 10
--------------------
 Analyzing FSM <FSM_2> for best encoding.
 Optimizing FSM <XLXI_5/state/FSM> on signal <state[1:24]> with one-hot encoding.
 --------------------------------------------
@@ -461,7 +441,7 @@ WARNING:Xst:2677 - Node <Data_out_14> of sequential type is unconnected in block
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 5
+# FSMs                                                 : 4
 # Adders/Subtractors                                   : 7
  4-bit adder                                           : 5
  7-bit adder                                           : 1
@@ -470,8 +450,8 @@ Macro Statistics
  16-bit up counter                                     : 1
  3-bit up counter                                      : 1
  32-bit down counter                                   : 1
-# Registers                                            : 50
- Flip-Flops                                            : 50
+# Registers                                            : 54
+ Flip-Flops                                            : 54
 # Comparators                                          : 5
  5-bit comparator greater                              : 5
 # Multiplexers                                         : 1
@@ -518,8 +498,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 159
- Flip-Flops                                            : 159
+# Registers                                            : 161
+ Flip-Flops                                            : 161
 
 =========================================================================
 
@@ -548,17 +528,16 @@ Design Statistics
 # IOs                              : 17
 
 Cell Usage :
-# BELS                             : 603
+# BELS                             : 608
 #      GND                         : 3
-#      INV                         : 39
+#      INV                         : 38
 #      LUT1                        : 43
-#      LUT2                        : 80
+#      LUT2                        : 79
 #      LUT2_D                      : 3
-#      LUT2_L                      : 1
-#      LUT3                        : 51
+#      LUT3                        : 65
 #      LUT3_D                      : 2
 #      LUT3_L                      : 1
-#      LUT4                        : 175
+#      LUT4                        : 169
 #      LUT4_D                      : 6
 #      LUT4_L                      : 13
 #      MUXCY                       : 80
@@ -567,10 +546,10 @@ Cell Usage :
 #      OR2                         : 1
 #      VCC                         : 3
 #      XORCY                       : 75
-# FlipFlops/Latches                : 263
+# FlipFlops/Latches                : 265
 #      FD                          : 53
 #      FDC                         : 16
-#      FDE                         : 74
+#      FDE                         : 76
 #      FDR                         : 50
 #      FDRE                        : 10
 #      FDRS                        : 3
@@ -594,10 +573,10 @@ Device utilization summary:
 
 Selected Device : 3s500efg320-5 
 
- Number of Slices:                      238  out of   4656     5%  
- Number of Slice Flip Flops:            263  out of   9312     2%  
- Number of 4 input LUTs:                416  out of   9312     4%  
-    Number used as logic:               414
+ Number of Slices:                      242  out of   4656     5%  
+ Number of Slice Flip Flops:            265  out of   9312     2%  
+ Number of 4 input LUTs:                421  out of   9312     4%  
+    Number used as logic:               419
     Number used as Shift registers:       2
  Number of IOs:                          17
  Number of bonded IOBs:                  17  out of    232     7%  
@@ -624,7 +603,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK                                | BUFGP                  | 265   |
+CLK                                | BUFGP                  | 267   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -651,7 +630,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
   Clock period: 15.391ns (frequency: 64.973MHz)
-  Total number of paths / destination ports: 5326 / 467
+  Total number of paths / destination ports: 5733 / 471
 -------------------------------------------------------------------------
 Delay:               7.695ns (Levels of Logic = 7)
   Source:            XLXI_5/Data_out_3 (FF)
@@ -664,12 +643,12 @@ Delay:               7.695ns (Levels of Logic = 7)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDE:C->Q              6   0.514   0.721  XLXI_5/Data_out_3 (XLXI_5/Data_out_3)
-     LUT4_L:I0->LO         1   0.612   0.103  XLXI_23/VALUE<6>2_SW0 (N54)
+     LUT4_L:I0->LO         1   0.612   0.103  XLXI_23/VALUE<6>2_SW0 (N56)
      LUT4:I3->O            1   0.612   0.360  XLXI_23/VALUE<6>2 (XLXI_23/VALUE<6>_bdd0)
      LUT4:I3->O           16   0.612   0.948  XLXI_23/VALUE<6>1 (XLXN_194<6>)
      LUT4:I1->O            2   0.612   0.449  XLXI_21/D<0>71 (XLXI_21/D<0>_bdd2)
-     LUT3:I1->O            1   0.612   0.000  XLXI_21/D<0>_G (N94)
-     MUXF5:I1->O           2   0.278   0.383  XLXI_21/D<0> (XLXN_184<0>)
+     LUT3:I1->O            1   0.612   0.000  XLXI_21/D<0>_G (N96)
+     MUXF5:I1->O           2   0.278   0.383  XLXI_21/D<0> (XLXN_218<0>)
      LUT4:I3->O            1   0.612   0.000  XLXI_24/Byte_mux0004<3>301 (XLXI_24/Byte_mux0004<3>30)
      FDS_1:D                   0.268          XLXI_24/Byte_4
     ----------------------------------------
@@ -698,7 +677,7 @@ Offset:              1.829ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
-  Total number of paths / destination ports: 54 / 13
+  Total number of paths / destination ports: 50 / 13
 -------------------------------------------------------------------------
 Offset:              7.228ns (Levels of Logic = 5)
   Source:            XLXI_1/byte_cnt_0 (FF)
@@ -722,12 +701,12 @@ Offset:              7.228ns (Levels of Logic = 5)
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.68 secs
+Total REAL time to Xst completion: 8.00 secs
+Total CPU time to Xst completion: 8.37 secs
  
 --> 
 
-Total memory usage is 223576 kilobytes
+Total memory usage is 223128 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   21 (   0 filtered)

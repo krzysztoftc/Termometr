@@ -5,9 +5,11 @@ Command Line: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\ngdbuild.exe -intstyle
 ise -dd _ngo -nt timestamp -uc GenIO.ucf -uc LCD.ucf -uc 1-Wire.ucf -p
 xc3s500e-fg320-5 Temp_lcd.ngc Temp_lcd.ngd
 
-Reading NGO file "C:/Users/lab/Desktop/second/Temp_lcd.ngc" ...
-Loading design module "C:\Users\lab\Desktop\second/LCDWrite.ngc"...
-Loading design module "C:\Users\lab\Desktop\second/RotaryEnc.ngc"...
+Reading NGO file "C:/Users/lab/Desktop/Termometr-master/second/Temp_lcd.ngc" ...
+Loading design module
+"C:\Users\lab\Desktop\Termometr-master\second/LCDWrite.ngc"...
+Loading design module
+"C:\Users\lab\Desktop\Termometr-master\second/RotaryEnc.ngc"...
 Gathering constraint information from source properties...
 Done.
 
@@ -23,10 +25,10 @@ INFO:ConstraintSystem - The Period constraint <NET "CLK" PERIOD = 20.0ns HIGH
 Done...
 
 Checking expanded design ...
-WARNING:NgdBuild:452 - logical net 'N102' has no driver
-WARNING:NgdBuild:452 - logical net 'N103' has no driver
 WARNING:NgdBuild:452 - logical net 'N104' has no driver
 WARNING:NgdBuild:452 - logical net 'N105' has no driver
+WARNING:NgdBuild:452 - logical net 'N106' has no driver
+WARNING:NgdBuild:452 - logical net 'N107' has no driver
 
 Partition Implementation Status
 -------------------------------
@@ -39,7 +41,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   4
 
-Total memory usage is 115512 kilobytes
+Total memory usage is 115960 kilobytes
 
 Writing NGD file "Temp_lcd.ngd" ...
 Total REAL time to NGDBUILD completion:  3 sec
