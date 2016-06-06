@@ -18,6 +18,7 @@
 
 \tableofcontents
 \newpage
+\addcontentsline{toc}{section}{Spis rysunków}
 \listoffigures
 
 \newpage
@@ -28,7 +29,7 @@ Celem projektu było przygotowanie układu obsługującego sensor Dallas DS18S20
 
 \section{Wstęp teoretyczny}
 \subsection{Interfejs}
-Interfejs 1wire jest interfejsem opracowanym przez firmę Dallas Semiconductor do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, linii GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania Vcc. 
+Interfejs 1wire jest interfejsem opracowanym przez firmę Dallas Semiconductor \cite{bib_kom} do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, linii GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania Vcc. 
 W ramach oszczędności przewodów ogranicza się połączenia do dwóch lini, wtedy układ zasilany jest pasożytniczo z lini danych.
 Przykładowe połacznie przedstawia schemat:
 
@@ -46,7 +47,7 @@ Wyróżnia się urządzania typu Master (najczęsciej mikrokontroler) oraz Slave
 
 \subsubsection{Inicjalizacja i reset}
 
-Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwencji składającej się z sygnału reset, wysyłanego przez master, po którym następuje sygnał obecności układu slave. Sygnał reset to wymuszony stan 0 trwający przynajmniej 480$\mu$s. Następnie master oczekuje na sygnał obecności innego urządzenia na linii. Następuje wówczas zwolnienie magistrali, co powoduje podciągnięcie jej do stanu wysokiego przez rezystor pull-up. Urządzenie slave wykrywa wówczas narastające zbocze lini i po upływie 15$\mu$s-60$\mu$s sygnalizuje swoją obecność poprzez wymuszenie stanu niskiego na okres 60$\mu$s-240$\mu$s.
+Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwencji składającej się z sygnału reset, wysyłanego przez master, po którym następuje sygnał obecności układu slave. Sygnał reset to wymuszony stan 0 trwający przynajmniej 480$\mu$s. Następnie master oczekuje na sygnał obecności innego urządzenia na linii. Następuje wówczas zwolnienie magistrali, co powoduje podciągnięcie jej do stanu wysokiego przez rezystor pull-up. Urządzenie slave wykrywa wówczas narastające zbocze linii i po upływie 15$\mu$s-60$\mu$s sygnalizuje swoją obecność poprzez wymuszenie stanu niskiego na okres 60$\mu$s-240$\mu$s.
 
 \begin{figure}[H]
 \begin{center}
@@ -57,9 +58,9 @@ Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwen
 \end{figure}
 
 \subsubsection{Zapis bitu}
-Operacje zapisu bitu realizowane są w ściśle określonych slotach czasowych. Długość jednego slotu wynosić zwykle 60$\mu$s. Próbkowanie dokonywane jest mniej więcej w środku slotu celem uodpornienia na błędy. Pomiędzy kolejnymi operacjami wymagana jest przynajmniej 1$\mu$s odstępu.
+Operacje zapisu bitu realizowane są w ściśle określonych slotach czasowych. Długość jednego slotu wynosi zwykle 60$\mu$s. Próbkowanie dokonywane jest mniej więcej w środku slotu celem uodpornienia na błędy. Pomiędzy kolejnymi operacjami wymagana jest przynajmniej 1$\mu$s odstępu.
 
-Zapis rozpoczyna się wysterowaniem linii danych przez master na poziom niski. Zapis 0 wymaga utrzymania jej w tym stanie przez cały slot. Zapis 1 jest nieco bardziej skomplikowany. Master musi w czasie nie dłuższym niż 15$\mu$s, ale nie krótszym niż 1$\mu$s zwolnić magistralęm tak aby w momencie próbkowania (po 30$\mu$s od zbocza opadającego) była w stanie wysokim. 
+Zapis rozpoczyna się wysterowaniem linii danych przez master na poziom niski. Zapis 0 wymaga utrzymania jej w tym stanie przez cały slot. Zapis 1 jest nieco bardziej skomplikowany. Master musi w czasie nie dłuższym niż 15$\mu$s, ale nie krótszym niż 1$\mu$s zwolnić magistralę tak aby w momencie próbkowania (po 30$\mu$s od zbocza opadającego) była w stanie wysokim. 
 
 \subsubsection{Odczyt bitu}
 Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpoczyna się wymuszeniem przez master stanu niskiego na linii danych na czas nie krótszy niż 1$\mu$s i zwolnienie jej (powrót do stanu wysokiego). Po tym sygnale sterowanie linią przejmuje urządzenie slave, wysyłające bit 0 lub 1. Slave po wykryciu zbocza opadającego wymusza stan niski (dla 0) lub utrzymuje  wysoki (dla 1) linii danych. Sygnał musi być wtedy spróbkowany przez master. Przed upłynięciem czasu końca slotu maigistrala zostaje zwolniona przez slave, co powoduje jej powrót do stanu wysokiego.
@@ -73,14 +74,28 @@ Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpocz
 \end{figure}
 
 \subsection{Konwersja i odczyt temperatury}
-Aktualny odczyt temperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. W celu zmierzenia aktualnej temperatury należy wysłać do termometru komendę konwersji, zresetować układ i odczytać pamięć. W pamięci urządzenia jest 9 bajtów wyniku. Tylko dwa pierwsze są istotne w punktu wyniku. Pierwszy uzyskany bajt określa znak odczytu. Natomiast ostatni bit drugiego bajtu stanowi o wystąpieniu cyfry po przecinku. Pozostałe bity wyniku to wartość odczytanej temperatury.  Wartość ta następnie podlega konwersji na kod BCD za pomocą  algorytmu double dabble.
+Aktualny odczyt temperatury zapisany jest w dwóch pierwszych bajtach pamięci Scratchpad \cite{bib_ds18s20}. Po poprawnej inicjalizacji czujnika DS18S20 ich zawartość odpowiada temperaturze +85$^\circ$C. W celu zmierzenia aktualnej temperatury należy wysłać do termometru komendę konwersji, zresetować układ i odczytać pamięć. W pamięci urządzenia jest 9 bajtów wyniku. Tylko dwa pierwsze są istotne z punktu widzenia wyniku pomiaru. Pierwszy uzyskany bajt określa znak odczytu. Natomiast ostatni bit drugiego bajtu stanowi o wystąpieniu cyfry po przecinku. Pozostałe bity wyniku to wartość odczytanej temperatury.  Wartość ta następnie podlega konwersji na kod BCD za pomocą  algorytmu double dabble.
 
 \subsection{Double dabble}
-Double dabble jest powszechnie wykorzystywanym algorytmem do konwersji liczb binarnych na kod BCD (Binary-Coded Decimal - system dziesiętny zakodowany dwójkowo). 
+Double dabble jest powszechnie wykorzystywanym algorytmem do konwersji liczb binarnych na kod BCD (Binary-Coded Decimal - system dziesiętny zakodowany dwójkowo) \cite{bib_dabble}. 
 
 Algorytm polega na wykonaniu n iteracji (w zależności od długości ciągu bitów). Początkowo wynikowy kod BCD jest zainicjalizowany jako ciąg zer podzielonych na grupy po 4 bity. Podczas każdej iteracji wykonywane jest przesunięcie o jeden bit w lewo, a na koniec doklejany jest jeden bit ciągu wejściowego. Jeżeli przed kolejnym przesunięciem wartość w jednej z grup w kodzie BCD jest wyższa niż 4 to następuje dodanie binarnej 3. Po wykonaniu odpowiedniej ilości iteracji algorytm kończy swoje działanie. Ostatecznie wynikowy ciąg jest podzielony po cztery bity, które odpowiadają kolejnym cyfrom wyniku. 
 
 \section{Implementacja}
+
+\subsection{Wykorzystanie układu Spartan 3e}
+
+Implementacji układu dokonano na platformie Spartan 3e \cite{bib_spartan}. Raport wyfenerowany przez oprogramownaie (rysunek \ref{raport}) Xilinx ISE pokazuje zużycie zasobów na poziomie 6\% co daje możliwości dalszej rozbudowy projektu.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=14cm]{graphics/summary.png}
+\end{center}
+\caption{Wykorzystanie zasobów układu Spartan 3e}
+\label{raport}
+\end{figure}
+
+Raport czasowy określa maksymalną częstotliwość pracy układu na poziomie 57.071MHz, co gwarantuje jego poprawne zachowanie przy wbudowanym taktowaniu 50MHz.
 
 \subsection{Schemat główny}
 
@@ -113,7 +128,7 @@ Moduł Termometer jest najbardziej rozbudowanym modułem składającym się z 4 
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[height=20cm]{graphics/termometer.png}
+\includegraphics[height=18cm]{graphics/termometer.png}
 \end{center}
 \caption{Moduł Termometer}
 \label{termometer}
@@ -155,7 +170,7 @@ Wyjścia:
 \item Reset\_start - Sygnał start dla BusControllera. 
 \end{itemize}
 
-W celu ogaraniczenia częstotliwości odczytu (co powoduje nadmierne nagrzewanie się czujnika) dodano możliwość sterowania odstępem między pomiarami. Moduł umożliwia odczyt 4, 2, 1 sekundę lub ciągły. Zmiana odbywa się w procesie freq\_process.
+W celu ogaraniczenia częstotliwości odczytu (co powoduje nadmierne nagrzewanie się czujnika) dodano możliwość sterowania odstępem między pomiarami. Moduł umożliwia odczyt co 4, 2, 1 sekundę lub ciągły. Zmiana odbywa się w procesie freq\_process.
 
 \lstset{language=VHDL}
 \begin{lstlisting}[frame=single]
@@ -198,7 +213,7 @@ Kolejne stany maszyny pokazuje Rysunek \ref{controller_fsm}. Po każdym ze stan�
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[height=24cm]{graphics/controller_symulation.png}
+\includegraphics[height=22cm]{graphics/controller_symulation.png}
 \end{center}
 \caption{Symulacja automatu Controller}
 \label{controller_symulation}
@@ -290,7 +305,7 @@ Procedura zapisu bajtu jest analogiczna do procedury odczytu. Wymienionym wcześ
 \includegraphics[height=22cm]{graphics/byte_module_symulation3.png}
 \end{center}
 \caption{Symulacja odczytu bajtu}
-\label{byte_module_symulation2}
+\label{byte_module_symulation3}
 \end{figure}
 
 \newpage
@@ -384,7 +399,6 @@ Wejścia:
 \item DATA(15:0) - dwa bajty wyniku uzyskanego z modułu termometer;
 \end{itemize}
 
-
 Wyjścia:
 \begin{itemize}
 \item SIGN - bit znaku, gdzie stan wysoki oznacza wystąpienie wartości ujemnej;
@@ -403,7 +417,6 @@ Wyjścia:
 \end{figure}
 
 Moduł ten realizuje konwersję uzyskanej wartości na kod BCD na podstawie wcześniej opisanego algorytmu double dabble. Wykorzystane do zaimplementowania tego mechanizmu zostały zmienne, z względu na zastosowanie pętli for, w wyniku czego powstała bardzo skomplikowana logika kombinacyjna. 
-
 
 Opis wyprowadzeń:
 
@@ -471,8 +484,85 @@ Przykład działania pokazje symulacja na rysunku \ref{double_dabble_symulation}
 \label{lcd_sym}
 \end{figure} 
 
-Moduł LCD opiera się na prostej maszynie stanów, która przesyła kolejne znaki ASCII do wyświetlacza kontrolowanego przez element LCDWrite.
+Moduł LCD opiera się na prostej maszynie stanów, która przesyła kolejne znaki ASCII do wyświetlacza kontrolowanego przez element LCDWrite. Ze względu na sporą ilość stanów i prostotę automatu zostanie przedstawiony jedynie uproszcozny graf przejść (rysunek \ref{lcd_fsm}).
 
 
+Opis wyprowadzeń:
+
+Wejścia:
+\begin{itemize}
+\item CLK - wejście zegarowe;
+\item SIGN - bit określający znak wyniku;
+\item HALF - bit określający wartość po przecinku (0 lub 5);
+\item BUSY\_LCD - bit zajętości LCDWrite;
+\item S(3:0) - 4 bity cyfry setek;
+\item D(3:0) - 4 bity cyfry dziesiątek;
+\item J(3:0) - 4 bity cyfry jedności;
+\end{itemize}
+
+Wyjścia:
+\begin{itemize}
+\item WE - jednotaktowy impuls inicjalizujący; 
+\item DnI - bit sterujący;
+\item Byte(7:0) - wektor wyjściowy znaku do wyświetlenia;
+\end{itemize}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=15cm]{graphics/lcd_fsm.png}
+\end{center}
+\caption{Maszyna stanów LCD}
+\label{lcd_fsm}
+\end{figure}
+
+\subsection{Pozostałe moduły}
+
+Moduły LCDWrite oraz RotaryEnc pochodzą z zasobów dr. Jarosława Sugiera, ich opis znajduje się w \cite{bib_lcdwrite} oraz \cite{bib_rotaryenc}
+
+\section{Obsługa}
+
+Gotowy układ przedstawia rysunek \ref{photo}. Termometr należy podłączyć do złącza J4. Wynik pomiaru wyświetlony jest na wyświetlaczu LCD. Sterowanie częstotliwością pracy odbywa się przy użyciu enkodera znajdującego się po lewej stronie ekranu. Aktualnie wybraną częstotliwość pokazują diody LED po jego prawej stronie (zapalona skrajna prawa oznacza pomiar ciągły, 4 od prawej co 4 s).
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=16cm]{graphics/photo.png}
+\end{center}
+\caption{Zrealizowany układ}
+\label{photo}
+\end{figure} 
+
+\section{Podsumowanie}
+\subsection{Ocena projektu}
+
+W ramach projektu zostały zrealizowane wszystkie założenia ustalone przed przystąpieniem do pracy. Dodatkowo, już po realizacji zamierzeń, dodana została obsługa zmiany częstotliwości pomiaru. Wszystkie moduły napisane w ramach projektu były na bieżąco testowane przy użyciu symulatora ISim, co zapewnia poprawność jego pracy. Ostatecznie, układ może działać z częstotliwością około 57 MHz. Dość niska maksymalna częstotliwość wynika prawdopodobnie z algorytmu double dabble, którego implementacja wymaga złożonej logiki kombinacyjnej. Przed przystąpieniem do ewentualnej rozbudowy projektu należałoby ujednolicić konwencję nazewiczą stanów, sygnałów wewnętrznych oraz wyprowadzeń układów.
+
+\subsection{Możliwości rozbudowy}
+
+Cały projekt zajmuje około 6\% zasobów dostępnych w układzie Spartan 3e. Daje to szerokie możliwości jego rozbudowy. Jedną z nich może być zwiększenie liczby przyłączonych czujników. Dodatkowo można go wzbogacić o obsługę komunikacji np. z komputerem PC z użyciem wybranego interfejsu. Innym rozszerzeniem może być dodanie obłsugi pamięci (np. karta sd), która miałaby za zadanie zapisywać wyniki pomiarów. Tak zapisane wyniki mogłoby być reprezentowane na monitorze VGA w postaci wykresów.
+
+\addcontentsline{toc}{section}{Literatura}
+\begin{thebibliography}{9}
+\bibitem{bib_kom}Komunikacja 1-Wire [dostęp 23.05.2016] \\
+\emph  	https://www.maximintegrated.com/en/app-notes/index.mvp/id/126
+
+\bibitem{bib_lcdwrite}Opis modułu LCDWrite [dostęp 23.05.2016] \\
+\emph http://www.zsk.ict.pwr.wroc.pl/zsk\_ftp/fpga/\#\_Toc286057186
+
+\bibitem{bib_rotaryenc}Opis modułu RotaryEnc [dostęp 23.05.2016] \\
+\emph http://www.zsk.ict.pwr.wroc.pl/zsk\_ftp/fpga/\#\_Toc286057181
+
+\bibitem{bib_spartan}Przewodnik układu FPGA Spartan 3e starter kit [dostęp 23.05.2016] \\
+\emph http://www.xilinx.com/support/documentation/boards\_and\_kits/ug230.pdf
+
+\bibitem{bib_ds18s20}Dokumentacja układu DS18S20 [dostęp 23.05.2016] \\
+\emph https://datasheets.maximintegrated.com/en/ds/DS18S20.pdf
+
+\bibitem{bib_numeric}Dokumentacja biblioteki NUMERIC\_STD [dostęp 23.05.2016] \\
+\emph http://www.csee.umbc.edu/portal/help/VHDL/packages/numeric\_std.vhd
+
+\bibitem{bib_dabble}Opis algorytmu Double dabble [dostęp 23.05.2016] \\
+\emph https://en.wikipedia.org/wiki/Double\_dabble
+
+\end{thebibliography}
 
 \end{document}
