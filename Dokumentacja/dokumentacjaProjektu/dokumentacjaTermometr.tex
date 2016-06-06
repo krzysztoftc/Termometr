@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \linespread{1.3}
+\usepackage{float}
+\usepackage{enumitem}
 
 \title{\vspace{80mm}Implementacja interfejsu 1wire w VHDL przy użyciu Spartan-3E oraz DS18S20}
 \author{Krzysztof Cabała 210047\\ Kinga Wilczek 210063\vspace{110mm}}
@@ -46,7 +48,7 @@ Wyróżnia się urządzania typu Master (najczęsciej mikrokontroler) oraz Slave
 
 Każda próba komunikacji urządzeń master i slave musi zacząć się od sekwencji składającej się z sygnału reset, wysyłanego przez master, po którym następuje sygnał obecności układu slave. Sygnał reset to wymuszony stan 0 trwający przynajmniej 480$\mu$s. Następnie master oczekuje na sygnał obecności innego urządzenia na linii. Następuje wówczas zwolnienie magistrali, co powoduje podciągnięcie jej do stanu wysokiego przez rezystor pull-up. Urządzenie slave wykrywa wówczas narastające zbocze lini i po upływie 15$\mu$s-60$\mu$s sygnalizuje swoją obecność poprzez wymuszenie stanu niskiego na okres 60$\mu$s-240$\mu$s.
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.4]{graphics/init.png}
 \end{center}
@@ -62,7 +64,7 @@ Zapis rozpoczyna się wysterowaniem linii danych przez master na poziom niski. Z
 \subsubsection{Odczyt bitu}
 Odczyt bitu również wymaga 60$\mu$s slotu oraz 1$\mu$s przerwy. Odczyt rozpoczyna się wymuszeniem przez master stanu niskiego na linii danych na czas nie krótszy niż 1$\mu$s i zwolnienie jej (powrót do stanu wysokiego). Po tym sygnale sterowanie linią przejmuje urządzenie slave, wysyłające bit 0 lub 1. Slave po wykryciu zbocza opadającego wymusza stan niski (dla 0) lub utrzymuje  wysoki (dla 1) linii danych. Sygnał musi być wtedy spróbkowany przez master. Przed upłynięciem czasu końca slotu maigistrala zostaje zwolniona przez slave, co powoduje jej powrót do stanu wysokiego.
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=14cm]{graphics/slots.png}
 \end{center}
@@ -92,7 +94,7 @@ Funkcjonalność projektu opiera się na 6 podstawowych modułach widocznych na 
 \item LCDWrite - sterownik wyświetlacza.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics{graphics/top_level.png}
 \end{center}
@@ -109,7 +111,7 @@ Moduł Termometer jest najbardziej rozbudowanym modułem składającym się z 4 
 \item IOBuf - ustala kierunek komunikacji.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[height=20cm]{graphics/termometer.png}
 \end{center}
@@ -122,7 +124,7 @@ Moduł Termometer jest najbardziej rozbudowanym modułem składającym się z 4 
 
 Moduł Controller (rysunek \ref{controller_sym}) odpowiada za przeprowadzenie poprawnej sekwencji operacji wymaganych do zmierzenia i odczytu temperatury.
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[height=5cm]{graphics/controller_sym.png}
 \end{center}
@@ -145,7 +147,7 @@ Wejścia
 
 Wyjścia:
 \begin{itemize}
-\item Start - Sygnał start dla ByteControllera;
+\item Start - Sygnał start dla ByteModule;
 \item Data\_out - Odebrany ciag reprezentujący temperaturę (2 bajty);
 \item Byte\_out - Dane (kod instrukcji) dla ByteContorllera;
 \item Reser - Sygnał reset;
@@ -182,9 +184,9 @@ begin
 end process;
 \end{lstlisting}
 
-Kolejne stany maszyny pokazuje Rysunek \ref{controller_fsm}. Po każdym ze stanów (poza presence) występuje dodatkowy stan oczekiwania na zwolnienie flagi busy (zajętości kontrolerów niższego rzędu). Stany te zostały pominięte na schemacie ze względu na jego czytelność. Należy zaznaczyć, że stany w których wykonwywane są kolejne komendy są jednotaktowe, podczas gdy oczekiwanie na ich wykonanie zajmuje stosunkowo dużo więcej czasu. Zauważyć to można na symulacji pokazanej na rysunku \ref{controller_sym}
+Kolejne stany maszyny pokazuje Rysunek \ref{controller_fsm}. Po każdym ze stanów (poza presence) występuje dodatkowy stan oczekiwania na zwolnienie flagi busy (zajętości kontrolerów niższego rzędu). Stany te zostały pominięte na schemacie ze względu na jego czytelność. Należy zaznaczyć, że stany w których wykonwywane są kolejne komendy są jednotaktowe, podczas gdy oczekiwanie na ich wykonanie zajmuje stosunkowo dużo więcej czasu. Zauważyć to można na symulacji pokazanej na rysunku \ref{controller_symulation}
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[height=10cm]{graphics/controller_fsm.png}
 \end{center}
@@ -192,34 +194,140 @@ Kolejne stany maszyny pokazuje Rysunek \ref{controller_fsm}. Po każdym ze stan�
 \label{controller_fsm}
 \end{figure}
 
-\begin{figure}[!h]
+\newpage
+
+\begin{figure}[H]
 \begin{center}
 \includegraphics[height=24cm]{graphics/controller_symulation.png}
 \end{center}
 \caption{Symulacja automatu Controller}
-\label{controller_sym}
+\label{controller_symulation}
 \end{figure}
 
 Zaznaczona na symulacji pozyjca A pokazuje moment zwolenia magistrali przez master (stan wysokiej impedancji). Zaraz po jej zwolnieniu kontrolę przejmuje slave, który wymuszając stan niski sygnalizuje swoją obecność (moment B). Przybliżony fragment (czerwona ramka) obrazuje przejścia stanów pomiędzy reset\_slave\_b a skip\_b. Widać, że stany presence oraz skip są jednotaktowe. 
 
+
+\subsubsection{ByteModule}
+
+ByteModule został zaimplementowany w celu obsługi dwukierunkowej komunikacji pomiędzy master, a slave. W zależności od kierunku transmitowanego bajtu wykonywane są na nim różne operacje. W przypadku zapisu danych bajt wejściowy jest rozdzielany na pojedyncze bity, które następnie kolejno są przesyłane do urządzenia. Natomiast operacja odczytu polega na formowaniu pojedynczych bitów wejściowych w jeden bajt wyjściowy. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=5cm]{graphics/byte_module_sym.png}
+\end{center}
+\caption{Moduł ByteModule}
+\label{bytemodule_sym}
+\end{figure}
+
+Opis wyprowadzeń:
+
+Wejścia:
+\begin{itemize}
+\item Bit\_in - Bit wchodzący podczas operacji odczytu;
+\item Start - Jednobitowy sygnał rozpoczęcia operacji;
+\item RnW - Flaga informująca o typie wykonywanej operacji. Jeżeli ustawiona w stan wysoki wykonywany jest odczyt;
+\item Busy\_bit - Flaga zajętości BusController;
+\item Byte\_In(7:0) - Wejściowy bajt przy operacji zapisu;
+\end{itemize}
+
+Wyjścia:
+\begin{itemize}
+\item Byte\_Out(7:0) - Wyjściowy bajt przy operacji odczytu;
+\item Start\_bit - Sygnał start dla modułu;
+\item RnW\_bit - Bit określający rodzaj operacji wykonywanej przez BusController;
+\item Busy - Bit zajętości ByteModule;
+\item Bit\_out - Kolejny bit zapisywany przez BusController;
+\end{itemize}
+
+Ten moduł równiez jest maszyną stanów. Jej uproszczony schemat przedstawia rysunek \ref{byte_module_fsm}. Szczegóły implementacji można zobaczyć na symulacji przedstawionej na rysunkach \ref{byte_module_symulation1} - \ref{byte_module_symulation3}, 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=15cm]{graphics/byte_module_fsm.png}
+\end{center}
+\caption{Maszyna stanów BusController}
+\label{byte_module_fsm}
+\end{figure}
+
+Cykl odczytu rozpoczyna stan rs w którym ustawiany jest bit RnW na wartość 1 oraz wysyłany jest jendotaktowy sygnał start\_bit. Następnie w stanie rb następuje oczekiwanie na sygnalizujację zakończenia operacji przez BusController (flaga Busy\_bit). W stanie re w rejestrze tmp\_byte zatrzaskiwana jest odczytana wartość kolejnego bitu. Wartość ta jest współbieżnie przepsiwana na wyjście byte\_read. W zależności od ilości odczytanych bitów następuje przejście do stanu rc zwiększania zmiennej counter lub stanu n oznaczającego oczekiwanie na następną operację. 
+
+Za zapamiętywanie kolejnych bitów odpowiedzialny jest proces byte\_reading:
+
+\lstset{language=VHDL}
+\begin{lstlisting}[frame=single]
+byte_reading: process (CLK, state)
+begin
+if rising_edge(CLK) then
+	if state = re then
+		tmp_byte <= Bit_in & tmp_byte(7 downto 1);
+	end if;
+end if;
+end process;
+\end{lstlisting}
+
+Symulacja z rysunku \ref{byte_module_symulation1} pokazuje przebieg całej procedury. Zaznaczone czerowną i niebieską ramką fragmenty można zobaczyć w powiększeniu na rysunku \ref{byte_module_symulation2}. Widać na nich odpowiednio przejścia między odczytem kolejnych bitów oraz odczytem ostatniego bitu.
+
+Procedura zapisu bajtu jest analogiczna do procedury odczytu. Wymienionym wcześniej stanom odpowiadają kolejno ws (RnW = 0), wb, we, wc. Wartości kolejnych bitów są odczytywane wprost z wektora byte\_in w zależności od wartości byte\_cnt.  Symulację przedstawia rysunek \ref{byte_module_symulation3}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=22cm]{graphics/byte_module_symulation1.png}
+\end{center}
+\caption{Symulacja zapisu bajtu}
+\label{byte_module_symulation1}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=22cm]{graphics/byte_module_symulation2.png}
+\end{center}
+\caption{Symulacja zapisu bajtu - szczegóły}
+\label{byte_module_symulation2}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=22cm]{graphics/byte_module_symulation3.png}
+\end{center}
+\caption{Symulacja odczytu bajtu}
+\label{byte_module_symulation2}
+\end{figure}
+
 \newpage
-========================================================================
 
-\section{Implementacja podstawowych operacji}
+\subsubsection{BusController}
 
-Za realizację podstawowych operacji odpowiada moduł BusController. 
+Moduł BusController realizuje podstawowe operacje: reset, odczyt oraz zapis bitu.  
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[height=5cm]{graphics/bus_controller_sym.png}
 \end{center}
-\caption{Moduł obsługi podstawowych operacji bitowych}
+\caption{Moduł BusController}
 \label{bus_controller_sym}
 \end{figure}
 
-Poniżej przedstawiono schemat blokowy tego automatu.
+Opis wyprowadzeń:
+Wejścia:
+\begin{itemize}
+\item CLK - Wejście zegarowe;
+\item Bus\_in - Bit odczytu z termometru;
+\item Data\_id - Bit do zapisu z ByteModule;
+\item Reset - Jednobitowy sygnał resetu;
+\item RnW - Flaga informująca o typie wykonywanej operacji. Jeśli ustawiona w stan wysoki wykonywany jest odczyt;
+\item Start - Sygnał start dla BusController;
+\end{itemize}
 
-\begin{figure}[!h]
+Opis Wyjść: 
+\begin{itemize}
+\item Bus\_out - Zapis bitu do termometru; 
+\item Busy - Bit zajętości BusController;
+\item Read\_out -  Odczytany bit z termometru;
+\end{itemize}
+
+Poniżej przedstawiono schemat blokowy tego automatu (rysunek \ref{bus_controller_fsm}):
+
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=15cm]{graphics/bus_controller_fsm.png}
 \end{center}
@@ -229,7 +337,7 @@ Poniżej przedstawiono schemat blokowy tego automatu.
 
 Poprawna obsługa magistrali wymaga jej zwalniania poprzez ustawienie w stan wysokiej impedancji (podciągnięcie do Vcc przez rezystor pull-up). Służy do tego element IOBuf. Podanie logicznego zera na wejście T otwiera bufor wyjściowy i przekazuje sygnał podawany na pin I (GND - Logiczne 0). Logiczne 1 na wejściu T ustawia linie w stanie wysokiej impednacji (zwalnia magistralę). Pin O służy do odczytu stanu magistrali.
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[scale=1.4]{graphics/io_buf_sym.png}
 \end{center}
@@ -237,32 +345,134 @@ Poprawna obsługa magistrali wymaga jej zwalniania poprzez ustawienie w stan wys
 \label{iobuf_controller_sym}
 \end{figure}
 
-\section{Transmisja bajtu}
-
-Komunikacja master - slave jest dwukierunkowa. Dane przesyłane są w formie bajtów, kolejność bitów określa zasada najpierw najmłodszy. 
-
-\section{Implementacja transmisji bajtu}
-
-Transmisja bajtu realizowana jest poprzez następny moduł - ByteModule. 
-
-\begin{figure}[h!]
+\begin{figure}[H]
 \begin{center}
-\includegraphics[height=5cm]{graphics/byte_module_sym.png}
+\includegraphics[height=19cm]{graphics/bus_controller_symulation.png}
 \end{center}
-\caption{Moduł transmisji bajtu}
-\label{byte_module_sym}
+\caption{Symulacja odczytu bajtu}
+\label{bus_controller_symulation}
 \end{figure}
 
-Automat zawiera po 4 stany na odczyt i zapis oraz jeden stan oczekiwania na sygnał startu.
+Na rysunku \ref{bus_controller_symulation} przedstawiono charakterystykę pracy układu wraz z buforem IO. Zaznaczono charakterystyne punkty:
+\begin{enumerate}[label=\Alph*]
+\item Zwolnienie magistrali przez master;
+\item Sygnał obecności slave;
+\item Zwolnienie magistrali przez slave;
+\item Sygnał obecności slave na wyjściu modułu;
+\item Impuls start;
+\item Magistrala w stanie wysokim - odczyt 1;
+\item Master wymusza stan niski - zapis 0;
+\item Master zwalnia magistralę przy zapisie - zapis 1;
+\end{enumerate}
 
-\begin{figure}[!h]
+\subsection{Interpreter}
+
+\begin{figure}[H]
 \begin{center}
-\includegraphics[width=15cm]{graphics/byte_module_fsm.png}
+\includegraphics[height=5cm]{graphics/interpreter_sym.png}
 \end{center}
-\caption{Maszyna stanów ByteModule}
-\label{bte_module_fsm}
+\caption{Moduł Interpreter}
+\label{interpreter_sym}
 \end{figure}
 
-\section{Algorytm double dabble}
-\section{Implementacja double dabble}
+Interpreter jest modułem kombinacyjnym, którego zadaniem jest odpowiedni podział wyniku odczytu. Jako wejście przyjmowane są dwa bajty. W wyniku konwersji pierwszy bajt zmieniany jest na znak wartości temperatury. Kolejne 7 bitów jest wartością temperatury. Ostatni bit określa wartość po przecinku. 
+
+Opis wyprowadzeń:
+
+Wejścia:
+\begin{itemize}
+\item DATA(15:0) - dwa bajty wyniku uzyskanego z modułu termometer;
+\end{itemize}
+
+
+Wyjścia:
+\begin{itemize}
+\item SIGN - bit znaku, gdzie stan wysoki oznacza wystąpienie wartości ujemnej;
+\item HALF - bit określający wartość po przecinku (0 lub 5). Jeżeli ustawiony na jeden wartość po przecinku wynosi 5;
+\item VALUE(6:0) - wektor wartości temperatury po konwersji;
+\end{itemize}
+
+\subsection{Double dabble}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[height=5cm]{graphics/double_dabble_sym.png}
+\end{center}
+\caption{Moduł Double dabble}
+\label{double_dabble_sym}
+\end{figure}
+
+Moduł ten realizuje konwersję uzyskanej wartości na kod BCD na podstawie wcześniej opisanego algorytmu double dabble. Wykorzystane do zaimplementowania tego mechanizmu zostały zmienne, z względu na zastosowanie pętli for, w wyniku czego powstała bardzo skomplikowana logika kombinacyjna. 
+
+
+Opis wyprowadzeń:
+
+Wejścia:
+\begin{itemize}
+\item BYTE\_IN(6:0) - wektor wejściowy konwertowany na BCD;
+\end{itemize}
+
+Wyjścia:
+\begin{itemize}
+\item S(3:0) - 4 bity cyfry setek;
+\item D(3:0) - 4 bity cyfry dziesiątek;
+\item J(3:0) -  4 bity cyfry jedności;
+\end{itemize}
+
+Algorytm double dabble realizowany jest w procesie bcd1:
+
+\lstset{language=VHDL}
+\begin{lstlisting}[frame=single]
+bcd1: process(BYTE_IN)
+
+	variable temp: STD_LOGIC_VECTOR (6 downto 0) ;
+	variable jds: STD_LOGIC_VECTOR (11 downto 0):="000000000000";
+
+begin	
+	temp := BYTE_IN; 
+	jds :=(others => '0');
+
+		for i in 0 to 6 loop
+			if jds(3 downto 0) > 4 then 
+				jds(3 downto 0) := jds(3 downto 0) + 3;
+			end if;
+     
+			if jds(7 downto 4) > 4 then 
+				jds(7 downto 4) := jds(7 downto 4) + 3;
+			end if;
+				jds := jds(10 downto 0) & temp(6);
+			 
+			temp := temp(5 downto 0) & '0';
+			
+		end loop;
+		
+	J <= jds(3 downto 0);
+	D <= jds(7 downto 4);
+	S <= jds(11 downto 8);
+end process bcd1; 
+\end{lstlisting}
+Przykład działania pokazje symulacja na rysunku \ref{double_dabble_symulation}:
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=16cm]{graphics/double_dabble_symulation.png}
+\end{center}
+\caption{Symulacja modułu double dabble}
+\label{double_dabble_symulation}
+\end{figure}
+
+\subsection{LCD}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=4cm]{graphics/lcd_sym.png}
+\end{center}
+\caption{Moduł LCD}
+\label{lcd_sym}
+\end{figure} 
+
+Moduł LCD opiera się na prostej maszynie stanów, która przesyła kolejne znaki ASCII do wyświetlacza kontrolowanego przez element LCDWrite.
+
+
+
 \end{document}

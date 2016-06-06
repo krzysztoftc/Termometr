@@ -114,7 +114,7 @@ BEGIN
 		Reset <= '0';
 		Bus_in <= '0';			--slave is present
 		
-		wait for 1000 us;		--init slot
+		wait for 1200 us;		--init slot
 		
 		-----------------------read 0
 		

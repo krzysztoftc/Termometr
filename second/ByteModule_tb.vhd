@@ -111,8 +111,15 @@ BEGIN
 
       -- insert stimulus here 
 
---		Byte_in <= "10011101";
-		Rnw <= '1';
+--		
+--		Rnw <= '1';
+--		Start <= '1', '0' after CLK_period;
+--		
+--		wait;
+--		wait for 570 us;
+		
+		Byte_in <= "10011101";
+		Rnw <= '0';
 		Start <= '1', '0' after CLK_period;
 		
       wait;
