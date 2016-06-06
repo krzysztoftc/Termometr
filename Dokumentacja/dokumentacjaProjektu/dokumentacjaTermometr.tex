@@ -182,14 +182,25 @@ begin
 end process;
 \end{lstlisting}
 
-Kolejne stany maszyny pokazuje schemat automatu:
+Kolejne stany maszyny pokazuje Rysunek \ref{controller_fsm}. Po każdym ze stanów (poza presence) występuje dodatkowy stan oczekiwania na zwolnienie flagi busy (zajętości kontrolerów niższego rzędu). Stany te zostały pominięte na schemacie ze względu na jego czytelność. Należy zaznaczyć, że stany w których wykonwywane są kolejne komendy są jednotaktowe, podczas gdy oczekiwanie na ich wykonanie zajmuje stosunkowo dużo więcej czasu. Zauważyć to można na symulacji pokazanej na rysunku \ref{controller_sym}
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[height=10cm]{graphics/controller_fsm.png}
 \end{center}
 \caption{Maszyna stanów Controller}
+\label{controller_fsm}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[height=24cm]{graphics/controller_symulation.png}
+\end{center}
+\caption{Symulacja automatu Controller}
 \label{controller_sym}
 \end{figure}
+
+Zaznaczona na symulacji pozyjca A pokazuje moment zwolenia magistrali przez master (stan wysokiej impedancji). Zaraz po jej zwolnieniu kontrolę przejmuje slave, który wymuszając stan niski sygnalizuje swoją obecność (moment B). Przybliżony fragment (czerwona ramka) obrazuje przejścia stanów pomiędzy reset\_slave\_b a skip\_b. Widać, że stany presence oraz skip są jednotaktowe. 
 
 \newpage
 ========================================================================
