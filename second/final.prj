@@ -1,8 +1,0 @@
-vhdl work "Controller.vhd"
-vhdl work "ByteModule.vhd"
-vhdl work "BusController.vhd"
-vhdl work "termometer.vhf"
-vhdl work "LCD.vhd"
-vhdl work "Interpreter.vhd"
-vhdl work "doble_dabble_module.vhd"
-vhdl work "final.vhf"

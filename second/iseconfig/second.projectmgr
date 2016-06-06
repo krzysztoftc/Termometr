@@ -8,9 +8,11 @@
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/Bus_byte_test |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|Bus_byte_test.sch</ClosedNode>
+         <ClosedNode>/Bus_iobuf |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|Bus_iobuf.sch</ClosedNode>
          <ClosedNode>/Init_Test |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|Init_Test.sch</ClosedNode>
          <ClosedNode>/Temp_lcd |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|Temp_lcd.sch</ClosedNode>
          <ClosedNode>/final |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|final.sch</ClosedNode>
+         <ClosedNode>/final |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|final.sch/XLXI_1 - termometer</ClosedNode>
          <ClosedNode>/termometer |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|termometer.sch</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
@@ -18,7 +20,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001bd000000020000000000000000000000000200000064ffffffff000000810000000300000002000001bd0000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000124000000020000000000000000000000000200000064ffffffff000000810000000300000002000001240000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
       <CurrentItem>xc3s500e-5fg320</CurrentItem>
    </ItemView>
@@ -57,7 +59,7 @@
       <SelectedItems/>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000125000000010001000100000000000000000000000064ffffffff000000810000000000000001000001250000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000000000000000100000000000000000000000000000000000001b3000000010001000100000000000000000000000064ffffffff000000810000000000000001000001b30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>work</CurrentItem>
    </ItemView>
@@ -70,23 +72,24 @@
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000df000000010000000100000000000000000000000064ffffffff000000810000000000000001000000df0000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001a3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001a30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" guiview="Source" compilemode="AutoCompile" >
       <ClosedNodes>
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/BusController_tb - behavior C:|Users|lab|Desktop|second|BusController_tb.vhd</ClosedNode>
+         <ClosedNode>/BusController_tb - behavior |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|BusController_tb.vhd</ClosedNode>
          <ClosedNode>/Bus_byte_test_Bus_byte_test_sch_tb - behavioral C:|Users|lab|Desktop|second|bus_byte_test_tb.vhd</ClosedNode>
          <ClosedNode>/Bus_byte_test_Bus_byte_test_sch_tb - behavioral |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|bus_byte_test_tb.vhd</ClosedNode>
          <ClosedNode>/Bus_byte_test_Bus_byte_test_sch_tb - behavioral |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|bus_byte_test_tb.vhd/UUT - Bus_byte_test</ClosedNode>
          <ClosedNode>/Bus_iobuf |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|Bus_iobuf.sch</ClosedNode>
-         <ClosedNode>/Bus_iobuf_Bus_iobuf_sch_tb - behavioral |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|busiobuf_tb.vhd/UUT - Bus_iobuf</ClosedNode>
+         <ClosedNode>/Bus_iobuf_Bus_iobuf_sch_tb - behavioral |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|busiobuf_tb.vhd</ClosedNode>
          <ClosedNode>/ByteModule_tb - behavior C:|Users|lab|Desktop|second|ByteModule_tb.vhd</ClosedNode>
          <ClosedNode>/ByteModule_tb - behavior |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|ByteModule_tb.vhd</ClosedNode>
          <ClosedNode>/Init_Test_Init_Test_sch_tb - behavioral |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|init_tb.vhd</ClosedNode>
@@ -101,12 +104,14 @@
          <ClosedNode>/double_dabble_tb2 - behavior |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|double_dabble_tb2.vhd</ClosedNode>
          <ClosedNode>/final |windows|STUDIA|SEMESTR_VI|UCISK|VHDL|second|final.sch</ClosedNode>
       </ClosedNodes>
-      <SelectedItems/>
-      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <SelectedItems>
+         <SelectedItem>double_dabble_tb2 - behavior (/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/double_dabble_tb2.vhd)</SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >3</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000021f000000020000000000000000000000000200000064ffffffff0000008100000003000000020000021f0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>UUT - Bus_iobuf (/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/Bus_iobuf.sch)</CurrentItem>
+      <CurrentItem>double_dabble_tb2 - behavior (/windows/STUDIA/SEMESTR_VI/UCISK/VHDL/second/double_dabble_tb2.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -114,29 +119,29 @@
          <ClosedNode>Design Utilities/Compile HDL Simulation Libraries</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001a3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001a30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>Simulate Behavioral Model</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001b3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001b30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>Simulate Behavioral Model</CurrentItem>
    </ItemView>
    <SourceProcessView>000000ff0000000000000002000001170000007a01000000050100000002</SourceProcessView>
-   <CurrentView>Behavioral Simulation</CurrentView>
+   <CurrentView>Implementation</CurrentView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_VHDL_PACKAGE_DECL" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
@@ -160,13 +165,13 @@
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Design Summary/Reports</SelectedItem>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001a3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001a30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>Design Summary/Reports</CurrentItem>
+      <CurrentItem></CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="DESUT_SCHEMATIC" guiview="Process" >
       <ClosedNodes>
@@ -187,12 +192,12 @@
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem/>
+         <SelectedItem></SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001b1000000010000000100000000000000000000000064ffffffff000000810000000000000001000001b10000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000001b3000000010000000100000000000000000000000064ffffffff000000810000000000000001000001b30000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem/>
+      <CurrentItem></CurrentItem>
    </ItemView>
 </Project>

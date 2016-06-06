@@ -29,9 +29,9 @@ Celem projektu było przygotowanie układu obsługującego sensor Dallas DS18S20
 
 \section{Wstęp teoretyczny}
 \subsection{Interfejs}
-Interfejs 1wire jest interfejsem opracowanym przez firmę Dallas Semiconductor \cite{bib_kom} do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, linii GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania Vcc. 
-W ramach oszczędności przewodów ogranicza się połączenia do dwóch lini, wtedy układ zasilany jest pasożytniczo z lini danych.
-Przykładowe połacznie przedstawia schemat:
+Interfejs OneWire został opracowany przez firmę Dallas Semiconductor \cite{bib_kom} do komunikacji między dwoma lub większą liczbą urządzeń przy wykorzystaniu zaledwie jednej lini danych, lini GND (konieczne odniesienie dla poprawnego rozpoznawania stanów logicznych) oraz zasialania Vcc. 
+W ramach oszczędności przewodów ogranicza się połączenia do dwóch linii, wtedy układ zasilany jest pasożytniczo z lini danych.
+Przykładowe połączenie przedstawia schemat:
 
 \begin{figure}[h]
 \begin{center}
@@ -41,7 +41,7 @@ Przykładowe połacznie przedstawia schemat:
 \label{schemonewire}
 \end{figure}
 
-Wyróżnia się urządzania typu Master (najczęsciej mikrokontroler) oraz Slave (peryferia).
+Wyróżnia się urządzania typu Master (najczęściej mikrokontroler) oraz Slave (peryferia).
 
 \subsection{Komunikacja}
 
@@ -85,7 +85,7 @@ Algorytm polega na wykonaniu n iteracji (w zależności od długości ciągu bit
 
 \subsection{Wykorzystanie układu Spartan 3e}
 
-Implementacji układu dokonano na platformie Spartan 3e \cite{bib_spartan}. Raport wyfenerowany przez oprogramownaie (rysunek \ref{raport}) Xilinx ISE pokazuje zużycie zasobów na poziomie 6\% co daje możliwości dalszej rozbudowy projektu.
+Implementacji układu dokonano na platformie Spartan 3e \cite{bib_spartan}. Raport wygenerowany przez oprogramownie Xilinx ISE (rysunek \ref{raport}) pokazuje zużycie zasobów na poziomie 6\% co daje możliwości dalszej rozbudowy projektu.
 
 \begin{figure}[H]
 \begin{center}
@@ -122,7 +122,7 @@ Moduł Termometer jest najbardziej rozbudowanym modułem składającym się z 4 
 \begin{itemize}
 \item Controller - obsługa sekwencji komunikacji i konwersji temperatury;
 \item ByteModule - obsługa komunikacji na poziomie bajtu (instrukcji);
-\item BusController - obsługa magistrali Onewire;
+\item BusController - obsługa magistrali OneWire;
 \item IOBuf - ustala kierunek komunikacji.
 \end{itemize}
 
@@ -149,13 +149,13 @@ Moduł Controller (rysunek \ref{controller_sym}) odpowiada za przeprowadzenie po
 
 Opis wyprowadzeń:
 
-Wejścia
+Wejścia:
 \begin{itemize}
 \item CLK - Zegar;
 \item Freq\_up - Impuls zwiększenia częstotliwości próbkowania;
-\item Freq\_down - Impul zmniejszenia częstotliwości próbkowania;
+\item Freq\_down - Impuls zmniejszenia częstotliwości próbkowania;
 \item Byte\_in - Bajt odebrany przez ByteModule;
-\item Bit\_in - Bit odeberany przez BusController;
+\item Bit\_in - Bit odebrany przez BusController;
 \item Busy\_in - Flaga zajętości ByteModule;
 \item c\_Busy\_in - Flaga zajętości BusController;
 \end{itemize}
@@ -170,8 +170,8 @@ Wyjścia:
 \item Reset\_start - Sygnał start dla BusControllera. 
 \end{itemize}
 
-W celu ogaraniczenia częstotliwości odczytu (co powoduje nadmierne nagrzewanie się czujnika) dodano możliwość sterowania odstępem między pomiarami. Moduł umożliwia odczyt co 4, 2, 1 sekundę lub ciągły. Zmiana odbywa się w procesie freq\_process.
-
+W celu ograniczenia częstotliwości odczytu (co powoduje nadmierne nagrzewanie się czujnika) dodano możliwość sterowania odstępem między pomiarami. Moduł umożliwia odczyt co 4, 2, 1 sekundę lub ciągły. Zmiana odbywa się w procesie freq\_process.
+\newpage
 \lstset{language=VHDL}
 \begin{lstlisting}[frame=single]
 freq_process: process (CLK, freq_up, freq_down)
@@ -219,7 +219,7 @@ Kolejne stany maszyny pokazuje Rysunek \ref{controller_fsm}. Po każdym ze stan�
 \label{controller_symulation}
 \end{figure}
 
-Zaznaczona na symulacji pozyjca A pokazuje moment zwolenia magistrali przez master (stan wysokiej impedancji). Zaraz po jej zwolnieniu kontrolę przejmuje slave, który wymuszając stan niski sygnalizuje swoją obecność (moment B). Przybliżony fragment (czerwona ramka) obrazuje przejścia stanów pomiędzy reset\_slave\_b a skip\_b. Widać, że stany presence oraz skip są jednotaktowe. 
+Zaznaczona na symulacji pozycja A pokazuje moment zwolnienia magistrali przez master (stan wysokiej impedancji). Zaraz po jej zwolnieniu kontrolę przejmuje slave, który wymuszając stan niski sygnalizuje swoją obecność (moment B). Przybliżony fragment (czerwona ramka) obrazuje przejścia stanów pomiędzy reset\_slave\_b, a skip\_b. Widać, że stany presence oraz skip są jednotaktowe. 
 
 
 \subsubsection{ByteModule}
@@ -254,7 +254,7 @@ Wyjścia:
 \item Bit\_out - Kolejny bit zapisywany przez BusController;
 \end{itemize}
 
-Ten moduł równiez jest maszyną stanów. Jej uproszczony schemat przedstawia rysunek \ref{byte_module_fsm}. Szczegóły implementacji można zobaczyć na symulacji przedstawionej na rysunkach \ref{byte_module_symulation1} - \ref{byte_module_symulation3}, 
+Ten moduł również jest maszyną stanów. Jej uproszczony schemat przedstawia rysunek \ref{byte_module_fsm}. Szczegóły implementacji można zobaczyć na symulacji przedstawionej na rysunkach \ref{byte_module_symulation1} - \ref{byte_module_symulation3}, 
 
 \begin{figure}[H]
 \begin{center}
@@ -264,7 +264,7 @@ Ten moduł równiez jest maszyną stanów. Jej uproszczony schemat przedstawia r
 \label{byte_module_fsm}
 \end{figure}
 
-Cykl odczytu rozpoczyna stan rs w którym ustawiany jest bit RnW na wartość 1 oraz wysyłany jest jendotaktowy sygnał start\_bit. Następnie w stanie rb następuje oczekiwanie na sygnalizujację zakończenia operacji przez BusController (flaga Busy\_bit). W stanie re w rejestrze tmp\_byte zatrzaskiwana jest odczytana wartość kolejnego bitu. Wartość ta jest współbieżnie przepsiwana na wyjście byte\_read. W zależności od ilości odczytanych bitów następuje przejście do stanu rc zwiększania zmiennej counter lub stanu n oznaczającego oczekiwanie na następną operację. 
+Cykl odczytu rozpoczyna stan rs w którym ustawiany jest bit RnW na wartość 1 oraz wysyłany jest jendotaktowy sygnał start\_bit. Następnie w stanie rb następuje oczekiwanie na sygnalizację zakończenia operacji przez BusController (flaga Busy\_bit). W stanie re w rejestrze tmp\_byte zatrzaskiwana jest odczytana wartość kolejnego bitu. Wartość ta jest współbieżnie przepisywana na wyjście byte\_read. W zależności od ilości odczytanych bitów następuje przejście do stanu rc zwiększania zmiennej counter lub stanu n oznaczającego oczekiwanie na następną operację. 
 
 Za zapamiętywanie kolejnych bitów odpowiedzialny jest proces byte\_reading:
 
@@ -323,6 +323,7 @@ Moduł BusController realizuje podstawowe operacje: reset, odczyt oraz zapis bit
 \end{figure}
 
 Opis wyprowadzeń:
+
 Wejścia:
 \begin{itemize}
 \item CLK - Wejście zegarowe;
@@ -330,14 +331,14 @@ Wejścia:
 \item Data\_id - Bit do zapisu z ByteModule;
 \item Reset - Jednobitowy sygnał resetu;
 \item RnW - Flaga informująca o typie wykonywanej operacji. Jeśli ustawiona w stan wysoki wykonywany jest odczyt;
-\item Start - Sygnał start dla BusController;
+\item Start - Sygnał start dla BusController.
 \end{itemize}
 
-Opis Wyjść: 
+Wyjścia: 
 \begin{itemize}
 \item Bus\_out - Zapis bitu do termometru; 
 \item Busy - Bit zajętości BusController;
-\item Read\_out -  Odczytany bit z termometru;
+\item Read\_out -  Odczytany bit z termometru.
 \end{itemize}
 
 Poniżej przedstawiono schemat blokowy tego automatu (rysunek \ref{bus_controller_fsm}):
@@ -416,7 +417,7 @@ Wyjścia:
 \label{double_dabble_sym}
 \end{figure}
 
-Moduł ten realizuje konwersję uzyskanej wartości na kod BCD na podstawie wcześniej opisanego algorytmu double dabble. Wykorzystane do zaimplementowania tego mechanizmu zostały zmienne, z względu na zastosowanie pętli for, w wyniku czego powstała bardzo skomplikowana logika kombinacyjna. 
+Moduł ten realizuje konwersję uzyskanej wartości na kod BCD na podstawie wcześniej opisanego algorytmu double dabble. Użycie pętli for wymusiło wykorzystanie zmiennych zamiast sygnałów. Taka konstrukcja spowodowała wygenerowanie skomplikowanej logiki kombinacyjnej.
 
 Opis wyprowadzeń:
 
@@ -484,7 +485,7 @@ Przykład działania pokazje symulacja na rysunku \ref{double_dabble_symulation}
 \label{lcd_sym}
 \end{figure} 
 
-Moduł LCD opiera się na prostej maszynie stanów, która przesyła kolejne znaki ASCII do wyświetlacza kontrolowanego przez element LCDWrite. Ze względu na sporą ilość stanów i prostotę automatu zostanie przedstawiony jedynie uproszcozny graf przejść (rysunek \ref{lcd_fsm}).
+Moduł LCD opiera się na prostej maszynie stanów, która przesyła kolejne znaki ASCII do wyświetlacza kontrolowanego przez element LCDWrite. Ze względu na sporą ilość stanów i prostotę automatu zostanie przedstawiony jedynie uproszczony graf przejść (rysunek \ref{lcd_fsm}).
 
 
 Opis wyprowadzeń:
@@ -517,7 +518,7 @@ Wyjścia:
 
 \subsection{Pozostałe moduły}
 
-Moduły LCDWrite oraz RotaryEnc pochodzą z zasobów dr. Jarosława Sugiera, ich opis znajduje się w \cite{bib_lcdwrite} oraz \cite{bib_rotaryenc}
+Moduły LCDWrite oraz RotaryEnc pochodzą z zasobów dr. Jarosława Sugiera, ich opis znajduje się w \cite{bib_lcdwrite} oraz \cite{bib_rotaryenc}.
 
 \section{Obsługa}
 
@@ -534,12 +535,13 @@ Gotowy układ przedstawia rysunek \ref{photo}. Termometr należy podłączyć do
 \section{Podsumowanie}
 \subsection{Ocena projektu}
 
-W ramach projektu zostały zrealizowane wszystkie założenia ustalone przed przystąpieniem do pracy. Dodatkowo, już po realizacji zamierzeń, dodana została obsługa zmiany częstotliwości pomiaru. Wszystkie moduły napisane w ramach projektu były na bieżąco testowane przy użyciu symulatora ISim, co zapewnia poprawność jego pracy. Ostatecznie, układ może działać z częstotliwością około 57 MHz. Dość niska maksymalna częstotliwość wynika prawdopodobnie z algorytmu double dabble, którego implementacja wymaga złożonej logiki kombinacyjnej. Przed przystąpieniem do ewentualnej rozbudowy projektu należałoby ujednolicić konwencję nazewiczą stanów, sygnałów wewnętrznych oraz wyprowadzeń układów.
+W ramach projektu zostały zrealizowane wszystkie założenia ustalone przed przystąpieniem do pracy. Dodatkowo, już po realizacji zamierzeń, dodana została obsługa zmiany częstotliwości pomiaru. Wszystkie moduły napisane w ramach projektu były na bieżąco testowane przy użyciu symulatora ISim, co zapewnia poprawność jego pracy. Ostatecznie, układ może działać z częstotliwością około 57 MHz. Dość niska maksymalna częstotliwość wynika prawdopodobnie z algorytmu double dabble, którego implementacja wymaga złożonej logiki kombinacyjnej. Przed przystąpieniem do ewentualnej rozbudowy projektu należałoby ujednolicić konwencję nazewniczą stanów, sygnałów wewnętrznych oraz wyprowadzeń układów.
 
 \subsection{Możliwości rozbudowy}
 
 Cały projekt zajmuje około 6\% zasobów dostępnych w układzie Spartan 3e. Daje to szerokie możliwości jego rozbudowy. Jedną z nich może być zwiększenie liczby przyłączonych czujników. Dodatkowo można go wzbogacić o obsługę komunikacji np. z komputerem PC z użyciem wybranego interfejsu. Innym rozszerzeniem może być dodanie obłsugi pamięci (np. karta sd), która miałaby za zadanie zapisywać wyniki pomiarów. Tak zapisane wyniki mogłoby być reprezentowane na monitorze VGA w postaci wykresów.
 
+\newpage
 \addcontentsline{toc}{section}{Literatura}
 \begin{thebibliography}{9}
 \bibitem{bib_kom}Komunikacja 1-Wire [dostęp 23.05.2016] \\
