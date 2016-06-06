@@ -28,7 +28,9 @@ ARCHITECTURE behavioral OF Init_Test_Init_Test_sch_tb IS
           LCD_RS	:	OUT	STD_LOGIC; 
           LCD_RW	:	OUT	STD_LOGIC; 
           LCD_D	:	INOUT	STD_LOGIC_VECTOR (3 DOWNTO 0); 
-          SF_CE	:	OUT	STD_LOGIC);
+          FREQ_DOWN : IN STD_LOGIC;
+			 FREQ_UP : IN STD_LOGIC;
+			 SF_CE	:	OUT	STD_LOGIC);
    END COMPONENT;
 
    SIGNAL CLK	:	STD_LOGIC;
@@ -38,6 +40,8 @@ ARCHITECTURE behavioral OF Init_Test_Init_Test_sch_tb IS
    SIGNAL LCD_RW	:	STD_LOGIC;
    SIGNAL LCD_D	:	STD_LOGIC_VECTOR (3 DOWNTO 0);
    SIGNAL SF_CE	:	STD_LOGIC;
+	SIGNAL FREQ_DOWN : STD_LOGIC;
+	SIGNAL FREQ_UP : STD_LOGIC;
 	
 	-- Clock period definitions
    constant CLK_period : time := 20 ns;
@@ -51,7 +55,9 @@ BEGIN
 		LCD_RS => LCD_RS, 
 		LCD_RW => LCD_RW, 
 		LCD_D => LCD_D, 
-		SF_CE => SF_CE
+		SF_CE => SF_CE,
+		FREQ_DOWN => FREQ_DOWN,
+		FREQ_UP => FREQ_UP
    );
 
 	
@@ -67,7 +73,9 @@ BEGIN
 -- *** Test Bench - User Defined Section ***
    tb : PROCESS
    BEGIN
-		
+		FREQ_DOWN <= '1';
+		wait for CLK_period;
+		FREQ_DOWN <= '0';
 	
       WAIT; -- will wait forever
    END PROCESS;

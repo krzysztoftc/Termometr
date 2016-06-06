@@ -7,7 +7,7 @@
 -- \   \   \/     Version : 14.7
 --  \   \         Application : sch2hdl
 --  /   /         Filename : Init_Test.vhf
--- /___/   /\     Timestamp : 05/24/2016 10:15:53
+-- /___/   /\     Timestamp : 05/24/2016 10:38:28
 -- \   \  /  \ 
 --  \___\/\___\ 
 --
@@ -26,13 +26,15 @@ library UNISIM;
 use UNISIM.Vcomponents.ALL;
 
 entity Init_Test is
-   port ( CLK     : in    std_logic; 
-          LCD_E   : out   std_logic; 
-          LCD_RS  : out   std_logic; 
-          LCD_RW  : out   std_logic; 
-          SF_CE   : out   std_logic; 
-          DS18S20 : inout std_logic; 
-          LCD_D   : inout std_logic_vector (3 downto 0));
+   port ( CLK       : in    std_logic; 
+          Freq_down : in    std_logic; 
+          Freq_up   : in    std_logic; 
+          LCD_E     : out   std_logic; 
+          LCD_RS    : out   std_logic; 
+          LCD_RW    : out   std_logic; 
+          SF_CE     : out   std_logic; 
+          DS18S20   : inout std_logic; 
+          LCD_D     : inout std_logic_vector (3 downto 0));
 end Init_Test;
 
 architecture BEHAVIORAL of Init_Test is
@@ -42,27 +44,25 @@ architecture BEHAVIORAL of Init_Test is
    attribute IBUF_DELAY_VALUE : string ;
    attribute IFD_DELAY_VALUE  : string ;
    attribute BOX_TYPE         : string ;
-   signal Line                        : std_logic_vector (63 downto 0);
-   signal XLXN_1                      : std_logic;
-   signal XLXN_2                      : std_logic;
-   signal XLXN_10                     : std_logic;
-   signal XLXN_12                     : std_logic;
-   signal XLXN_13                     : std_logic;
-   signal XLXN_19                     : std_logic_vector (7 downto 0);
-   signal XLXN_24                     : std_logic;
-   signal XLXN_25                     : std_logic;
-   signal XLXN_132                    : std_logic;
-   signal XLXN_140                    : std_logic_vector (7 downto 0);
-   signal XLXN_142                    : std_logic;
-   signal XLXN_145                    : std_logic;
-   signal XLXN_146                    : std_logic_vector (15 downto 0);
-   signal XLXN_167                    : std_logic;
-   signal XLXN_178                    : std_logic;
-   signal XLXN_179                    : std_logic;
-   signal XLXN_180                    : std_logic;
-   signal XLXI_3_Reset_openSignal     : std_logic;
-   signal XLXI_5_Freq_down_openSignal : std_logic;
-   signal XLXI_5_Freq_up_openSignal   : std_logic;
+   signal Line                    : std_logic_vector (63 downto 0);
+   signal XLXN_1                  : std_logic;
+   signal XLXN_2                  : std_logic;
+   signal XLXN_10                 : std_logic;
+   signal XLXN_12                 : std_logic;
+   signal XLXN_13                 : std_logic;
+   signal XLXN_19                 : std_logic_vector (7 downto 0);
+   signal XLXN_24                 : std_logic;
+   signal XLXN_25                 : std_logic;
+   signal XLXN_132                : std_logic;
+   signal XLXN_140                : std_logic_vector (7 downto 0);
+   signal XLXN_142                : std_logic;
+   signal XLXN_145                : std_logic;
+   signal XLXN_146                : std_logic_vector (15 downto 0);
+   signal XLXN_167                : std_logic;
+   signal XLXN_178                : std_logic;
+   signal XLXN_179                : std_logic;
+   signal XLXN_180                : std_logic;
+   signal XLXI_3_Reset_openSignal : std_logic;
    component BusController
       port ( Bus_in   : in    std_logic; 
              CLK      : in    std_logic; 
@@ -186,8 +186,8 @@ begin
                 Byte_in(7 downto 0)=>XLXN_140(7 downto 0),
                 CLK=>CLK,
                 c_Busy_in_bit=>XLXN_167,
-                Freq_down=>XLXI_5_Freq_down_openSignal,
-                Freq_up=>XLXI_5_Freq_up_openSignal,
+                Freq_down=>Freq_down,
+                Freq_up=>Freq_up,
                 Byte_out(7 downto 0)=>XLXN_19(7 downto 0),
                 Data_out(15 downto 0)=>Line(15 downto 0),
                 Freq_state=>open,

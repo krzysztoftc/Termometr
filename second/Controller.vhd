@@ -109,7 +109,7 @@ begin
 	end if;
 end process;
 
-service: process (CLK, state, busy_in, bit_in, c_busy_in_bit, byte_in)
+service: process (CLK, state, busy_in, bit_in, c_busy_in_bit, byte_in, delay_flag)
 begin
 	
 	next_state <= state; -- by default
